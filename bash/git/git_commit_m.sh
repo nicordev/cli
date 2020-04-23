@@ -6,7 +6,7 @@
 ##
 ## If flagHere is omitted, then the flag will be 'feat'
 
-if [ -z $1 ]
+if [ -z "$1" ]
 then
     echo 'Please enter a message.'
     exit
@@ -14,7 +14,7 @@ fi
 
 flag='feat'
 
-if [ ! -z $2 ]
+if [ ! -z "$2" ]
 then
     flag=$2
 fi
