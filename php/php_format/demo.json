@@ -1,0 +1,38 @@
+"{
+    \"id\": \"98a90ad0-ef33-4905-9e0e-93836dde9ba0\",
+    \"createdTimestamp\": 1588778409933,
+    \"username\": \"kmartins\",
+    \"enabled\": true,
+    \"totp\": false,
+    \"emailVerified\": true,
+    \"firstName\": \"Kévin !\",
+    \"lastName\": \"Martins\",
+    \"email\": \"k.martins@ubitransport.com\",
+    \"attributes\": {
+        \"unit_system\": [
+            \"intl\"
+        ],
+        \"legacy_id\": [
+            \"42\"
+        ],
+        \"type\": [
+            \"AGENCY\"
+        ],
+        \"locale\": [
+            \"fr\"
+        ],
+        \"homepage\": [
+            \"\"
+        ]
+    },
+    \"disableableCredentialTypes\": [],
+    \"requiredActions\": [],
+    \"notBefore\": 0,
+    \"access\": {
+        \"manageGroupMembership\": true,
+        \"view\": true,
+        \"mapRoles\": true,
+        \"impersonate\": true,
+        \"manage\": true
+    }
+}"
