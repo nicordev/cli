@@ -18,5 +18,3 @@ function formatJsonToPhpArray(string $jsonData)
 $jsonToFormat = $argv[1];
 
 echo formatJsonToPhpArray($jsonToFormat) . "\n";
-
-
