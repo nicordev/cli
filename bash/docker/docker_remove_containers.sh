@@ -13,7 +13,7 @@ containers=$(getContainerNames)
 if [ -z "$1" ]; then
     echo -e "\e[1mAvailable containers:\e[0m\n"
     echo $containers | sed 's#/##g' | sed 's# #\n#g'
-    echo -e "\nNext step: try again with a string common to each container you want to remove as a parameter."
+    echo -e "\n\e[1mNext step:\e[0m try again with a string common to each container you want to remove as a parameter."
     exit
 fi
 
