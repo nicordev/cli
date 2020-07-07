@@ -48,3 +48,8 @@ Example:
     "
 
 echo -e "    will display:    \e[1;34;47mHello \e[7mWorld!\e[0m"
+
+echo -e "\n\e[1mFrequently used formatting codes:\e[0m\n"
+
+echo "bold: \e[1m"
+echo "reset: \e[0m"
