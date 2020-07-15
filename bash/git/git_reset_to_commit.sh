@@ -15,8 +15,9 @@ listCommits() {
 showCommit() {
     commit=$(listCommits | grep "$1")
 
+
     if [ -z "$commit" ]; then
-        echo "Unknown commit. Bye."
+        echo "Unknown commit. See ya!"
         exit
     fi
 

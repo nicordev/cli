@@ -4,8 +4,12 @@
 ##
 ## The 1st parameter can be used to filter results using grep.
 
+listContainerIds() {
+    docker ps -aq --no-trunc
+}
+
 getContainerNames() {
-    docker inspect --format='{{.Name}}' $(sudo docker ps -aq --no-trunc)
+    docker inspect --format='{{.Name}}' $(listContainerIds)
 }
 
 containers=$(getContainerNames)
