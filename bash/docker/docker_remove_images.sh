@@ -13,7 +13,7 @@ listImages() {
 }
 
 getFilteredImageIds() {
-    echo "$images" | grep "$1" | cut -f 1 | tr '\n' ' '
+    listImages | grep "$1" | cut -f 1 | tr '\n' ' '
 }
 
 if [ -z "$1" ]; then
