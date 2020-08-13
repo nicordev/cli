@@ -15,9 +15,9 @@ getVsCodiumUsingSnap() {
 }
 
 getVsCodiumUsingApt() {
-    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | sudo apt-key add -
-    echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | sudo tee --append /etc/apt/sources.list.d/vscodium.list
-    sudo apt update && sudo apt install codium
+    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | apt-key add -
+    echo 'deb https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/debs/ vscodium main' | tee --append /etc/apt/sources.list.d/vscodium.list
+    apt update && apt install codium
 }
 
 # Git:
@@ -41,15 +41,15 @@ getVim() {
 getInsomnia() {
     # Add to sources
     echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
-        | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+        | tee -a /etc/apt/sources.list.d/insomnia.list
 
     # Add public key used to verify code signature
     wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \
-        | sudo apt-key add -
+        | apt-key add -
 
     # Refresh repository sources and install Insomnia
-    sudo apt-get update
-    sudo apt-get install insomnia
+    apt-get update
+    apt-get install insomnia
 
 }
 
@@ -57,24 +57,24 @@ getInsomnia() {
 #   https://docs.docker.com/engine/install/ubuntu/
 
 getDocker() {
-    sudo apt-get install \
+    apt-get install \
         apt-transport-https \
         ca-certificates \
         curl \
         gnupg-agent \
         software-properties-common
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
-    sudo apt-key fingerprint 0EBFCD88
+    apt-key fingerprint 0EBFCD88
 
-    sudo add-apt-repository \
+    add-apt-repository \
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable"
     
-    sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    apt-get update
+    apt-get install docker-ce docker-ce-cli containerd.io
 }
 
 getGit
