@@ -1,8 +1,9 @@
 #!/bin/bash
 
+gitUsername='nicor'
+gitEmail='nicolas.renvoise.dev@gmail.com'
+
 echo -e "Let's go install some useful stuff!\n"
-read -p "Git username: " gitUsername
-read -p "Git email: " gitEmail
 
 apt-get update
 
@@ -77,8 +78,10 @@ getDocker() {
     apt-get install docker-ce docker-ce-cli containerd.io
 }
 
-getGit
-getVim
+# Uncomment the packages you want:
+
+# getGit
+# getVim
 getVsCodiumUsingApt
 getInsomnia
 getDocker
