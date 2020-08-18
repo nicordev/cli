@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Build an image then push it to docker hub.
+
 folder="."
 canBuild="n"
 
