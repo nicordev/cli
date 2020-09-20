@@ -3,7 +3,7 @@
 # DBeaver:
 #   https://dbeaver.io/download/
 
-temporaryFolder='./temporary'
+temporaryFolder='./debianPackageTemporaryFolder'
 quiet=''
 
 styleNormal="\e[0m"
@@ -24,7 +24,7 @@ installPackage() {
 }
 
 removeTemporaryFolder() {
-    rm -rf "$temporaryFolder"
+    rm -rf "$temporaryFolder" || return
 }
 
 if [ -z "$1" ]; then

@@ -8,4 +8,13 @@ getVsCodium() {
     snap install codium
 }
 
-getVsCodium
+getVsCode() {
+    wget 'https://go.microsoft.com/fwlink/?LinkID=760868'
+}
+
+if [ "codium" == $1 ]; then
+    getVsCodium
+    exit
+fi
+
+getVsCode
