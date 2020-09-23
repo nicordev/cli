@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  http:
+    image: nginx:1-alpine
+    networks:
+      app: ~
+  php:
+    build:
+      context: ./docker/php
+    networks:
+      app: ~
+      web-proxy: ~
+  postgresql:
+    image: "mdillon/postgis:11"
+    networks:
+      db: ~
+volumes:
+  database:
+networks:
+  app: ~
+  db: ~
