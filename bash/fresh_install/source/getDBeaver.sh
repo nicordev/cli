@@ -10,15 +10,17 @@ getDBeaver() {
 }
 
 installDBeaver() {
+    # Rename package file
     local temporaryPackageFileName="$packageFolder/dbeaver.deb"
-
     mv "$packageFolder"/* "$temporaryPackageFileName"
+    # Install package
     apt-get install "$temporaryPackageFileName" -y
 }
 
 removePackageFolder() {
-    
+    rm -rf $packageFolder
 }
 
 getDBeaver
 installDBeaver
+removePackageFolder
