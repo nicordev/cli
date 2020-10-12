@@ -4,6 +4,15 @@
 ##
 ## Usage: docker_trick.sh [functionName] [argument]
 
+listContainersAsJson() {
+    docker container ls --format='{{json .}}'
+}
+
+listContainerNames() {
+    docker container ls --format='{{.Names}}'
+}
+
+
 listImageChildren() {
     docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since=$1 --quiet)
 }
