@@ -47,10 +47,8 @@ switchBranch() {
 }
 
 hint="$1"
-activeBranch=$(getActiveBranch)
-
 printStrong "Active branch: "
-printNormal "${activeBranch}\n\n"
+printNormal "$(getActiveBranch)\n\n"
 printStrong "Available branches :\n"
 listAvailableBranches
 askWhichBranchToUse
