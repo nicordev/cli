@@ -1,6 +1,7 @@
 # list
 alias llg='filter_list.sh --full'
 alias lg='filter_list.sh'
+alias lh='ls -alFh'
 # cd
 alias cdDownloads='cd ~/Downloads'
 # Nano
@@ -15,7 +16,7 @@ alias gitsel='git_select_branch.sh'
 alias gitc='git checkout'
 alias gitcd='git checkout develop'
 alias gitcm='git checkout master'
-alias gitcommit='git_commit_m.sh'
+alias gitcommit='git commit -m'
 alias gitcamend='git commit --amend'
 alias gitpoc='date; git push origin HEAD'
 alias gitforcepoc='date; gitpoc --force'
@@ -59,6 +60,7 @@ alias please_clipboard_how_to_copy="echo 'someCommand | xclip -in -selection cli
 alias please_clipboard_how_to_paste="echo 'xclip -out -selection clipboard'"
 alias please_create_script='create_script.sh'
 # file
+alias please_open_file_manager_here='xdg-open .'
 alias please_chmod_x_recursive='chmod -R +x'
 alias please_chmod_x_recursive_here='chmod -R +x .'
 alias please_find='find_name.sh'
