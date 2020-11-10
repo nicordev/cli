@@ -44,6 +44,8 @@ alias please_run_phpcsfixer='php php-cs-fixer.phar fix --config "./.php_cs.dist"
 # symfony
 alias pbc='php bin/console'
 alias please_symfony_console='php bin/console'
+alias please_symfony_server_start='symfony server:start -d'
+
 # Go to directory
 alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
@@ -128,3 +130,6 @@ alias please_crawl_a_website='wget -rkpE'
 alias please_yakuake_start='yakuake'
 # firefox
 alias firefox_dev='/home/nicolas/firefox_developer/firefox &'
+# gnome
+alias please_gnome_activate_night_light='gnome_night_light.sh on'
+alias please_gnome_deactivate_night_light='gnome_night_light.sh off'
