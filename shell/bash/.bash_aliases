@@ -45,7 +45,6 @@ alias please_run_phpcsfixer='php php-cs-fixer.phar fix --config "./.php_cs.dist"
 alias pbc='php bin/console'
 alias please_symfony_console='php bin/console'
 alias please_symfony_server_start='symfony server:start -d'
-
 # Go to directory
 alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
@@ -82,6 +81,7 @@ alias please_display_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
+alias please_how_to_count_processor_cores='echo nproc'
 # usb key
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
