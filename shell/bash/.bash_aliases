@@ -1,11 +1,13 @@
 # list
-alias llg='filter_list.sh --full'
+alias llg="filter_list.sh --full"
 alias lg='filter_list.sh'
 alias lh='ls -alFh'
 # cd
 alias cdDownloads='cd ~/Downloads'
 # Nano
 alias nano='nano -miA'
+# Todo
+alias please_todo='vim ~/Desktop/todo.md'
 # Git
 alias gitl='git log --oneline --graph'
 alias gits='git status'
