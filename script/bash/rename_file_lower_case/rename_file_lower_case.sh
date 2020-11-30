@@ -10,12 +10,8 @@ showHelp() {
     fi
 }
 
-checkFile() {
-    if [ ! -f "$file" ]
-    then
-        echo "$file is not a file."
-        exit 2
-    fi
+isFile() {
+    [ -f "$1" ]
 }
 
 switchToLowercase() {
@@ -23,20 +19,28 @@ switchToLowercase() {
 }
 
 renameFile() {
-    lowercaseFile=$(echo "$file" | switchToLowercase)
+    local lowercaseFile=$(echo "$1" | switchToLowercase)
 
-    if [ -f "$lowercaseFile" ]; then
-        echo "Error - File already exists!"
-        exit 3
+    if isFile "$lowercaseFile"; then
+        echo "File $lowercaseFile already exists."
+        return 1
     fi
 
-    /bin/mv "$file" "$lowercaseFile"
+    /bin/mv "$1" "$lowercaseFile"
 }
 
 # <<<<<<<<<<<<<<<<<<<<<<<< functions <<<<<<<<<<<<<<<<<<<<<<<<
 
 showHelp $@
 
-file="$1"
-checkFile
-renameFile
+while [[ $# > 0 ]]; do
+    if ! isFile "$1"; then
+        echo "$1 is not a file."
+        shift
+        continue
+    fi
+    renameFile "$1"
+    shift
+done
+
+echo 'Done. Have a nice day!'

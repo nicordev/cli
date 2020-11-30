@@ -10,12 +10,8 @@ showHelp() {
     fi
 }
 
-checkFile() {
-    if [ ! -f "$file" ]
-    then
-        echo "$file is not a file."
-        exit 2
-    fi
+isFile() {
+    [ -f "$1" ]
 }
 
 switchToSnakeCase() {
@@ -23,20 +19,28 @@ switchToSnakeCase() {
 }
 
 renameFile() {
-    snakeCaseFile=$(echo "$file" | switchToSnakeCase)
+    local snakeCaseFile=$(echo "$1" | switchToSnakeCase)
 
-    if [ -f snakeCaseFile ]; then
-        echo "Error - File already exists!"
-        exit 3
+    if isFile "$snakeCaseFile"; then
+        echo "File $snakeCaseFile already exists."
+        return 1
     fi
 
-    /bin/mv "$file" $snakeCaseFile
+    /bin/mv "$1" "$snakeCaseFile"
 }
 
 # <<<<<<<<<<<<<<<<<<<<<<<< functions <<<<<<<<<<<<<<<<<<<<<<<<
 
 showHelp $@
 
-file="$1"
-checkFile
-renameFile
+while [[ $# > 0 ]]; do
+    if ! isFile "$1"; then
+        echo "$1 is not a file."
+        shift
+        continue
+    fi
+    renameFile "$1"
+    shift
+done
+
+echo 'Done. Have a nice day!'
