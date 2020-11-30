@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Rename files to snake_case.
+#
+# Use * to rename all files in the current directory: rename_file_snake_case.sh *
+
 # >>>>>>>>>>>>>>>>>>>>>>>> functions >>>>>>>>>>>>>>>>>>>>>>>>
 
 showHelp() {

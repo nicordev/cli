@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Rename files to lowercase.
+#
+# Use * to rename all files in the current directory: rename_file_lower_case.sh *
+
 # >>>>>>>>>>>>>>>>>>>>>>>> functions >>>>>>>>>>>>>>>>>>>>>>>>
 
 showHelp() {
