@@ -10,23 +10,27 @@ help() {
     styleTitle="\e[32;1m"
     styleStrong="\e[1m"
     styleNormal="\e[0m"
+    scriptName=$(basename $0)
 
     echo -e "${styleTitle}How it works?\n${styleNormal}"
     
     echo -e "${styleStrong}To activate night light:${styleNormal}"
-    echo -e "    $0 on"
+    echo -e "    $scriptName on"
     
     echo -e "${styleStrong}\nTo deactivate night light:${styleNormal}"
-    echo -e "    $0 off"
+    echo -e "    $scriptName off"
+    
+    echo -e "${styleStrong}\nTo toggle night light:${styleNormal}"
+    echo -e "    $scriptName toggle"
 
     echo -e "${styleStrong}\nTo list gnome settings related to night light:${styleNormal}"
-    echo -e "    $0 listKeys"
+    echo -e "    $scriptName listKeys"
 
     echo -e "${styleStrong}\nTo get a gnome setting:${styleNormal}"
-    echo -e "    $0 get keyName"
+    echo -e "    $scriptName get keyName"
 
     echo -e "${styleStrong}\nTo set a gnome setting:${styleNormal}"
-    echo -e "    $0 set keyName keyValue"
+    echo -e "    $scriptName set keyName keyValue"
 }
 
 # List setting keys related to night light
@@ -59,6 +63,16 @@ on() {
 # Deactivate night light
 off() {
     set $nightLightEnabledKey false
+}
+
+# Toggle night light
+toggle() {
+    if [ $(get $nightLightEnabledKey) == true ]; then
+        off
+        return
+    fi
+
+    on
 }
 
 if [ $# -eq 0 ]; then
