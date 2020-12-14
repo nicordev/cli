@@ -135,3 +135,9 @@ alias firefox_dev='/home/nicolas/firefox_developer/firefox &'
 # gnome
 alias please_gnome_activate_night_light='gnome_night_light.sh on'
 alias please_gnome_deactivate_night_light='gnome_night_light.sh off'
+# QR code
+alias please_how_to_encode_qr_code="echo -e \"cat \e[33minputFileName\e[0m | qrencode --type \e[33m{PNG,PNG32,EPS,SVG,XPM,ANSI,ANSI256,ASCII,ASCIIi,UTF8,ANSIUTF8}\e[0m --output=\e[33moutputFileName\e[0m\""
+alias please_encode_qr_code='qrencode'
+# Portainer
+alias please_portainer_start=" docker run -d -p 8000:8000 -p 9090:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce"
+alias please_portainer_browse="firefox http://127.0.0.1:9090"
