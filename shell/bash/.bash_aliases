@@ -57,10 +57,10 @@ alias please_edit_bashrc='vim ~/.bashrc'
 alias please_edit_bash_aliases='vim ~/.bash_aliases'
 alias please_show_aliases='alias -p | sort'
 # clipboard
-alias please_clipboard_copy='xclip -in -selection clipboard'
-alias please_clipboard_paste='xclip -out -selection clipboard'
-alias please_clipboard_how_to_copy="echo 'someCommand | xclip -in -selection clipboard'"
-alias please_clipboard_how_to_paste="echo 'xclip -out -selection clipboard'"
+alias please_copy='xclip -in -selection clipboard'
+alias please_paste='xclip -out -selection clipboard'
+alias please_how_to_copy="echo 'someCommand | xclip -in -selection clipboard'"
+alias please_how_to_paste="echo 'xclip -out -selection clipboard'"
 alias please_create_script='create_script.sh'
 # file
 alias please_open_file_manager_here='xdg-open .'
@@ -118,6 +118,7 @@ alias please_docker_how_to_run_container_with_specific_port="echo -e \"docker ru
 alias please_docker_how_to_run_container_in_background="echo -e \"docker run -d --name \e[33mcontainerName imageName\e[0m\""
 alias please_docker_how_to_remove_container="echo -e \"docker rm --force \e[33mcontainerName\e[0m\""
 alias please_docker_how_to_build_image="echo -e \"docker build -t \e[33mnomImage\e[0m -f \e[33mnomFichierDockerfileSouhaité cheminVersLeDossierContenantLeDockerfile\e[0m\""
+alias please_docker_how_to_rename_image="echo -e \"docker image tag \e[33midImageOuCoupleNomImage:nomTag nouveauNomImage:nouveauTag\e[0m\""
 # Google Cloud Platform (GCP)
 alias please_login_google_cloud_platform='gcloud auth login'
 # jekyll static website generator
