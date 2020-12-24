@@ -104,6 +104,7 @@ alias please_code_moi='code ~/moi'
 # docker
 alias please_docker_clean='docker system prune'
 alias please_docker_login='docker login'
+alias please_docker_logout='docker logout'
 alias please_docker_exec='docker_exec.sh'
 alias please_docker_exec_sh='docker_exec_sh.sh'
 alias please_docker_remove_containers='docker_remove_containers.sh'
@@ -113,6 +114,8 @@ alias please_docker_run_named_container_in_background='docker run -d --name'
 alias please_docker_run_named_container='docker run --name'
 alias please_docker_run_unnamed_container='docker run'
 alias please_docker_remove_container='docker container rm --force'
+alias please_docker_how_to_login='echo -e "docker login -u \e[33musernameHere\e[0m -p \e[33mpasswordHere\e[0m"'
+alias please_docker_how_to_logout='echo "docker logout"'
 alias please_docker_how_to_push_image_to_docker_hub='echo -e "docker push \e[33mnomCompte/nomImage:nomTag\e[0m"'
 alias please_docker_how_to_run_container_with_specific_port="echo -e \"docker run -d -p \e[33mnuméroPortMachine:numéroPortConteneur nomImageCréée\e[0m\""
 alias please_docker_how_to_run_container_in_background="echo -e \"docker run -d --name \e[33mcontainerName imageName\e[0m\""
