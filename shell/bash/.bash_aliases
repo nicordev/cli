@@ -62,6 +62,7 @@ alias please_paste='xclip -out -selection clipboard'
 alias please_how_to_copy="echo 'someCommand | xclip -in -selection clipboard'"
 alias please_how_to_paste="echo 'xclip -out -selection clipboard'"
 alias please_create_script='create_script.sh'
+alias please_create_please_script='create_please_script.sh'
 # file
 alias please_open_file_manager_here='xdg-open .'
 alias please_chmod_x_recursive='chmod -R +x'
