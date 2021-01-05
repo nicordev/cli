@@ -80,6 +80,7 @@ alias please_add_group_to_user='sudo usermod -aG'
 alias please_upgrade_packages='upgrade_packages.sh'
 # network
 alias please_display_listening_ports='sudo lsof -i -P -n | grep LISTEN'
+alias please_display_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
 # linux
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
