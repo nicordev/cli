@@ -12,6 +12,9 @@ listContainerNames() {
     docker container ls --format='{{.Names}}'
 }
 
+listContainerIp() {
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$1"
+}
 
 listImageChildren() {
     docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since=$1 --quiet)
@@ -25,9 +28,13 @@ stopAllContainers() {
     docker stop $(docker ps -a -q)
 }
 
-if [ -z "$1" ]; then
-    # List available functions
+_listAvailableFunctions() {
     cat $0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {$##'
+}
+
+if [ $# -eq 0 ]; then
+    _listAvailableFunctions
+    exit
 fi
 
 $@
