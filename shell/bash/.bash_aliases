@@ -38,7 +38,7 @@ alias please_php_show_modules='php -m'
 alias please_php_show_ini_files='php --ini'
 alias please_php_start_web_server='php -S localhost:8000 -t public'
 # php quality analysis
-alias please_php_run_quality_tools='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-php-quality-analysis:/tmp" -w /project nicordev/php-quality-analysis:latest'
+alias please_php_run_quality_tools='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-php-quality-analysis:/tmp" -w /project nicordev/php-tools-analysis:latest'
 alias please_run_phpstan_analyse='please_php_run_quality_tools phpstan analyse'
 alias please_run_infection='please_php_run_quality_tools infection'
 # php cs fixer

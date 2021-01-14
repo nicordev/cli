@@ -21,6 +21,12 @@ functionName() {
     echo -e "\e[32m Welcome home! \e[0m \n You are executing: \e[33m \${FUNCNAME[0]} \e[0m with \$# parameter(s)"
 }
 
+# Display the source code of this file
+howItWorks() {
+    cat \$0
+}
+
+# List all functions that do not begin with an underscore _
 _listAvailableFunctions() {
     cat \$0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {\$##'
 }
