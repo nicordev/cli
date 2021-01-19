@@ -18,7 +18,10 @@ writeScriptTemplate() {
 SCRIPT_NAME=\$(basename \$0)
 
 functionName() {
-    echo -e "\e[32m Welcome home! \e[0m \n You are executing: \e[33m \${FUNCNAME[0]} \e[0m with \$# parameter(s)"
+    if [ \$# -eq 0 ]; then
+        echo -e "\${SCRIPT_NAME} \${FUNCNAME[0]} \e[33mparameterName\e[0m"
+        exit 1
+    fi
 }
 
 # Display the source code of this file
