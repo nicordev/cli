@@ -34,6 +34,9 @@ alias git_reset_from_origin='git reset --hard origin'
 alias git_branch_create_and_select='git checkout -b'
 alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
+# service
+alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
+alias please_stop_apache='sudo service apache2 stop'
 # php
 alias please_php_run='php -r'
 alias please_php_run_interactively='php -a'
