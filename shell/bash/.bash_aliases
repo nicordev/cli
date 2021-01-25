@@ -11,6 +11,8 @@ alias nano='nano -miA'
 alias please_todo='vim ~/Desktop/todo.md'
 # image
 alias please_show_image_dimensions='file'
+# markdown
+alias please_show_file_as_markdown='mdless'
 # Git
 alias gitl='git log --oneline --graph'
 alias gits='git status'
@@ -85,8 +87,8 @@ alias please_add_group_to_user='sudo usermod -aG'
 # manage packages
 alias please_upgrade_packages='upgrade_packages.sh'
 # network
-alias please_display_listening_ports='sudo lsof -i -P -n | grep LISTEN'
-alias please_display_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
+alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
+alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
 # linux
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
