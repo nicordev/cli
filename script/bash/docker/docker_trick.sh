@@ -34,7 +34,7 @@ buildImage() {
         docker build --pull --no-cache -t "$image"
         return
     fi
-    
+
     docker build --pull --no-cache -t "$image" -f "$imageFile" "$imageFolder"
 }
 
@@ -70,6 +70,17 @@ showContainerIp() {
     docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$1"
 }
 
+showNetworkIp() {
+    if [ $# -eq 0 ]; then
+        echo -e "\e[1mNetworks:\e[0m\n"
+        docker network ls --format='{{.ID}}\t{{.Name}}'
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mnetworkIdOrName\e[0m"
+        exit 1
+    fi
+
+    docker inspect -f "{{json .IPAM.Config }}" "$1" | grep -Po '"Gateway":.*"}]' | grep -Po '(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
+}
+
 listImagesAsJson() {
     docker container ls --format='{{json .}}{{ println }}'
 }
@@ -81,7 +92,7 @@ listImageChildren() {
         echo -e "\n${SCRIPT_NAME} listImageChildren \e[33mimageIdOrName\e[0m"
         exit 1
     fi
-    
+
     docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since="$1" --quiet)
 }
 

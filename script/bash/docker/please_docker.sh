@@ -28,7 +28,7 @@ buildImage() {
 
     if [ -z "$imageFile" ] || [ -z "$imageFolder" ]; then
         docker build -t "$image"
-    else 
+    else
         docker build -t "$image" -f "$imageFile" "$imageFolder"
     fi
 }
