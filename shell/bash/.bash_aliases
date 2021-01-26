@@ -114,7 +114,8 @@ alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: D
 # vscode
 alias please_code_moi='code ~/moi'
 # docker
-alias please_docker='docker_trick.sh'
+alias please_docker_show_container_ip='please_docker.sh showContainerIp'
+alias please_docker_show_network_ip='please_docker.sh showNetworkIp'
 alias please_docker_clean='docker system prune'
 alias please_docker_login='docker login'
 alias please_docker_logout='docker logout'
