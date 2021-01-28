@@ -129,10 +129,11 @@ YELLOW="\[\033[01;33m\]"
 GREEN="\[\033[01;32m\]"
 BLUE="\[\033[01;34m\]"
 NO_COLOR="\[\033[00m\]"
+BOLD="\[\033[01m\]"
 # without host
 # PS1="$GREEN\u$NO_COLOR:$BLUE\w$YELLOW\$(parse_git_branch)$NO_COLOR\$ "
 # with host
-PS1="${GREEN}\u@\h${NO_COLOR} \w${YELLOW} \$(parse_git_branch)${NO_COLOR}\$ "
+PS1="${GREEN}\u@\h${BOLD} \w${YELLOW} \$(parse_git_branch)${NO_COLOR}\$ "
 
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
