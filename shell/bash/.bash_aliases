@@ -91,6 +91,8 @@ alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
 # linux
 alias please_what_is_the_current_distribution='cat /etc/os-release'
+alias please_show_date_concatenated='date "+%Y%m%d"'
+alias please_how_to_show_date_concatenated='echo "date \"+%Y%m%d\""'
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
