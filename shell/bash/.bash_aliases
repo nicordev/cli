@@ -4,15 +4,16 @@ alias lg='filter_list.sh'
 alias lh='ls -alFh'
 # cd
 alias cdDownloads='cd ~/Downloads'
-alias cdschool='cd ~/moi/project/school'
+alias cdschool='cd ~/moi/project/school/school_paperwork'
+alias cdviolay='cd ~/moi/project/school/violay-rainbow-school.github.io'
 # Nano
 alias nano='nano -miA'
 # Todo
 alias please_todo='vim ~/Desktop/todo.md'
 # image
 alias please_show_image_dimensions='file'
-# markdown
-alias please_show_file_as_markdown='mdless'
+# pandoc
+alias please_how_to_convert_markdown='echo -e "pandoc \e[33mfileName\e[0m -f markdown -t \e[33moutputFormat\e[0m -s -o \e[33moutputFile\e[0m"'
 # Git
 alias gitl='git log --oneline --graph'
 alias gits='git status'
@@ -58,7 +59,8 @@ alias please_symfony_server_start='symfony server:start -d'
 # Go to directory
 alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
-# Please
+# uuid
+alias please_generate_uuid4='curl "uuid4.com/?count=1"'
 # .bashrc
 alias please_source='source ~/.bashrc'
 alias please_edit_bashrc='vim ~/.bashrc'
