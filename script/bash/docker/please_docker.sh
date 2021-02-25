@@ -55,6 +55,24 @@ listContainerNames() {
     docker container ls --format='{{.Names}}'
 }
 
+listContainerNamesAndIds() {
+    docker container ls --format='{{.ID}} {{.Names}}'
+}
+
+copyFileToContainer() {
+    if [ $# -lt 1 ]; then
+        listContainerNamesAndIds
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlocalFileHere containerIdHere containerFileHere\e[0m"
+        exit 1
+    fi
+
+    local localFile="$1"
+    local containerId="$2"
+    local containerFile="$3"
+
+    docker cp $localFile "$containerId:$containerFile"
+}
+
 showContainerIp() {
     if [ -z $1 ]; then
         echo -e "\e[1mContainers:\e[0m\n"
