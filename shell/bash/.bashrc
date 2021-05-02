@@ -104,7 +104,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Alias related to ubitransport
+# Private aliases
+if [ -f ~/.bash_private_aliases ]; then
+    . ~/.bash_private_aliases
+fi
+
+# Aliases related to ubitransport
 if [ -f ~/.bash_ubitransport_aliases ]; then
     . ~/.bash_ubitransport_aliases
 fi
