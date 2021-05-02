@@ -104,6 +104,7 @@ alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
 alias please_how_to_count_processor_cores='echo nproc'
+alias please_how_to_show_ip='echo "ip address"'
 # sed
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 # usb key
