@@ -33,6 +33,7 @@ alias gitforcepoc-no-ci='date; gitpoc-no-ci --force'
 alias gitCurrentPull='git_pull_current_branch.sh'
 alias gitDevelopPull='git pull origin develop'
 alias gitMasterPull='git pull origin master'
+alias gitRebaseDevelop='git stash && git rebase develop && git stash pop'
 alias git_reset_to_commit='git_reset_to_commit.sh'
 alias git_remove_last_commit='git reset --hard HEAD~1'
 alias git_reset_from_origin='git reset --hard origin'
@@ -154,6 +155,7 @@ alias please_docker_how_to_run_container_in_background="echo -e \"docker run -d 
 alias please_docker_how_to_remove_container="echo -e \"docker rm --force \e[33mcontainerName\e[0m\""
 alias please_docker_how_to_build_image="echo -e \"docker build -t \e[33mnomImage\e[0m -f \e[33mnomFichierDockerfileSouhaité cheminVersLeDossierContenantLeDockerfile\e[0m\""
 alias please_docker_how_to_rename_image="echo -e \"docker image tag \e[33midImageOuCoupleNomImage:nomTag nouveauNomImage:nouveauTag\e[0m\""
+alias please_docker_how_to_run_php_script="echo -e 'docker run -it --rm --name \e[33mnomFichier.php\e[0m -v "\$PWD":/usr/src/myapp -w /usr/src/myapp \e[33mphp:7.4-cli\e[0m php \e[33myour-script.php\e[0m'"
 # Google Cloud Platform (GCP)
 alias please_login_google_cloud_platform='gcloud auth login'
 # jekyll static website generator
