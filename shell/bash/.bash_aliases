@@ -45,7 +45,12 @@ alias please_git_how_to_show_stash_modifications='echo -e "git stash show -p sta
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
+# composer
+alias please_composer_how_to_show_packages='echo "composer info"'
 # php
+alias please_php_how_to_execute_a_line_of_code='echo "php -r"'
+alias please_php_how_to_execute_some_lines_of_code_interactively='echo "php -a"'
+alias please_php_how_to_display_some_info='echo "php -i"'
 alias please_php_run='php -r'
 alias please_php_run_interactively='php -a'
 alias please_php_show_modules='php -m'
@@ -136,7 +141,8 @@ alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
-alias please_code_moi='code ~/moi'
+alias please_code_moi='codium ~/moi'
+alias code='codium'
 # docker
 alias please_docker_show_container_ip='please_docker.sh showContainerIp'
 alias please_docker_show_network_ip='please_docker.sh showNetworkIp'
