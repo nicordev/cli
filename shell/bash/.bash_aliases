@@ -42,6 +42,9 @@ alias git_branch_create_and_select='git checkout -b'
 alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
 alias please_git_how_to_show_stash_modifications='echo -e "git stash show -p stash@{0}"'
+alias please_git_how_to_remove_untracked_files='echo "git clean -fd"'
+alias please_git_how_to_modify_last_commit_without_editing_commit_message='echo "git commit --amend --no-edit"'
+alias please_git_how_to_push_with_options='echo -e "git push -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m origin HEAD"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
@@ -114,6 +117,10 @@ alias please_how_to_count_processor_cores='echo nproc'
 alias please_how_to_show_ip='echo "ip address"'
 alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m"'
 alias please_how_to_remove_all_files_but_one='echo -e "rm -rf $(ls | grep --invert-match \e[33mfileToKeep\e0m)"'
+alias please_how_to_show_disk_usage='echo "df -kh"'
+alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
+alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33muserName:groupName pathToFiles\e[0m\nsudo chown -R \e[33muserName:groupName pathToFiles\e[0m"'
+alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
 # sed
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
@@ -138,6 +145,9 @@ alias please_bash_how_to_rerun_last_command="echo '!!'"
 alias please_bash_how_to_get_last_output="echo -e 'Rerun the last command and pass the output to another command:\n\e[33mmyCommandName\e[0m \$(!!)'"
 alias please_bash_how_to_get_user_number="echo 'echo \$EUID'"
 alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
+alias please_bash_how_to_get_current_function_name='echo "\${FUNCNAME[0]}"'
+alias please_bash_how_to_get_current_script_name='echo "SCRIPT_NAME=$(basename $0)"'
+alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
