@@ -23,7 +23,7 @@ switchBranch() {
 
 selectBranch() {
     echo -e "${styleStrong}Available branches :${styleNormal}"
-    
+
     avalaibleBranches=$(filterBranches $hint)
     PS3="Which number? "
 
