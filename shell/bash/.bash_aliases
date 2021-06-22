@@ -117,7 +117,7 @@ alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
 alias please_how_to_count_processor_cores='echo nproc'
 alias please_how_to_show_ip='echo "ip address"'
-alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m"'
+alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
 alias please_how_to_remove_all_files_but_one='echo -e "rm -rf $(ls | grep --invert-match \e[33mfileToKeep\e0m)"'
 alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
@@ -155,6 +155,7 @@ alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: D
 # vscode
 alias please_code_moi='codium ~/moi'
 alias code='codium'
+alias please_vscodium_what_is_the_latest_release='echo "https://github.com/VSCodium/vscodium/releases/latest"'
 # docker
 alias please_docker_show_container_ip='please_docker.sh showContainerIp'
 alias please_docker_show_network_ip='please_docker.sh showNetworkIp'
