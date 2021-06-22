@@ -206,3 +206,10 @@ alias please_encode_qr_code='qrencode'
 # Portainer
 alias please_portainer_start=" docker run -d -p 8000:8000 -p 9090:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce"
 alias please_portainer_browse="firefox http://127.0.0.1:9090"
+
+# Autocompletion
+please_docker_options=$(please_docker)
+complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
+
+please_git_options=$(please_git)
+complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
