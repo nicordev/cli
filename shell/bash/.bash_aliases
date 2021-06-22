@@ -45,6 +45,8 @@ alias please_git_how_to_show_stash_modifications='echo -e "git stash show -p sta
 alias please_git_how_to_remove_untracked_files='echo "git clean -fd"'
 alias please_git_how_to_modify_last_commit_without_editing_commit_message='echo "git commit --amend --no-edit"'
 alias please_git_how_to_push_with_options='echo -e "git push -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m origin HEAD"'
+alias please_git_how_to_show_staged_changes='echo "git diff --staged"'
+alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
