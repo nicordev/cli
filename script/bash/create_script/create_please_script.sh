@@ -18,7 +18,7 @@ writeScriptTemplate() {
 SCRIPT_NAME=\$(basename \$0)
 
 functionName() {
-    if [ \$# -eq 0 ]; then
+    if [ \$# -lt 1 ]; then
         echo -e "\${SCRIPT_NAME} \${FUNCNAME[0]} \e[33mparameterName\e[0m"
         exit 1
     fi
