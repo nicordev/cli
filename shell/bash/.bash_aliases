@@ -49,6 +49,7 @@ alias please_git_how_to_show_staged_changes='echo "git diff --staged"'
 alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 alias please_git_how_to_clone_from_github='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git"'
 alias please_git_how_to_push_repository_to_github='echo -e "git remote add origin  https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git\ngit push --set-upstream \e[33morigin master\e[0m"'
+alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
@@ -144,6 +145,7 @@ alias please_what_is_this_date_timestamp='write_timestamp.php'
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
+alias please_bash_how_to_regex="echo -e 'if [[ \e[33m\"stringHere\"\e[0m =~ \e[33mregexHere\e[0m ]];then \e[33mecho \"true\"\e[0m; else \e[33mecho \"false\"\e[0m; fi'"
 alias please_bash_how_to_remove_newline="echo -e '\e[33mecho \$someStringWithNewLines\e[0m | sed -z \"s#\\\n# #g\"'; echo -e '\e[33mecho \$someStringWithNewLines\e[0m | awk 1 ORS=\" \"'"
 alias please_bash_how_to_rerun_last_command="echo '!!'"
 alias please_bash_how_to_get_last_output="echo -e 'Rerun the last command and pass the output to another command:\n\e[33mmyCommandName\e[0m \$(!!)'"
@@ -152,6 +154,8 @@ alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
 alias please_bash_how_to_get_current_function_name='echo "\${FUNCNAME[0]}"'
 alias please_bash_how_to_get_current_script_name='echo "SCRIPT_NAME=$(basename $0)"'
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
+alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
+alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
