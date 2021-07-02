@@ -152,7 +152,7 @@ alias please_bash_how_to_get_last_output="echo -e 'Rerun the last command and pa
 alias please_bash_how_to_get_user_number="echo 'echo \$EUID'"
 alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
 alias please_bash_how_to_get_current_function_name='echo "\${FUNCNAME[0]}"'
-alias please_bash_how_to_get_current_script_name='echo "SCRIPT_NAME=$(basename $0)"'
+alias please_bash_how_to_get_current_script_name="echo -e 'SCRIPT_NAME=\$(basename \$0)\nSCRIPT_NAME=\$(basename \$BASH_SOURCE)'"
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
@@ -220,3 +220,5 @@ complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
 
 please_git_options=$(please_git)
 complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
+
+echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"

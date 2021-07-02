@@ -15,7 +15,8 @@ writeScriptTemplate() {
     cat > "$1" <<END
 #! /bin/bash
 
-SCRIPT_NAME=\$(basename \$0)
+#SCRIPT_NAME=\$(basename \$0)
+SCRIPT_NAME=\$(basename \$BASH_SOURCE)
 
 functionName() {
     if [ \$# -lt 1 ]; then
