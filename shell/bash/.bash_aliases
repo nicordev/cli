@@ -190,6 +190,8 @@ alias please_docker_how_to_remove_container="echo -e \"docker rm --force \e[33mc
 alias please_docker_how_to_build_image="echo -e \"docker build -t \e[33mnomImage\e[0m -f \e[33mnomFichierDockerfileSouhaité cheminVersLeDossierContenantLeDockerfile\e[0m\""
 alias please_docker_how_to_rename_image="echo -e \"docker image tag \e[33midImageOuCoupleNomImage:nomTag nouveauNomImage:nouveauTag\e[0m\""
 alias please_docker_how_to_run_php_script="echo -e 'docker run -it --rm --name \e[33mnomFichier.php\e[0m -v "\$PWD":/usr/src/myapp -w /usr/src/myapp \e[33mphp:7.4-cli\e[0m php \e[33myour-script.php\e[0m'"
+alias please_docker_how_to_run_composer="echo -e 'docker run -interactive --tty composer \e[33mcommandHere\e[0m'"
+alias please_docker_how_to_create_sculpin_blog="echo -e 'docker run -interactive --tty composer  create-project sculpin/blog-skeleton \e[33mprojectNameHere\e[0m'"
 # Google Cloud Platform (GCP)
 alias please_login_google_cloud_platform='gcloud auth login'
 # jekyll static website generator
