@@ -1,3 +1,6 @@
+# Variables
+PLEASE_TODAY=$(date +%Y%m%d)
+
 # list
 alias llg="filter_list.sh --full"
 alias lg='filter_list.sh'
@@ -50,6 +53,8 @@ alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 alias please_git_how_to_clone_from_github='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git"'
 alias please_git_how_to_push_repository_to_github='echo -e "git remote add origin  https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git\ngit push --set-upstream \e[33morigin master\e[0m"'
 alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
+alias please_git_how_to_cherry_pick='echo -e "# Bring last commit of a branch to the active branch:
+git cherry-pick \e[33mbranchName\e[0m"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
@@ -115,8 +120,9 @@ alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
 # linux
 alias please_what_is_the_current_distribution='cat /etc/os-release'
-alias please_show_date_concatenated='date "+%Y%m%d"'
-alias please_how_to_show_date_concatenated='echo "date \"+%Y%m%d\""'
+alias please_today='date "+%Y%m%d"'
+alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
+alias please_how_to_use_date_command="echo 'YYYY-MM-DD hh:mm:ss'; echo \"date '+%Y-%m-%d %H:%M:%S'\""
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
