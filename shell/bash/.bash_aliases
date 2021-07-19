@@ -55,6 +55,7 @@ alias please_git_how_to_push_repository_to_github='echo -e "git remote add origi
 alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
 alias please_git_how_to_cherry_pick='echo -e "# Bring last commit of a branch to the active branch:
 git cherry-pick \e[33mbranchName\e[0m"'
+alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
@@ -113,6 +114,8 @@ alias please_change_file_or_folder_group='sudo chgrp'
 alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbolic \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "ln -s \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "\n# Hard link:"; echo -e "ln \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"'
 # user and group
 alias please_add_group_to_user='sudo usermod -aG'
+alias please_how_to_get_user_id='echo "id -u"'
+alias please_how_to_get_group_id='echo "id -g"'
 # manage packages
 alias please_upgrade_packages='upgrade_packages.sh'
 # network
