@@ -165,8 +165,13 @@ alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
 alias please_bash_how_to_get_current_function_name='echo "\${FUNCNAME[0]}"'
 alias please_bash_how_to_get_current_script_name="echo -e 'SCRIPT_NAME=\$(basename \$0)\nSCRIPT_NAME=\$(basename \$BASH_SOURCE)'"
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
+alias please_bash_how_to_write_variable_default_value='echo -e "\e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\e[33mhardCodedDefaultValue\e[0m}
+\e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\${\e[33motherVariable2\e[0m:-\e[33mhardCodedDefaultValue\e[0m}}"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
+# SQL
+alias please_sql_how_to_select='echo -e "select \e[33mtableNameAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableNameAlias\e[0m where \e[33mtableNameAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;"'
+alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
