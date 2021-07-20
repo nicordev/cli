@@ -12,6 +12,16 @@ _askConfirmationDefaultYes() {
     fi
 }
 
+# Checkout or fetch then checkout if branch not found.
+checkout() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchName\e[0m"
+        exit 1
+    fi
+
+    git checkout "$@" || (git fetch origin && git checkout "$@")
+}
+
 showCurrentBranch() {
     git branch | grep \* | sed 's#^* ##'
 }
