@@ -145,6 +145,7 @@ alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere
 alias please_awk_how_to_print_last_field='echo "awk \"{ print $NF }\""'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
+alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/manual/gawk.html"'
 # usb key
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
@@ -171,6 +172,9 @@ alias please_bash_how_to_get_current_script_name="echo -e 'SCRIPT_NAME=\$(basena
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
 alias please_bash_how_to_write_variable_default_value='echo -e "\e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\e[33mhardCodedDefaultValue\e[0m}
 \e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\${\e[33motherVariable2\e[0m:-\e[33mhardCodedDefaultValue\e[0m}}"'
+alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName() {
+    echo \${@##*/}
+}"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 # make
