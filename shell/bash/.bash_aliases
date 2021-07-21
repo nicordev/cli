@@ -140,7 +140,11 @@ alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
 # sed
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
-alias please_sed_how_to_remove_last_line='echo -e "sed -i $d \e[33mfileNameHere\e[0m"'
+alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
+# awk
+alias please_awk_how_to_print_last_field='echo "awk \"{ print $NF }\""'
+alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
+awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
 # usb key
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
@@ -169,6 +173,9 @@ alias please_bash_how_to_write_variable_default_value='echo -e "\e[33mvariableNa
 \e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\${\e[33motherVariable2\e[0m:-\e[33mhardCodedDefaultValue\e[0m}}"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
+# make
+alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
+alias please_make_how_to_get_filename='echo ""'
 # SQL
 alias please_sql_how_to_select='echo -e "select \e[33mtableNameAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableNameAlias\e[0m where \e[33mtableNameAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;"'
 alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
