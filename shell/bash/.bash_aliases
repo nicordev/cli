@@ -89,8 +89,8 @@ alias cddraft='cd ~/moi/.draft'
 alias please_generate_uuid4='curl "uuid4.com/?count=1"'
 # .bashrc
 alias please_source='source ~/.bashrc'
-alias please_edit_bashrc='vim ~/.bashrc'
-alias please_edit_bash_aliases='vim ~/.bash_aliases'
+alias please_edit_bashrc='code ~/.bashrc'
+alias please_edit_bash_aliases='code ~/.bash_aliases'
 alias please_show_aliases='alias -p | sort'
 # clipboard
 alias please_copy='xclip -in -selection clipboard'
@@ -142,7 +142,7 @@ alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour patt
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
 # awk
-alias please_awk_how_to_print_last_field='echo "awk \"{ print $NF }\""'
+alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF }\""'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
 alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/manual/gawk.html"'
