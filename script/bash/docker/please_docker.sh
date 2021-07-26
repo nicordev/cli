@@ -55,8 +55,18 @@ listContainerNames() {
     docker container ls --format='{{.Names}}'
 }
 
-listContainerNamesAndIds() {
+listContainerIdsAndNames() {
     docker container ls --format='{{.ID}} {{.Names}}'
+}
+
+getContainerIdFromName() {
+    if [ $# -lt 1 ]; then
+        listContainerNames
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcontainerNameOrHint\e[0m"
+        exit 1
+    fi
+
+    listContainerIdsAndNames | grep "$@" | awk '{ print $1 }'
 }
 
 copyFileToContainer() {
