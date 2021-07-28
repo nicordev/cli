@@ -15,10 +15,6 @@ extractFileName() {
     echo ${@##*/}
 }
 
-isContainerStarted() {
-    echo TODO
-}
-
 # Display the source code of this file
 howItWorks() {
     cat $0

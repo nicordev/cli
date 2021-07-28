@@ -128,6 +128,10 @@ stopAllContainers() {
     docker stop $(docker ps -a -q)
 }
 
+# isContainerStarted() {
+#     echo TODO
+# }
+
 howItWorks() {
     cat $0
 }

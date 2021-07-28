@@ -5,6 +5,7 @@ PLEASE_TODAY=$(date +%Y%m%d)
 alias llg="filter_list.sh --full"
 alias lg='filter_list.sh'
 alias lh='ls -alFh'
+alias l='ls -1'
 # cd
 alias cdDownloads='cd ~/Downloads'
 alias cdschool='cd ~/moi/project/school/school_paperwork'
@@ -61,6 +62,18 @@ alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere 
 alias please_stop_apache='sudo service apache2 stop'
 # composer
 alias please_composer_how_to_show_packages='echo "composer info"'
+alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
+    {
+        \"require\": {
+            \"\e[33mme/myPackage\e[0m\": \"dev-\e[33mbranchName\e[0m as \e[33mversionAlias\e[0m\",
+        },
+        \"repositories\": [
+            {
+                \"type\": \"git\",
+                \"url\": \"\e[33mhttps://myRepository.git\e[0m\"
+            }
+        ]
+    }"'
 # php
 alias please_php_how_to_execute_a_line_of_code='echo "php -r"'
 alias please_php_how_to_execute_some_lines_of_code_interactively='echo "php -a"'
@@ -72,10 +85,13 @@ alias please_php_show_ini_files='php --ini'
 alias please_php_start_web_server='php -S localhost:8000 -t public'
 # php quality analysis
 alias please_php_run_quality_tools='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-php-quality-analysis:/tmp" -w /project nicordev/php-tools-analysis:latest'
-alias please_run_phpstan_analyse='please_php_run_quality_tools phpstan analyse'
-alias please_run_infection='please_php_run_quality_tools infection'
+alias please_php_run_phpstan_analyse='please_php_run_quality_tools phpstan analyse'
+alias please_php_run_infection='please_php_run_quality_tools infection'
+# php infection
+alias please_infection_remove_log_files='rm $(ls | grep infection.log)'
+alias please_infection_how_to_remove_log_files='echo "rm $(ls | grep infection.log)"'
 # php cs fixer
-alias please_run_phpcsfixer='php php-cs-fixer.phar fix --config "./.php_cs.dist"'
+alias please_php_run_phpcsfixer='php php-cs-fixer.phar fix --config "./.php_cs.dist"'
 # symfony
 alias pbc='php bin/console'
 alias please_symfony_console='php bin/console'
@@ -137,6 +153,20 @@ alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
 alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33muserName:groupName pathToFiles\e[0m\nsudo chown -R \e[33muserName:groupName pathToFiles\e[0m"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
+# grep
+alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
+grep --invert-match \e[33mpatternHere\e[0m"'
+alias please_grep_how_to_use_extended_regex='echo -e "grep -E \e[33mpatternHere\e[0m
+grep --extended-regexp \e[33mpatternHere\e[0m"'
+alias please_grep_how_to_search_in_files='echo -e "Follow symbolic link:
+grep -R \e[33mcriteriaHere directoryHere\e[0m
+grep --dereference-recursive \e[33mcriteriaHere directoryHere\e[0m
+
+Look only in certain files:
+grep --dereference-recursive \e[33mcriteriaHere\e[0m --include=\e[33mpatternHere directoryHere\e[0m
+
+Exclude certain files:
+grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude=\e[33mpatternHere directoryHere\e[0m"'
 # sed
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
@@ -242,6 +272,9 @@ alias please_encode_qr_code='qrencode'
 # Portainer
 alias please_portainer_start=" docker run -d -p 8000:8000 -p 9090:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce"
 alias please_portainer_browse="firefox http://127.0.0.1:9090"
+# gif
+alias please_gif_how_to_record_gif='echo "peek"'
+alias please_gif_record='peek'
 
 # Autocompletion
 please_docker_options=$(please_docker)
@@ -249,5 +282,8 @@ complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
 
 please_git_options=$(please_git)
 complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
+
+please_options=$(please)
+complete -W "${please_options}" -o bashdefault -o default 'please'
 
 echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"
