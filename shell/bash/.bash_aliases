@@ -184,6 +184,10 @@ alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF }\""'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
 alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/manual/gawk.html"'
+# tr
+alias please_how_to_replace_character='echo -e "echo \e[33msomeTextHere\e[0m | tr \e[33mcharacterToReplace\e[0m \e[33mcharacterToAdd\e[0m"'
+alias please_how_to_remove_character='echo -e "echo \e[33msomeTextHere\e[0m | tr -d \e[33mcharacterToRemove\e[0m
+echo \e[33msomeTextHere\e[0m | tr --delete \e[33mcharacterToRemove\e[0m"'
 # usb key
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
