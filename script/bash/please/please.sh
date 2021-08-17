@@ -3,11 +3,13 @@
 #SCRIPT_NAME=$(basename $0)
 SCRIPT_NAME=$(basename $BASH_SOURCE)
 
-functionName() {
-    if [ $# -lt 1 ]; then
-        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mparameterName\e[0m"
+searchInFiles() {
+    if [ $# -lt 2 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mstringToSearchHere directoryHere\e[0m"
         exit 1
     fi
+
+    grep --dereference-recursive "$@"
 }
 
 # Get the last part of a file name
