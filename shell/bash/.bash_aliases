@@ -158,7 +158,15 @@ alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
 grep --invert-match \e[33mpatternHere\e[0m"'
 alias please_grep_how_to_use_extended_regex='echo -e "grep -E \e[33mpatternHere\e[0m
 grep --extended-regexp \e[33mpatternHere\e[0m"'
-alias please_grep_how_to_search_in_files='echo -e "Follow symbolic link:
+alias please_grep_how_to_search_in_files='echo -e "Show line numbers:
+grep -n \e[33mcriteriaHere directoryHere\e[0m
+grep --line-number \e[33mcriteriaHere directoryHere\e[0m
+
+Case insensitive:
+grep -i \e[33mcriteriaHere directoryHere\e[0m
+grep --ignore-case \e[33mcriteriaHere directoryHere\e[0m
+
+Follow symbolic link:
 grep -R \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive \e[33mcriteriaHere directoryHere\e[0m
 
