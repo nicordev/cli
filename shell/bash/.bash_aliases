@@ -153,6 +153,9 @@ alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
 alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33muserName:groupName pathToFiles\e[0m\nsudo chown -R \e[33muserName:groupName pathToFiles\e[0m"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
+# printer
+alias please_how_to_print='echo "lp"'
+alias please_how_to_show_printers='echo "lpstat -t"'
 # grep
 alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
 grep --invert-match \e[33mpatternHere\e[0m"'
@@ -295,7 +298,7 @@ complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
 please_git_options=$(please_git)
 complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
 
-please_options=$(please)
-complete -W "${please_options}" -o bashdefault -o default 'please'
+please_options=$(please_)
+complete -W "${please_options}" -o bashdefault -o default 'please_'
 
 echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"
