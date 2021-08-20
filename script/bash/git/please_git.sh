@@ -7,7 +7,7 @@ _askConfirmationDefaultYes() {
     echo -e "\e[1m$1Continue?\e[0m [YES/no] "
     read answer
 
-    if [[ ${answer,,} =~ ^(n|no)$ ]]; then
+    if [[ ${answer,,} =~ ^(n) ]]; then
         return 1
     fi
 }
@@ -48,6 +48,36 @@ deleteBranches() {
     filterBranches "$1"
     _askConfirmationDefaultYes || exit
     git branch -D $(filterBranches "$1")
+}
+
+recreateBranchFrom() {
+    if [ $# -lt 2 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToRecreateHere rootBranchHere\e[0m"
+        exit 1
+    fi
+
+    local branchToRecreate="$1"
+    local temporaryBranchToRecreate="inital_$branchToRecreate"
+    local rootBranch="$2"
+
+    echo -e "\e[1m# Remove potential remaining temporary branch \e[33m$temporaryBranchToRecreate\e[0m"
+    git branch -D "$temporaryBranchToRecreate"
+
+    echo -e "\e[1m# Rename \e[33m$branchToRecreate\e[0m\e[1m to \e[33m$temporaryBranchToRecreate\e[0m"
+    git checkout "$branchToRecreate"
+    git branch -m "$temporaryBranchToRecreate"
+
+    echo -e "\e[1m# Select \e[33m$rootBranch\e[0m"
+    git checkout "$rootBranch"
+
+    echo -e "\e[1m# Recreate \e[33m$branchToRecreate\e[0m"
+    git checkout -b "$branchToRecreate"
+
+    echo -e "\e[1m# Pick commits from \e[33m$temporaryBranchToRecreate\e[0m"
+    _askConfirmationDefaultYes || echo 'See ya!' && exit
+
+    git cherry-pick "..$temporaryBranchToRecreate"
+    git branch -D "$temporaryBranchToRecreate"
 }
 
 # Display the source code of this file

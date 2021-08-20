@@ -26,6 +26,7 @@ alias gitba='git branch -a'
 alias gita='git add'
 alias gitsel='git_select_branch.sh'
 alias gitc='please_git checkout'
+alias gitcprevious='git checkout -'
 alias gitcd='please_git checkout develop'
 alias gitcm='please_git checkout master'
 alias gitcommit='git commit -m'
@@ -45,6 +46,8 @@ alias git_reset_from_origin='git reset --hard origin'
 alias git_branch_create_and_select='git checkout -b'
 alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
+alias please_git_how_to_switch_to_previous_branch='echo "git checkout -"'
+alias please_git_how_to_show_current_branch='echo "git branch --show-current"'
 alias please_git_how_to_show_stash_modifications='echo -e "git stash show -p stash@{0}"'
 alias please_git_how_to_remove_untracked_files='echo "git clean -fd"'
 alias please_git_how_to_modify_last_commit_without_editing_commit_message='echo "git commit --amend --no-edit"'
@@ -54,7 +57,10 @@ alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 alias please_git_how_to_clone_from_github='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git"'
 alias please_git_how_to_push_repository_to_github='echo -e "git remote add origin  https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git\ngit push --set-upstream \e[33morigin master\e[0m"'
 alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
-alias please_git_how_to_cherry_pick='echo -e "# Bring last commit of a branch to the active branch:
+alias please_git_how_to_cherry_pick='echo -e "# Bring last commits of a branch to the active branch:
+git cherry-pick ..\e[33mbranchName\e[0m
+
+# Bring only the last commit of a branch to the active branch:
 git cherry-pick \e[33mbranchName\e[0m"'
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
 # service
