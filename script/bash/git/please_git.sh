@@ -16,14 +16,14 @@ _askConfirmationDefaultYes() {
 checkout() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchName\e[0m"
-        exit 1
+        exit
     fi
 
     git checkout "$@" || (git fetch origin && git checkout "$@")
 }
 
 showCurrentBranch() {
-    git branch | grep \* | sed 's#^* ##'
+    git branch --show-current
 }
 
 showOtherBranches() {
@@ -33,7 +33,7 @@ showOtherBranches() {
 filterBranches() {
     if [ $# -eq 0 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcriteriaHere\e[0m"
-        exit 1
+        exit
     fi
 
     git branch | grep "$1" | sed 's#^* ##' | sed 's#  ##'
@@ -42,7 +42,7 @@ filterBranches() {
 deleteBranches() {
     if [ $# -eq 0 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcriteriaHere\e[0m"
-        exit 1
+        exit
     fi
 
     filterBranches "$1"
@@ -53,7 +53,7 @@ deleteBranches() {
 recreateBranchFrom() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToRecreateHere rootBranchHere\e[0m"
-        exit 1
+        exit
     fi
 
     local branchToRecreate="$1"
@@ -78,6 +78,21 @@ recreateBranchFrom() {
 
     git cherry-pick "..$temporaryBranchToRecreate"
     git branch -D "$temporaryBranchToRecreate"
+}
+
+editBranchDescription() {
+    git branch --edit-description "$@"
+}
+
+showBranchDescription() {
+    local currentBranch="$1"
+
+    if [ $# -eq 0 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchNameHere\e[0m\n"
+        local currentBranch=$(showCurrentBranch)
+    fi
+
+    git config "branch.${currentBranch}.description"
 }
 
 # Display the source code of this file
