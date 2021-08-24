@@ -70,6 +70,9 @@ alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33mus
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_stop_apache='sudo service apache2 stop'
+# mathematics
+alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
+echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
 # composer
 alias please_composer_how_to_show_packages='echo "composer info"'
 alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
