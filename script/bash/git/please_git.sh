@@ -80,6 +80,39 @@ recreateBranchFrom() {
     git branch -D "$temporaryBranchToRecreate"
 }
 
+showCurrentBranch() {
+    git branch --show-current
+}
+
+backupCurrentBranch() {
+    local currentBranch=$(showCurrentBranch)
+
+    git checkout -b "backup_${currentBranch}"
+    git checkout ${currentBranch}
+}
+
+pullThenRebaseBranch() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToPullHere\e[0m"
+        exit
+    fi
+
+    local initialBranch=$(showCurrentBranch)
+    local stashResult=$(git stash)
+
+    git checkout develop &&
+    git pull origin develop &&
+    git checkout "$initialBranch" &&
+    git rebase develop
+
+    if [ 'No local changes to save' == "$stashResult" ]; then
+        echo 'No stash pop needed.'
+        exit
+    fi
+
+    git stash pop
+}
+
 editBranchDescription() {
     git branch --edit-description "$@"
 }
