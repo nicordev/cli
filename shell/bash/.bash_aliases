@@ -147,8 +147,14 @@ alias please_change_file_or_folder_group='sudo chgrp'
 alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbolic \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "ln -s \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "\n# Hard link:"; echo -e "ln \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"'
 # user and group
 alias please_add_group_to_user='sudo usermod -aG'
-alias please_how_to_get_user_id='echo "id -u"'
-alias please_how_to_get_group_id='echo "id -g"'
+alias please_how_to_get_current_user_id='echo "id -u"'
+alias please_how_to_get_current_user_name='echo "id -un"'
+alias please_how_to_get_current_group_id='echo "id -g"'
+alias please_how_to_get_current_group_name='echo "id -gn"'
+alias please_how_to_get_user_id='echo "id -u \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_user_name='echo "id -un \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_group_id='echo "id -g \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_group_name='echo "id -gn \e[33mnameOrIdHere\e[0m"'
 # manage packages
 alias please_upgrade_packages='upgrade_packages.sh'
 # network
