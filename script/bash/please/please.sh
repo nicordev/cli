@@ -12,6 +12,15 @@ searchInFiles() {
     grep --dereference-recursive "$@"
 }
 
+trackFileChanges() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileNameHere\e[0m"
+        exit 1
+    fi
+
+    tail --follow=name --retry "$1"
+}
+
 # Get the last part of a file name
 extractFileName() {
     echo ${@##*/}
