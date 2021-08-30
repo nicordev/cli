@@ -109,6 +109,11 @@ if [ -f ~/.bash_private_aliases ]; then
     . ~/.bash_private_aliases
 fi
 
+# Custom autocompletion
+if [ -f ~/.bash_custom_autocompletion ]; then
+    . ~/.bash_custom_autocompletion
+fi
+
 # Aliases related to ubitransport
 if [ -f ~/.bash_ubitransport_aliases ]; then
     . ~/.bash_ubitransport_aliases

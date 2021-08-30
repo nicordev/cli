@@ -249,8 +249,16 @@ alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
 # SQL
-alias please_sql_how_to_select='echo -e "select \e[33mtableNameAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableNameAlias\e[0m where \e[33mtableNameAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;"'
+alias please_sql_browse_tutorials='echo "https://sql.sh/"'
+alias please_sql_how_to_select='echo -e "select \e[33mtableAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableAlias\e[0m
+where \e[33mtableAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;
+
+SELECT \e[33mcolumnName1\e[0m, \e[33mcolumnName2\e[0m, \e[33mcolumnName3\e[0m
+FROM \e[33mtableName\e[0m
+ORDER BY \e[33mcolumnName1\e[0m DESC, \e[33mcolumnName2\e[0m ASC"'
 alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
+# postgresql
+alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
@@ -313,15 +321,3 @@ alias please_portainer_browse="firefox http://127.0.0.1:9090"
 # gif
 alias please_gif_how_to_record_gif='echo "peek"'
 alias please_gif_record='peek'
-
-# Autocompletion
-please_docker_options=$(please_docker)
-complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
-
-please_git_options=$(please_git)
-complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
-
-please_options=$(please_)
-complete -W "${please_options}" -o bashdefault -o default 'please_'
-
-echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"

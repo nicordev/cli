@@ -1,0 +1,12 @@
+# Autocompletion
+
+please_docker_options=$(please_docker)
+complete -W "${please_docker_options}" -o bashdefault -o default 'please_docker'
+
+please_git_options=$(please_git)
+complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
+
+please_options=$(please_)
+complete -W "${please_options}" -o bashdefault -o default 'please_'
+
+echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"
