@@ -13,7 +13,7 @@ showActiveBranch() {
 }
 
 filterBranches() {
-    git branch | grep "$1" | sed 's#^* ##' | sed 's#  ##'
+    git branch --all | grep "$1" | sed 's#^* ##' | sed 's#  ##' | sed 's#remotes/origin/##' | sort | uniq
 }
 
 switchBranch() {
