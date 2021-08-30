@@ -259,6 +259,10 @@ ORDER BY \e[33mcolumnName1\e[0m DESC, \e[33mcolumnName2\e[0m ASC"'
 alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
 # postgresql
 alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
+alias please_psql_how_to_execute_sql_file='echo -e "psql -f \e[33msqlFile\e[0m
+psql --file=\"\e[33msqlFile\e[0m\""'
+alias please_psql_how_to_execute_sql_statement='echo -e "psql -c \e[33msqlStatement\e[0m
+psql --command=\"\e[33msqlStatement\e[0m\""'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
