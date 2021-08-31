@@ -16,12 +16,14 @@ writeScriptTemplate() {
 #! /bin/bash
 
 #SCRIPT_NAME=\$(basename \$0)
+#SCRIPT_DIRECTORY=$(dirname \$0)
 SCRIPT_NAME=\$(basename \$BASH_SOURCE)
+SCRIPT_DIRECTORY=\$(dirname \$BASH_SOURCE)
 
 functionName() {
     if [ \$# -lt 1 ]; then
         echo -e "\${SCRIPT_NAME} \${FUNCNAME[0]} \e[33mparameterName\e[0m"
-        exit 1
+        exit
     fi
 }
 

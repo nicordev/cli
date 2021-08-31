@@ -245,6 +245,7 @@ alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName
 }"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
+alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
 # make
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
@@ -325,3 +326,5 @@ alias please_portainer_browse="firefox http://127.0.0.1:9090"
 # gif
 alias please_gif_how_to_record_gif='echo "peek"'
 alias please_gif_record='peek'
+# SSH
+alias please_ssh_how_to_generate_keys='echo -e "ssh-keygen"'

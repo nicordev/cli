@@ -1,7 +1,9 @@
 #! /bin/bash
 
 #SCRIPT_NAME=$(basename $0)
+#SCRIPT_DIRECTORY=$(dirname $0)
 SCRIPT_NAME=$(basename $BASH_SOURCE)
+SCRIPT_DIRECTORY=$(dirname $BASH_SOURCE)
 
 _askConfirmationDefaultYes() {
     echo -e "\e[1mContinue?\e[0m [YES/no] "
