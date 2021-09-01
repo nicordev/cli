@@ -176,6 +176,10 @@ alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
 alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33muserName:groupName pathToFiles\e[0m\nsudo chown -R \e[33muserName:groupName pathToFiles\e[0m"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
+alias please_how_to_list_previous_commands='echo "history"'
+alias please_how_to_edit_previous_command='echo "fc"'
+alias please_how_to_execute_previous_command='echo -e "!!
+!-1"'
 # printer
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
@@ -202,11 +206,22 @@ grep --dereference-recursive \e[33mcriteriaHere\e[0m --include=\e[33mpatternHere
 Exclude certain files:
 grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude=\e[33mpatternHere directoryHere\e[0m"'
 # sed
+alias please_sed_how_to_print_lines='echo -e "One line:
+sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
+sed --quiet \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
+
+Multiple lines:
+sed -n \"\e[33mlineNumberHere\e[33m;\e[0manotherLineNumberHere\e[0m;\e[0manotherLineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
+
+Consecutive lines:
+sed -n \"\e[33mlineRangeStart\e[33m,\e[0mlineRangeEnd\e[0mp\" \e[33mfileNameHere\e[0m
+"'
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
 # awk
-alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF }\""'
+alias please_awk_how_to_print_first_fields='echo "awk \"{ print \$1, \$2, \$3; }\""'
+alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
 alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/manual/gawk.html"'
