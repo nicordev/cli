@@ -1,6 +1,6 @@
 #! /bin/bash
 
-suffix="nicor"
+suffix=$(id -un) # Get current user name
 
 if [ -n "$1" ]; then
     suffix="$1"
@@ -23,7 +23,8 @@ SCRIPT_DIRECTORY=\$(dirname \$BASH_SOURCE)
 functionName() {
     if [ \$# -lt 1 ]; then
         echo -e "\${SCRIPT_NAME} \${FUNCNAME[0]} \e[33mparameterName\e[0m"
-        exit
+
+        return 1
     fi
 }
 
