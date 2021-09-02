@@ -22,7 +22,7 @@ alias please_how_to_convert_markdown='echo -e "pandoc \e[33mfileName\e[0m -f mar
 alias please_how_to_track_file_changes_using_tail='echo -e "tail -F \e[33mfileNameHere\e[0m
 tail --follow=name --retry \e[33mfileNameHere\e[0m"'
 # Git
-alias gitl='git log --oneline --graph'
+alias gitl='git log --oneline --graph --max-count=15'
 alias gits='git status'
 alias gitb='git branch'
 alias gitba='git branch -a'
@@ -120,6 +120,9 @@ alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
 # uuid
 alias please_generate_uuid4='curl "uuid4.com/?count=1"'
+# random values
+alias please_generate_random_string='tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16 | xargs'
+alias please_how_to_generate_random_string='echo "tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16 | xargs"'
 # .bashrc
 alias please_source='source ~/.bashrc'
 alias please_edit_bashrc='code ~/.bashrc'
