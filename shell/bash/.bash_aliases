@@ -166,6 +166,7 @@ alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTE
 # linux
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_today='date "+%Y%m%d"'
+alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
 alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
 alias please_how_to_use_date_command="echo 'YYYY-MM-DD hh:mm:ss'; echo \"date '+%Y-%m-%d %H:%M:%S'\""
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
@@ -178,14 +179,17 @@ alias please_how_to_remove_all_files_but_one='echo -e "rm -rf $(ls | grep --inve
 alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
 alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33muserName:groupName pathToFiles\e[0m\nsudo chown -R \e[33muserName:groupName pathToFiles\e[0m"'
-alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
+alias please_how_to_show_current_computer_name='echo "hostname
+hostnamectl
+cat /proc/sys/kernel/hostname"'
+# commands
 alias please_how_to_list_previous_commands='echo "history"'
 alias please_how_to_edit_previous_command='echo "fc"'
 alias please_how_to_execute_previous_command='echo -e "!!
 !-1"'
-alias please_how_to_show_current_computer_name='echo "hostname
-hostnamectl
-cat /proc/sys/kernel/hostname"'
+alias please_how_to_list_all_commands='echo "compgen -c"'
+# environment variables
+alias please_how_to_list_all_environment_variables='echo "env"'
 # printer
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
@@ -250,6 +254,8 @@ alias please_what_is_this_date_timestamp='write_timestamp.php'
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
+alias please_bash_how_to_loop_through_files='echo -e "for \e[33mfile\e[0m in *; do \e[33mecho "\$file"\e[0m; done"'
+alias please_bash_how_to_loop_through_lines_of_a_file='echo -e "while IFS= read -r \e[33mline\e[0m; do \e[33mecho "\$line"\e[0m; done < \e[33mfile\e[0m"'
 alias please_bash_how_to_regex="echo -e 'if [[ \e[33m\"stringHere\"\e[0m =~ \e[33mregexHere\e[0m ]];then \e[33mecho \"true\"\e[0m; else \e[33mecho \"false\"\e[0m; fi'"
 alias please_bash_how_to_remove_newline="echo -e '\e[33mecho \$someStringWithNewLines\e[0m | sed -z \"s#\\\n# #g\"'; echo -e '\e[33mecho \$someStringWithNewLines\e[0m | awk 1 ORS=\" \"'"
 alias please_bash_how_to_rerun_last_command="echo '!!'"
