@@ -183,6 +183,9 @@ alias please_how_to_list_previous_commands='echo "history"'
 alias please_how_to_edit_previous_command='echo "fc"'
 alias please_how_to_execute_previous_command='echo -e "!!
 !-1"'
+alias please_how_to_show_current_computer_name='echo "hostname
+hostnamectl
+cat /proc/sys/kernel/hostname"'
 # printer
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
