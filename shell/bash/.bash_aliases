@@ -251,6 +251,12 @@ alias please_what_is_the_current_week_number='echo "Using bash: " && date +%W &&
 alias please_what_time_is_it='date'
 alias please_what_is_this_timestamp='read_timestamp.php'
 alias please_what_is_this_date_timestamp='write_timestamp.php'
+alias please_how_to_measure_script_duration='echo -e "Using SECONDS:
+SECONDS=0; echo \$SECONDS; \e[33myourCodeHere\e[0m; echo \$((\$SECONDS / 60)):\$((\$SECONDS % 60))"
+
+Using time:
+time \e[33myourCodeHere\e[0m'
+alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'

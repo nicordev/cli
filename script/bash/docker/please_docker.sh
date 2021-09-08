@@ -66,7 +66,8 @@ getContainerIdFromName() {
         exit 1
     fi
 
-    listContainerIdsAndNames | grep "$@" | awk '{ print $1 }'
+    # listContainerIdsAndNames | grep "$@" | awk '{ print $1 }'
+    docker ps --filter name="${1}" --quiet
 }
 
 copyFileToContainer() {
