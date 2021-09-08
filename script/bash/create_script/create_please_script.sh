@@ -28,6 +28,12 @@ functionName() {
     fi
 }
 
+_handleExit() {
+    if [ \$? == 187 ]; then
+        echo "Have a nice day!"
+    fi
+}
+
 # Display the source code of this file
 howItWorks() {
     cat \$0
@@ -42,6 +48,8 @@ if [ \$# -eq 0 ]; then
     _listAvailableFunctions
     exit
 fi
+
+trap _handleExit exit err
 
 \$@
 END
