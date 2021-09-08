@@ -31,6 +31,24 @@ _askConfirmationDefaultNo() {
     return 1
 }
 
+getAsciiCodeFromCharacter() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcharacterHere\e[0m"
+        exit
+    fi
+
+    printf "%d\n" "'$1'"
+}
+
+getCharacterFromAsciiCode() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33masciiCodeHere\e[0m"
+        exit
+    fi
+
+    awk -v char=65 "BEGIN { printf \"%c\n\", $1; exit }"
+}
+
 getFileLastLine() {
     tail --lines=1 "$@"
 }
