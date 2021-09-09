@@ -186,6 +186,10 @@ alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33mus
 alias please_how_to_show_current_computer_name='echo "hostname
 hostnamectl
 cat /proc/sys/kernel/hostname"'
+# apt
+alias please_apt_how_to_list_installed_packages='echo "apt list --installed"'
+# snap
+alias please_snap_how_to_list_installed_packages='echo "snap list"'
 # commands
 alias please_how_to_list_previous_commands='echo "history"'
 alias please_how_to_edit_previous_command='echo "fc"'
@@ -202,15 +206,7 @@ alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
 grep --invert-match \e[33mpatternHere\e[0m"'
 alias please_grep_how_to_use_extended_regex='echo -e "grep -E \e[33mpatternHere\e[0m
 grep --extended-regexp \e[33mpatternHere\e[0m"'
-alias please_grep_how_to_search_in_files='echo -e "Show line numbers:
-grep -n \e[33mcriteriaHere directoryHere\e[0m
-grep --line-number \e[33mcriteriaHere directoryHere\e[0m
-
-Case insensitive:
-grep -i \e[33mcriteriaHere directoryHere\e[0m
-grep --ignore-case \e[33mcriteriaHere directoryHere\e[0m
-
-Follow symbolic link:
+alias please_grep_how_to_search_in_files='echo -e "-R or --dereference-recursive mandatory to search in files:
 grep -R \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive \e[33mcriteriaHere directoryHere\e[0m
 
@@ -218,7 +214,15 @@ Look only in certain files:
 grep --dereference-recursive \e[33mcriteriaHere\e[0m --include=\e[33mpatternHere directoryHere\e[0m
 
 Exclude certain files:
-grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude=\e[33mpatternHere directoryHere\e[0m"'
+grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude=\e[33mpatternHere directoryHere\e[0m
+
+Show line numbers:
+grep -R -n \e[33mcriteriaHere directoryHere\e[0m
+grep --dereference-recursive --line-number \e[33mcriteriaHere directoryHere\e[0m
+
+Case insensitive:
+grep -R -i \e[33mcriteriaHere directoryHere\e[0m
+grep --dereference-recursive --ignore-case \e[33mcriteriaHere directoryHere\e[0m"'
 # sed
 alias please_sed_how_to_print_lines='echo -e "One line:
 sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
