@@ -63,18 +63,28 @@ getContainerIdFromName() {
     if [ $# -lt 1 ]; then
         listContainerNames
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcontainerNameOrHint\e[0m"
-        exit 1
+        return 1
     fi
 
     # listContainerIdsAndNames | grep "$@" | awk '{ print $1 }'
     docker ps --filter name="${1}" --quiet
 }
 
+removeContainers() {
+    if [ $# -lt 1 ]; then
+        listContainerNames
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcontainerNameOrHint\e[0m"
+        return 1
+    fi
+
+    docker rm --force $(getContainerIdFromName $1)
+}
+
 copyFileToContainer() {
     if [ $# -lt 1 ]; then
         listContainerNamesAndIds
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlocalFileHere containerIdHere containerFileHere\e[0m"
-        exit 1
+        return 1
     fi
 
     local localFile="$1"
@@ -89,7 +99,7 @@ showContainerIp() {
         echo -e "\e[1mContainers:\e[0m\n"
         docker container ls --format='{{.ID}}\t{{.Names}}'
         echo -e "\n${SCRIPT_NAME} showContainerIp \e[33mcontainerIdOrName\e[0m"
-        exit 1
+        return 1
     fi
 
     docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$1"
@@ -100,7 +110,7 @@ showNetworkIp() {
         echo -e "\e[1mNetworks:\e[0m\n"
         docker network ls --format='{{.ID}}\t{{.Name}}'
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mnetworkIdOrName\e[0m"
-        exit 1
+        return 1
     fi
 
     docker inspect -f "{{json .IPAM.Config }}" "$1" | grep -Po '"Gateway":.*"}]' | grep -Po '(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
@@ -115,7 +125,7 @@ listImageChildren() {
         echo -e "\e[1mImages:\e[0m\n"
         docker image ls --format='{{.ID}}\t{{.Repository}}:{{.Tag}}'
         echo -e "\n${SCRIPT_NAME} listImageChildren \e[33mimageIdOrName\e[0m"
-        exit 1
+        return 1
     fi
 
     docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since="$1" --quiet)
