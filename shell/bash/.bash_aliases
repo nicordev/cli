@@ -149,6 +149,9 @@ alias please_change_folder_owner_and_its_content='sudo chown -R'
 alias please_change_file_or_folder_owner='sudo chown'
 alias please_change_file_or_folder_group='sudo chgrp'
 alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbolic \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "ln -s \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "\n# Hard link:"; echo -e "ln \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"'
+alias please_how_to_count_files="echo -e 'ls -1 --file-type | grep --invert-match '/\\$' | wc -l'"
+alias please_how_to_count_directories="echo -e 'ls -1 --file-type | grep '/\\$' | wc -l'"
+alias please_how_to_count_files_and_directories="echo -e 'ls -1 | wc -l'"
 # user and group
 alias please_add_group_to_user='sudo usermod -aG'
 alias please_how_to_get_current_user_id='echo "id -u"'
