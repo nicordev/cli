@@ -186,6 +186,9 @@ alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33mus
 alias please_how_to_show_current_computer_name='echo "hostname
 hostnamectl
 cat /proc/sys/kernel/hostname"'
+# help
+alias please_how_to_show_help_of_a_command='echo -e "man \e[33mcommandName\e[0m
+help \e[33mcommandName\e[0m"'
 # apt
 alias please_apt_how_to_list_installed_packages='echo "apt list --installed"'
 # snap
