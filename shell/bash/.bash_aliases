@@ -78,6 +78,7 @@ alias please_stop_apache='sudo service apache2 stop'
 # mathematics
 alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
 echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
+alias please_how_to_convert_decimal_to_hexadecimal="echo -e \"printf '%x' \e[33mdecimalValueHere\e[0m\""
 # composer
 alias please_composer_how_to_show_packages='echo "composer info"'
 alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
@@ -269,6 +270,8 @@ time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
+alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
+declare -i \e[33mvariableAsIntegerName\e[0m=\e[33mintegerValue\e[0m'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
 alias please_bash_how_to_loop_through_files='echo -e "for \e[33mfile\e[0m in *; do \e[33mecho "\$file"\e[0m; done"'
@@ -290,6 +293,10 @@ alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
+# DNS
+alias please_how_to_get_server_ip_from_url='echo -e "dig \e[33murlHere\e[0m
+host \e[33murlHere\e[0m
+ping \e[33murlHere\e[0m"'
 # make
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
