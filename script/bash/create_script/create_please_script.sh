@@ -19,6 +19,7 @@ writeScriptTemplate() {
 #SCRIPT_DIRECTORY=$(dirname \$0)
 SCRIPT_NAME=\$(basename \$BASH_SOURCE)
 SCRIPT_DIRECTORY=\$(dirname \$BASH_SOURCE)
+EXIT_CODE_BYE=187
 
 functionName() {
     if [ \$# -lt 1 ]; then
@@ -29,7 +30,7 @@ functionName() {
 }
 
 _handleExit() {
-    if [ \$? == 187 ]; then
+    if [ \$? == \$EXIT_CODE_BYE ]; then
         echo "Have a nice day!"
     fi
 }

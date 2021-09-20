@@ -11,6 +11,7 @@ _askConfirmationDefaultYes() {
 
     if [[ ${answer,,} =~ ^n ]]; then
         echo "no"
+
         return 1
     fi
 
@@ -28,6 +29,7 @@ _askConfirmationDefaultNo() {
     fi
 
     echo "no"
+
     return 1
 }
 
@@ -85,7 +87,8 @@ cherry"} > ${fileName:-"dummyFile"}
 searchInFiles() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mstringToSearchHere directoryHere\e[0m"
-        exit 1
+
+        return 1
     fi
 
     grep --dereference-recursive "$@"
@@ -94,7 +97,8 @@ searchInFiles() {
 trackFileChanges() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileNameHere\e[0m"
-        exit 1
+
+        return 1
     fi
 
     tail --follow=name --retry "$1"
@@ -103,6 +107,18 @@ trackFileChanges() {
 # Get the last part of a file name
 extractFileName() {
     echo ${@##*/}
+}
+
+openHtmlContent() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mhtmlContentHere\e[0m"
+
+        return 1
+    fi
+    local temporaryFile='/tmp/please_openClipboardContentInFirefox.html'
+
+    echo "$@" > "$temporaryFile"
+    firefox "$temporaryFile"
 }
 
 # Display the source code of this file
