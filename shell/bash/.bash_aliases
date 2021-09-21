@@ -74,7 +74,7 @@ git cherry-pick \e[33mbranchName\e[0m"'
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
-alias please_stop_apache='sudo service apache2 stop'
+alias please_apache_stop='sudo service apache2 stop'
 # mathematics
 alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
 echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
