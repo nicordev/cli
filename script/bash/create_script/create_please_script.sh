@@ -42,7 +42,7 @@ howItWorks() {
 
 # List all functions that do not begin with an underscore _
 _listAvailableFunctions() {
-    cat \$0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {\$##'
+    cat \$0 | grep -E '^[a-z]+[a-zA-Z0-9_]*\(\) \{$' | sed 's#() {\$##'
 }
 
 if [ \$# -eq 0 ]; then
