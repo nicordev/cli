@@ -97,20 +97,13 @@ pullThenRebaseBranch() {
         exit
     fi
 
-    local initialBranch=$(showCurrentBranch)
-    local stashResult=$(git stash)
+    local currentBranch=$(showCurrentBranch)
+    local branchToPull="$1"
 
-    git checkout develop &&
-    git pull origin develop &&
-    git checkout "$initialBranch" &&
-    git rebase develop
-
-    if [ 'No local changes to save' == "$stashResult" ]; then
-        echo 'No stash pop needed.'
-        exit
-    fi
-
-    git stash pop
+    git checkout "$branchToPull" &&
+    git pull origin "$branchToPull" &&
+    git checkout "$currentBranch" &&
+    git rebase "$branchToPull"
 }
 
 editBranchDescription() {
