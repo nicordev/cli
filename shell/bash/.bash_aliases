@@ -76,6 +76,7 @@ alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33mus
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_apache_stop='sudo service apache2 stop'
 # mathematics
+alias please_how_to_get_pi_value='echo -e "echo \"scale=10; 4*a(1)\" | bc -l"'
 alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
 echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
 alias please_how_to_convert_decimal_to_hexadecimal="echo -e \"printf '%x' \e[33mdecimalValueHere\e[0m\""
@@ -297,6 +298,18 @@ alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirec
 alias please_how_to_get_server_ip_from_url='echo -e "dig \e[33murlHere\e[0m
 host \e[33murlHere\e[0m
 ping \e[33murlHere\e[0m"'
+alias please_how_to_clear_dns_cache='echo -e "sudo systemd-resolve --flush-caches && sudo systemd-resolve --statistics
+sudo systemctl restart systemd-resolved && sudo systemd-resolve --statistics"'
+alias please_clear_dns_cache='sudo systemctl restart systemd-resolved && sudo systemd-resolve --statistics'
+alias please_how_to_set_dns='echo -e "Edit /etc/resolv.conf
+
+Add DNS IP:
+#nameserver 8.8.8.8 # google
+nameserver 1.1.1.1 # cloudflare
+"'
+alias please_how_to_test_dns='echo -e "nslookup
+
+then enter domain name"'
 # make
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
