@@ -193,6 +193,12 @@ alias please_how_to_show_help_of_a_command='echo -e "man \e[33mcommandName\e[0m
 help \e[33mcommandName\e[0m"'
 # apt
 alias please_apt_how_to_list_installed_packages='echo "apt list --installed"'
+alias please_apt_how_to_remove_repository='echo -e "rm /etc/apt/sources.list.d/\e[33mrepositoryNameHere\e[0m
+
+sudo add-apt-repository --remove ppa:\e[33mauthor/repository\e[0m"'
+alias please_apt_how_to_list_repositories='echo -e "apt policy
+
+ls /etc/apt/sources.list.d/ | grep \e[33mrepositoryHint\e[0m"'
 # snap
 alias please_snap_how_to_list_installed_packages='echo "snap list"'
 # commands
@@ -301,6 +307,7 @@ ping \e[33murlHere\e[0m"'
 alias please_how_to_clear_dns_cache='echo -e "sudo systemd-resolve --flush-caches && sudo systemd-resolve --statistics
 sudo systemctl restart systemd-resolved && sudo systemd-resolve --statistics"'
 alias please_clear_dns_cache='sudo systemctl restart systemd-resolved && sudo systemd-resolve --statistics'
+alias please_add_dns_cloudflare="sudo sed -i '\$a\nameserver 1.1.1.1 # cloudflare' /etc/resolv.conf; cat /etc/resolv.conf"
 alias please_how_to_set_dns='echo -e "Edit /etc/resolv.conf
 
 Add DNS IP:
@@ -310,6 +317,8 @@ nameserver 1.1.1.1 # cloudflare
 alias please_how_to_test_dns='echo -e "nslookup
 
 then enter domain name"'
+# box
+alias please_how_to_browse_box_configuration='echo "http://192.168.1.254/"'
 # make
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
