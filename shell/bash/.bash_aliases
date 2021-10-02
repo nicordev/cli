@@ -235,6 +235,7 @@ Case insensitive:
 grep -R -i \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive --ignore-case \e[33mcriteriaHere directoryHere\e[0m"'
 # sed
+alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
 alias please_sed_how_to_print_lines='echo -e "One line:
 sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
 sed --quiet \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
@@ -248,6 +249,7 @@ sed -n \"\e[33mlineRangeStart\e[33m,\e[0mlineRangeEnd\e[0mp\" \e[33mfileNameHere
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
+alias please_sed_how_to_append_to_last_line="echo -e \"sed -i '\\\$a\\'\e[33mcontentHere\e[0m \e[33mfileNameHere\e[0m\""
 # awk
 alias please_awk_how_to_print_first_fields='echo "awk \"{ print \$1, \$2, \$3; }\""'
 alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'

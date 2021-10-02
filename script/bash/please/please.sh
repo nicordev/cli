@@ -33,6 +33,16 @@ _askConfirmationDefaultNo() {
     return 1
 }
 
+appendToEndOfFile() {
+    if [ $# -lt 2 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileName contentToAppend\e[0m"
+
+        return 1
+    fi
+
+    sed -i '$a\'"$2" "$1"
+}
+
 getAsciiCodeFromCharacter() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcharacterHere\e[0m"
@@ -128,7 +138,7 @@ howItWorks() {
 
 # List all functions that do not begin with an underscore _
 _listAvailableFunctions() {
-    cat $0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {$##'
+    cat $0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {$##' | sort
 }
 
 if [ $# -eq 0 ]; then
