@@ -385,10 +385,20 @@ alias please_jekyll_how_to_install_jekyll='~/how_to/how_to_install_jekyll.sh'
 alias please_jekyll_how_to_create_new_jekyll_project='~/how_to/how_to_create_new_jekyll_project.sh'
 # website
 alias please_crawl_a_website='wget -rkpE'
+# wget
+alias please_wget_how_to_download_files_to_file='echo -e "wget \e[33murlHere\e[0m --output-document=\e[33mfileNameHere\e[0m
+wget \e[33murlHere\e[0m -O \e[33mfileNameHere\e[0m"'
+# curl
+alias please_curl_how_to_save_content_to_file='echo -e "curl \e[33murlHere\e[0m --output \e[33mfileNameHere\e[0m
+curl \e[33murlHere\e[0m -o \e[33mfileNameHere\e[0m"'
+alias please_curl_how_to_download_file='echo -e "curl --remote-name \e[33murlHere\e[0m
+curl -O \e[33murlHere\e[0m"'
 # yakuake
 alias please_yakuake_start='yakuake'
 # firefox
 alias firefox_dev='/home/nicolas/firefox_developer/firefox &'
+# calendar
+alias please_browse_calendar='echo "https://www.calendriergratuit.fr/calendrier-2022.htm"'
 # gnome
 alias please_gnome_activate_night_light='gnome_night_light.sh on'
 alias please_gnome_deactivate_night_light='gnome_night_light.sh off'

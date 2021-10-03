@@ -46,7 +46,8 @@ appendToEndOfFile() {
 getAsciiCodeFromCharacter() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcharacterHere\e[0m"
-        exit
+
+        return 1
     fi
 
     printf "%d\n" "'$1'"
@@ -55,7 +56,8 @@ getAsciiCodeFromCharacter() {
 getCharacterFromAsciiCode() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33masciiCodeHere\e[0m"
-        exit
+
+        return 1
     fi
 
     awk -v char=65 "BEGIN { printf \"%c\n\", $1; exit }"
@@ -72,9 +74,31 @@ getFileFirstLine() {
 getLineContainingPattern() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileNameHere patternHere\e[0m"
-        exit
+
+        return 1
     fi
+
     cat --number "$1" | grep --perl-regexp "$2" | awk '{print $1;}'
+}
+
+getCalendar() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33myearHere [destinationDirectoryHere]\e[0m"
+
+        return 1
+    fi
+
+    local destinationDirectory="${2:-.}"
+    local year="$1"
+
+    curl "https://www.calendriergratuit.fr/images/annuel2/calendrier-${year}-0.jpg" -o "${destinationDirectory}/calendrier-${year}-0.jpg"
+    curl "https://www.calendriergratuit.fr/images/annuel2/calendrier-${year}-1.jpg" -o "${destinationDirectory}/calendrier-${year}-1.jpg"
+    echo "<div style=\"text-align: center; margin-bottom: 1cm;\">
+    <img src=\"./calendrier-${year}-0.jpg\" alt=\"\" style=\"width: 15cm; margin: 1cm;\">
+</div>
+<div style=\"text-align: center;\">
+    <img src=\"./calendrier-${year}-1.jpg\" alt=\"\" style=\"width: 15cm; margin: 1cm;\">
+</div>" > "$destinationDirectory/calendar.html"
 }
 
 createDummyFile() {
