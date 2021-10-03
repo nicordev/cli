@@ -52,7 +52,7 @@ fi
 
 trap _handleExit exit err
 
-\$@
+"\$@"
 END
 }
 

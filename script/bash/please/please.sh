@@ -172,4 +172,4 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-$@
+"$@"
