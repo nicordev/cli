@@ -93,12 +93,14 @@ getCalendar() {
 
     curl "https://www.calendriergratuit.fr/images/annuel2/calendrier-${year}-0.jpg" -o "${destinationDirectory}/calendrier-${year}-0.jpg"
     curl "https://www.calendriergratuit.fr/images/annuel2/calendrier-${year}-1.jpg" -o "${destinationDirectory}/calendrier-${year}-1.jpg"
-    echo "<div style=\"text-align: center; margin-bottom: 1cm;\">
-    <img src=\"./calendrier-${year}-0.jpg\" alt=\"\" style=\"width: 15cm; margin: 1cm;\">
+    cat << ZOG > "$destinationDirectory/calendar.html"
+<div style="text-align: center; margin-bottom: 1cm;">
+    <img src="./calendrier-${year}-0.jpg" alt="" style="width: 15cm; margin: 1cm;">
 </div>
-<div style=\"text-align: center;\">
-    <img src=\"./calendrier-${year}-1.jpg\" alt=\"\" style=\"width: 15cm; margin: 1cm;\">
-</div>" > "$destinationDirectory/calendar.html"
+<div style="text-align: center;">
+    <img src="./calendrier-${year}-1.jpg" alt="" style="width: 15cm; margin: 1cm;">
+</div>
+ZOG
 }
 
 createDummyFile() {
