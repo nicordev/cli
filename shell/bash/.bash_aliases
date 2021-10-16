@@ -278,6 +278,7 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
 declare -i \e[33mvariableAsIntegerName\e[0m=\e[33mintegerValue\e[0m'"
@@ -302,6 +303,20 @@ alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
+# crontab
+alias please_crontab_how_to_set_or_update_cron="echo -e 'crontab -e
+\e[33mminutesHere hoursHere dayHere monthHere weekDayWhere0IsSundayHere yourCommandHere\e[0m
+
+  Day Name\t0,6\tSaturday and Sunday
+
+  Month\t\t*/2\tEvery month that is divisible by 2 (even) months.
+
+  Day Date\t*\tEvery Date
+
+  Hour\t\t3-6\tBetween 3 and 6 AM
+
+  Minutes\t*/5\tEvery 5 Minutes'"
+alias please_crontab_how_to_clear_crontab="echo 'crontab -r'"
 # DNS
 alias please_how_to_get_server_ip_from_url='echo -e "dig \e[33murlHere\e[0m
 host \e[33murlHere\e[0m
