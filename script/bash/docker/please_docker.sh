@@ -2,6 +2,16 @@
 
 SCRIPT_NAME=$(basename $0)
 
+_askConfirmationDefaultYes() {
+    local answer='yes'
+    echo -e "\e[1m$@Continue?\e[0m [YES/no] "
+    read answer
+
+    if [[ ${answer,,} =~ ^(n) ]]; then
+        return 1
+    fi
+}
+
 _extractImageAuthorNameTag() {
     [[ "$1" =~ ([^\/]+)\/([^:]+):(.+) ]]
     imageAuthor="${BASH_REMATCH[1]}"
@@ -12,6 +22,16 @@ _extractImageAuthorNameTag() {
 _extractImageFolder() {
     [[ "$1" =~ (.+\/)([^\/]+)$ ]]
     imageFolder="${BASH_REMATCH[1]}"
+}
+
+addDockerComposePortsParameter() {
+    if [ $# -lt 3 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mdockerComposeFileHere serviceNameHere portBindingHere\e[0m"
+
+        return 1
+    fi
+    echo $3
+    sed -i "s/${2}:/&\n    ports:\n      - ${3}/" "${1}"
 }
 
 buildImage() {
@@ -59,10 +79,21 @@ listContainerIdsAndNames() {
     docker container ls --format='{{.ID}} {{.Names}}'
 }
 
+# filter result using given parameter
+listImageTags() {
+    docker image ls "$@" --format='{{.Repository}}:{{.Tag}}'
+}
+
+# filter result using given parameter
+listImageIdsAndTags() {
+    docker image ls "$@" --format='{{.ID}} {{.Repository}}:{{.Tag}}'
+}
+
 getContainerIdFromName() {
     if [ $# -lt 1 ]; then
         listContainerNames
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcontainerNameOrHint\e[0m"
+
         return 1
     fi
 
@@ -70,10 +101,22 @@ getContainerIdFromName() {
     docker ps --filter name="${1}" --quiet
 }
 
+getImageIdFromTag() {
+    if [ $# -lt 1 ]; then
+        listContainerTags
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mimageTagOrHint\e[0m"
+
+        return 1
+    fi
+
+    docker image ls "$@" --format='{{.ID}}'
+}
+
 removeContainers() {
     if [ $# -lt 1 ]; then
         listContainerNames
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcontainerNameOrHint\e[0m"
+
         return 1
     fi
 
@@ -84,6 +127,7 @@ copyFileToContainer() {
     if [ $# -lt 1 ]; then
         listContainerNamesAndIds
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlocalFileHere containerIdHere containerFileHere\e[0m"
+
         return 1
     fi
 
@@ -99,6 +143,7 @@ showContainerIp() {
         echo -e "\e[1mContainers:\e[0m\n"
         docker container ls --format='{{.ID}}\t{{.Names}}'
         echo -e "\n${SCRIPT_NAME} showContainerIp \e[33mcontainerIdOrName\e[0m"
+
         return 1
     fi
 
@@ -110,6 +155,7 @@ showNetworkIp() {
         echo -e "\e[1mNetworks:\e[0m\n"
         docker network ls --format='{{.ID}}\t{{.Name}}'
         echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mnetworkIdOrName\e[0m"
+
         return 1
     fi
 
@@ -125,6 +171,7 @@ listImageChildren() {
         echo -e "\e[1mImages:\e[0m\n"
         docker image ls --format='{{.ID}}\t{{.Repository}}:{{.Tag}}'
         echo -e "\n${SCRIPT_NAME} listImageChildren \e[33mimageIdOrName\e[0m"
+
         return 1
     fi
 
@@ -133,6 +180,36 @@ listImageChildren() {
 
 removeUselessImages() {
     docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+}
+
+removeImages() {
+    if [ $# -lt 1 ]; then
+        listImageIdsAndTags
+        echo -e "\n${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mimageTagOrHint\e[0m"
+
+        return 1
+    fi
+
+    local images=$(listImageIdsAndTags | grep -E "$@")
+    local imageIds=''
+    local id=''
+
+    if [ -z "$images" ]; then
+        echo "No image to remove. See ya!"
+
+        return
+    fi
+
+    echo -e "\e[1mImages to remove:\e[0m"
+    echo "${images}" | awk '{ print $2 }'
+
+    _askConfirmationDefaultYes || return 1
+
+    for image in "$images"; do
+        echo "${image}" | awk '{ print $2 }'
+        id=$(echo "${image}" | awk '{ print $1; }')
+        docker image rm --force "$id"
+    done
 }
 
 stopAllContainers() {
@@ -156,4 +233,4 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-$@
+"$@"
