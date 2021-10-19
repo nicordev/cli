@@ -251,7 +251,7 @@ alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere
 alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_append_to_last_line="echo -e \"sed -i '\\\$a\\'\e[33mcontentHere\e[0m \e[33mfileNameHere\e[0m\""
 # awk
-alias please_awk_how_to_print_first_fields='echo "awk \"{ print \$1, \$2, \$3; }\""'
+alias please_awk_how_to_print_first_fields="echo \"awk '{ print \\\$1, \\\$2, \\\$3; }'\""
 alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
@@ -375,6 +375,7 @@ alias please_docker_run_named_container_in_background='docker run -d --name'
 alias please_docker_run_named_container='docker run --name'
 alias please_docker_run_unnamed_container='docker run'
 alias please_docker_remove_container='docker container rm --force'
+alias please_docker_how_to_remove_image='echo -e "docker image rm --force \e[33mimageIdHere [imageIdHere]\e[0m"'
 alias please_docker_how_to_list_container_ids_only='echo -e "docker container ls --quiet\ndocker ps -q"'
 alias please_docker_how_to_list_all_containers='echo -e "docker container ls --all\ndocker ps -a"'
 alias please_docker_how_to_remove_all_containers='echo -e "docker rm --force \$(docker ps -aq)"'
