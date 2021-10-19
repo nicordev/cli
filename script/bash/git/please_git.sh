@@ -91,18 +91,21 @@ backupCurrentBranch() {
     git checkout ${currentBranch}
 }
 
+checkoutPreviousBranch() {
+    git checkout -
+}
+
 pullThenRebaseBranch() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToPullHere\e[0m"
         exit
     fi
 
-    local currentBranch=$(showCurrentBranch)
     local branchToPull="$1"
 
-    git checkout "$branchToPull" &&
+    checkout "$branchToPull" &&
     git pull origin "$branchToPull" &&
-    git checkout "$currentBranch" &&
+    checkoutPreviousBranch &&
     git rebase "$branchToPull"
 }
 
@@ -128,7 +131,7 @@ howItWorks() {
 
 # List all functions that do not begin with an underscore _
 _listAvailableFunctions() {
-    cat $0 | grep -E '^[a-z]+[a-zA-Z0-9]*\(\) \{$' | sed 's#() {$##'
+    cat $0 | grep -E '^[a-z]+[a-zA-Z0-9_]*\(\) \{$' | sed 's#() {$##'
 }
 
 if [ $# -eq 0 ]; then
