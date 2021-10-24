@@ -236,6 +236,8 @@ grep -R -i \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive --ignore-case \e[33mcriteriaHere directoryHere\e[0m"'
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
+alias please_sed_how_to_find_in_file='echo -e "sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed --quiet --regexp-extended \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_print_lines='echo -e "One line:
 sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
 sed --quiet \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
