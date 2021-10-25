@@ -280,6 +280,32 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_ask_confirmation="echo '_askConfirmationDefaultYes() {
+    echo -e \"\e[1mContinue?\e[0m [YES/no] \"
+    read answer
+
+    if [[ ${answer,,} =~ ^n ]]; then
+        return 1
+    fi
+
+    return 0
+}
+
+_askConfirmationDefaultYes || exit
+
+askConfirmationDefaultNo() {
+    echo -e \"\e[1mContinue?\e[0m [yes/NO] \"
+    read answer
+
+    if [[ ${answer,,} =~ ^y ]]; then
+
+        return 0
+    fi
+
+    return 1
+}'
+
+_askConfirmationDefaultNo || exit"
 alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
