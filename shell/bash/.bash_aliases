@@ -303,9 +303,9 @@ askConfirmationDefaultNo() {
     fi
 
     return 1
-}'
+}
 
-_askConfirmationDefaultNo || exit"
+_askConfirmationDefaultNo || exit'"
 alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
