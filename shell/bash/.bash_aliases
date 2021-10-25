@@ -34,7 +34,7 @@ alias gitcd='MY_GIT_BRANCH=$(git branch --show-current) && please_git checkout d
 alias gitcm='MY_GIT_BRANCH=$(git branch --show-current) && please_git checkout master'
 alias gitcommit='git commit -m'
 alias gitcamend='git commit --amend'
-alias gitpoc='date; git push origin HEAD'
+alias gitpoc='date; for remote in $(git remote); do git push $remote HEAD; done'
 alias gitpoc-no-ci='date; git push -o ci.skip origin HEAD'
 alias gitforcepoc='date; gitpoc --force'
 alias gitforcepoc-no-ci='date; gitpoc-no-ci --force'
