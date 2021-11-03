@@ -36,7 +36,7 @@ alias gitcommit='git commit -m'
 alias gitcamend='git commit --amend'
 alias gitpoc='date; for remote in $(git remote); do git push $remote HEAD; done'
 alias gitpoc-no-ci='date; git push -o ci.skip origin HEAD'
-alias gitforcepoc='date; gitpoc --force'
+alias gitforcepoc='date; git push origin HEAD --force'
 alias gitforcepoc-no-ci='date; gitpoc-no-ci --force'
 alias gitCurrentPull='git_pull_current_branch.sh'
 alias gitDevelopPull='git pull origin develop'
@@ -331,6 +331,12 @@ alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
+# bourne shell sh
+alias please_sh_how_to_regex='echo -e "Use grep:
+if ! echo \e[33m\$variableName\e[0m | grep --quiet \e[33m\"^2\"\e[0m
+then
+    \e[33mdoSomething\e[0m
+fi"'
 # crontab
 alias please_crontab_how_to_set_or_update_cron="echo -e 'crontab -e
 \e[33mminutesHere hoursHere dayHere monthHere weekDayWhere0IsSundayHere yourCommandHere\e[0m
@@ -440,6 +446,10 @@ alias please_curl_how_to_save_content_to_file='echo -e "curl \e[33murlHere\e[0m 
 curl \e[33murlHere\e[0m -o \e[33mfileNameHere\e[0m"'
 alias please_curl_how_to_download_file='echo -e "curl --remote-name \e[33murlHere\e[0m
 curl -O \e[33murlHere\e[0m"'
+alias please_curl_how_to_get_http_status_code="echo -e \"Get only the code:
+curl --write-out '%{http_code}' --output /dev/null --silent \e[33murlHere\e[0m
+curl -w '%{http_code}' -o /dev/null -s \e[33murlHere\e[0m
+\""
 # yakuake
 alias please_yakuake_start='yakuake'
 # firefox
