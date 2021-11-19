@@ -18,6 +18,34 @@ alias please_todo='vim ~/Desktop/todo.md'
 alias please_show_image_dimensions='file'
 # pandoc
 alias please_how_to_convert_markdown='echo -e "pandoc \e[33mfileName\e[0m -f markdown -t \e[33moutputFormat\e[0m -s -o \e[33moutputFile\e[0m"'
+# markdown
+alias please_markdown_how_to_write_definition_list='echo -e "term to define here
+: definition is here
+  another definition line
+  now adding a numbered list:
+  1. apple
+  2. peach
+  3. pear"'
+alias please_markdown_how_to_write_on_2_lines='echo -e "I am writing this text on 2 lines by adding 2 spaces at the end of this line
+to put a carriage return character."'
+# javascript
+alias please_js_show_script_template="echo -e \"(function () {
+    console.clear();
+
+    function handleElements(cssSelector) {
+        const elements = document.querySelectorAll(cssSelector);
+        const handledElements = [];
+
+        for (let element in elements) {
+            handledElements.push(element);
+        }
+
+        return handledElements;
+    }
+
+    console.log(handleElements('a[href*=\\\"zog\\\"]'));
+})();\""
+alias please_js_copy_script_template="please_js_show_script_template | please_copy"
 # tail
 alias please_how_to_track_file_changes_using_tail='echo -e "tail -F \e[33mfileNameHere\e[0m
 tail --follow=name --retry \e[33mfileNameHere\e[0m"'
@@ -46,7 +74,7 @@ alias gitStashPullDevelopRebaseDevelop='MY_GIT_BRANCH=$(git branch --show-curren
 alias gitPullDevelopRebaseDevelop='MY_GIT_BRANCH=$(git branch --show-current) && git checkout develop && git pull origin develop && git checkout $MY_GIT_BRANCH && git rebase develop'
 alias git_reset_to_commit='git_reset_to_commit.sh'
 alias git_remove_last_commit='git reset --hard HEAD~1'
-alias git_reset_from_origin='git reset --hard origin'
+alias git_reset_from_origin='git reset --hard "origin/$(git branch --show-current)"'
 alias git_branch_create_and_select='git checkout -b'
 alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
@@ -58,6 +86,7 @@ alias please_git_how_to_edit_branch_description='echo -e "git branch --edit-desc
 alias please_git_how_to_show_branch_description='echo -e "git config branch.\e[33mbranchNameHere\e[0m.description"'
 alias please_git_how_to_add_note_to_commit='echo "git note add"'
 alias please_git_how_to_show_stash_modifications='echo -e "git stash show -p stash@{0}"'
+alias please_git_how_to_stash_unstaged_changes='echo "git stash --include-untracked"'
 alias please_git_how_to_remove_untracked_files='echo "git clean -fd"'
 alias please_git_how_to_modify_last_commit_without_editing_commit_message='echo "git commit --amend --no-edit"'
 alias please_git_how_to_push_with_options='echo -e "git push -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m origin HEAD"'
@@ -134,6 +163,7 @@ alias please_show_aliases='alias -p | sort'
 # clipboard
 alias please_copy='xclip -in -selection clipboard'
 alias please_paste='xclip -out -selection clipboard'
+alias please_paste_bash_code_in_file_and_run_it="echo '#! /bin/bash' > zog.sh; please_paste >> zog.sh && chmod +x zog.sh && ./zog.sh && rm ./zog.sh"
 alias please_how_to_copy="echo 'someCommand | xclip -in -selection clipboard'"
 alias please_how_to_paste="echo 'xclip -out -selection clipboard'"
 alias please_create_script='create_script.sh'
@@ -160,10 +190,10 @@ alias please_how_to_get_current_user_id='echo "id -u"'
 alias please_how_to_get_current_user_name='echo "id -un"'
 alias please_how_to_get_current_group_id='echo "id -g"'
 alias please_how_to_get_current_group_name='echo "id -gn"'
-alias please_how_to_get_user_id='echo "id -u \e[33mnameOrIdHere\e[0m"'
-alias please_how_to_get_user_name='echo "id -un \e[33mnameOrIdHere\e[0m"'
-alias please_how_to_get_group_id='echo "id -g \e[33mnameOrIdHere\e[0m"'
-alias please_how_to_get_group_name='echo "id -gn \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_user_id='echo -e "id -u \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_user_name='echo -e "id -un \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_group_id='echo -e "id -g \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_group_name='echo -e "id -gn \e[33mnameOrIdHere\e[0m"'
 # manage packages
 alias please_upgrade_packages='upgrade_packages.sh'
 # network
@@ -213,11 +243,16 @@ alias please_how_to_list_all_environment_variables='echo "env"'
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
 # grep
+alias please_grep_how_to_use_or_operator="echo -e \"
+grep --extended-regexp '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
+grep -E '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
+grep '\e[33myourFirstCriteria\e[0m\\|\e[33myourSecondCriteria\e[0m'
+\""
 alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
 grep --invert-match \e[33mpatternHere\e[0m"'
 alias please_grep_how_to_use_extended_regex='echo -e "grep -E \e[33mpatternHere\e[0m
 grep --extended-regexp \e[33mpatternHere\e[0m"'
-alias please_grep_how_to_search_in_files='echo -e "-R or --dereference-recursive mandatory to search in files:
+alias please_grep_how_to_find_in_files='echo -e "-R or --dereference-recursive mandatory to search in files:
 grep -R \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive \e[33mcriteriaHere directoryHere\e[0m
 

@@ -176,6 +176,14 @@ replaceInFile() {
     sed -i "s#$stringToReplace#$replacement#" "$file"
 }
 
+current() {
+    cat $HOME/moi/current.md
+}
+
+editMe() {
+    vim $0
+}
+
 # Display the source code of this file
 howItWorks() {
     less $0
