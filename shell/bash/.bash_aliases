@@ -244,8 +244,13 @@ alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
 # grep
 alias please_grep_how_to_use_or_operator="echo -e \"
+Extended grep:
 grep --extended-regexp '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
 grep -E '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
+egrep '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
+
+Basic grep:
+grep -e \e[33myourFirstCriteria\e[0m -e \e[33myourSecondCriteria\e[0m
 grep '\e[33myourFirstCriteria\e[0m\\|\e[33myourSecondCriteria\e[0m'
 \""
 alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
