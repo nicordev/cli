@@ -253,6 +253,13 @@ Basic grep:
 grep -e \e[33myourFirstCriteria\e[0m -e \e[33myourSecondCriteria\e[0m
 grep '\e[33myourFirstCriteria\e[0m\\|\e[33myourSecondCriteria\e[0m'
 \""
+alias please_grep_how_to_match_word="echo \"
+grep \"\b\e[33myourCriteriaHere\e[0m\b\"
+\""
+alias please_grep_how_to_use_capturing_groups_to_repeat_pattern_in_the_same_query="echo \"
+Here myPatternToRepeatHere is repeated at \\1
+grep 'aFirstPattern\(myPatternToRepeatHere\)someOtherPattern\\1againAnotherPattern'
+\""
 alias please_grep_how_to_invert_match='echo -e "grep -v \e[33mpatternHere\e[0m
 grep --invert-match \e[33mpatternHere\e[0m"'
 alias please_grep_how_to_use_extended_regex='echo -e "grep -E \e[33mpatternHere\e[0m
