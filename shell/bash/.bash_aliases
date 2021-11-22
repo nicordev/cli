@@ -124,6 +124,10 @@ alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
         ]
     }"'
 # php
+alias please_php_how_to_measure_execution_time='echo "\$start = microtime(true);
+// your code here
+var_dump(microtime(true) - \$start);
+exit();"'
 alias please_php_how_to_execute_a_line_of_code='echo "php -r"'
 alias please_php_how_to_execute_some_lines_of_code_interactively='echo "php -a"'
 alias please_php_how_to_display_some_info='echo "php -i"'
