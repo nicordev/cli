@@ -38,6 +38,10 @@ _getCurrentUserName() {
     id -un
 }
 
+browseBlogOnline() {
+    echo "https://nicordev.gitlab.io/blog/"
+}
+
 createDraft() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mtitle [author] [layout]\e[0m"
