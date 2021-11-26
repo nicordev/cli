@@ -188,6 +188,8 @@ alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbo
 alias please_how_to_count_files="echo -e 'ls -1 --file-type | grep --invert-match '/\\$' | wc -l'"
 alias please_how_to_count_directories="echo -e 'ls -1 --file-type | grep '/\\$' | wc -l'"
 alias please_how_to_count_files_and_directories="echo -e 'ls -1 | wc -l'"
+# directory
+alias please_how_to_list_directories_only='echo -e "ls -d \e[33mpathHere/commonStringHere\e[0m*/"'
 # user and group
 alias please_add_group_to_user='sudo usermod -aG'
 alias please_how_to_get_current_user_id='echo "id -u"'
@@ -376,9 +378,11 @@ alias please_bash_how_to_get_current_script_name="echo -e 'SCRIPT_NAME=\$(basena
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
 alias please_bash_how_to_write_variable_default_value='echo -e "\e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\e[33mhardCodedDefaultValue\e[0m}
 \e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\${\e[33motherVariable2\e[0m:-\e[33mhardCodedDefaultValue\e[0m}}"'
-alias please_bash_how_to_extract_file_name_from_full_path='echo "extractFileName() {
-    echo \${@##*/}
-}"'
+alias please_bash_how_to_extract_file_name_from_full_path='echo -e "
+echo \$(basename \e[33myourFileNameHere .yourExtension\e[0m)
+
+echo \${\e[33myourFileNameHere\e[0m##*/}
+"'
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
