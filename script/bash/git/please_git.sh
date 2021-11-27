@@ -22,6 +22,17 @@ checkout() {
     git checkout "$@" || (git fetch origin && git checkout "$@")
 }
 
+changeGitHubToGitlabOrigin() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mprojectName [branchName]\e[0m"
+        exit
+    fi
+
+    git remote rename origin origin-github
+    git remote add origin "https://gitlab.com/nicordev/${1}.git"
+    git push --set-upstream origin ${2:-master}
+}
+
 showCurrentBranch() {
     git branch --show-current
 }
