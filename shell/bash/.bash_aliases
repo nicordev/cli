@@ -443,6 +443,8 @@ alias please_psql_how_to_execute_sql_file='echo -e "psql -f \e[33msqlFile\e[0m
 psql --file=\"\e[33msqlFile\e[0m\""'
 alias please_psql_how_to_execute_sql_statement='echo -e "psql -c \e[33msqlStatement\e[0m
 psql --command=\"\e[33msqlStatement\e[0m\""'
+alias please_psql_how_to_get_only_values='echo -e "psql -t -c \e[33msqlStatement\e[0m
+psql --tuples-only  --command=\"\e[33msqlStatement\e[0m\""'
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
