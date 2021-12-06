@@ -123,6 +123,44 @@ movePostToDraft() {
     listDrafts
 }
 
+fixLinks() {
+    addMissingSlashToLinks "$@"
+    addAbsoluteUrlToLinks "$@"
+}
+
+addMissingSlashToLinks() {
+    if [[ "$1" == '-i' ]]
+    then
+        local updateFile='-i'
+        shift
+    fi
+
+    sed -i 's#src="\([^"]*\)"#src="/\1"#g' "$@"
+    sed -i 's#href="\([^"]*\)"#href="/\1"#g' "$@"
+}
+
+addAbsoluteUrlToLinks() {
+    if [[ "$1" == '-i' ]]
+    then
+        local updateFile='-i'
+        shift
+    fi
+
+    sed -i 's#src="\([^"]*\)"#src="{{ "\1" | absolute_url }}"#g' "$@"
+    sed -i 's#href="\([^"]*\)"#href="{{ "\1" | absolute_url }}"#g' "$@"
+}
+
+addMissingQuotes() {
+    if [[ "$1" == '-i' ]]
+    then
+        local updateFile='-i'
+        shift
+    fi
+
+    sed $updateFile 's#src="{{ \([^"]*\) | absolute_url }}"#src="{{ "\1" | absolute_url }}"#g' "$@"
+    sed $updateFile 's#href="{{ \([^"]*\) | absolute_url }}"#href="{{ "\1" | absolute_url }}"#g' "$@"
+}
+
 _handleExit() {
     if [ $? == $EXIT_CODE_MISSING_BLOG_DIRECTORY ]; then
         echo "set blog directory path in:
