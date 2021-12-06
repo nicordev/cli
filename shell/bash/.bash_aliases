@@ -259,9 +259,11 @@ Basic grep:
 grep -e \e[33myourFirstCriteria\e[0m -e \e[33myourSecondCriteria\e[0m
 grep '\e[33myourFirstCriteria\e[0m\\|\e[33myourSecondCriteria\e[0m'
 \""
-alias please_grep_how_to_match_word="echo \"
-grep \"\b\e[33myourCriteriaHere\e[0m\b\"
-\""
+alias please_grep_how_to_match_word='printf "
+grep -w \e[33myourWordHere\e[0m
+grep --word-regexp \e[33myourWordHere\e[0m
+grep \"\\\b\e[33myourCriteriaHere\e[0m\\\b\"
+"'
 alias please_grep_how_to_use_capturing_groups_to_repeat_pattern_in_the_same_query="echo \"
 Here myPatternToRepeatHere is repeated at \\1
 grep 'aFirstPattern\(myPatternToRepeatHere\)someOtherPattern\\1againAnotherPattern'
@@ -287,6 +289,9 @@ grep --dereference-recursive --line-number \e[33mcriteriaHere directoryHere\e[0m
 Case insensitive:
 grep -R -i \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive --ignore-case \e[33mcriteriaHere directoryHere\e[0m"'
+alias please_grep_how_to_extract_xml_value='printf "grep --only-matching --perl-regexp --max-count=1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
+grep -oPm 1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
+"'
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
 alias please_sed_how_to_find_in_file='echo -e "sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
