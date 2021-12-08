@@ -29,7 +29,8 @@ alias please_markdown_how_to_write_definition_list='echo -e "term to define here
 alias please_markdown_how_to_write_on_2_lines='echo -e "I am writing this text on 2 lines by adding 2 spaces at the end of this line
 to put a carriage return character."'
 # javascript
-alias please_js_show_script_template="echo -e \"(function () {
+alias please_js_show_script_template="echo -e \"
+(function () {
     console.clear();
 
     function handleElements(cssSelector) {
@@ -44,8 +45,67 @@ alias please_js_show_script_template="echo -e \"(function () {
     }
 
     console.log(handleElements('a[href*=\\\"zog\\\"]'));
-})();\""
+})();
+\""
 alias please_js_copy_script_template="please_js_show_script_template | please_copy"
+alias please_js_copy_scratch_pad="echo '
+(function () {
+    function setElementStyle(element, css) {
+        element.setAttribute('style', css);
+    }
+
+    function removePads() {
+        const padElements = document.body.querySelectorAll('.scratch-pad');
+
+        for (let element of padElements) {
+            element.remove();
+        }
+    }
+
+    function createPad() {
+        const padElement = document.createElement('textarea');
+
+        padElement.classList.add('scratch-pad');
+
+        setElementStyle(
+            padElement,
+            \`
+            position: absolute;
+            background-color: white;
+            left: O;
+            top: 0;
+            z-index: 9999999;
+            padding: 3em;
+            \`
+        );
+
+        // TODO: add input to set css selector and fill the pad
+        // TODO: add a close button
+        // TODO: move the pad with the mouse
+
+        return padElement;
+    }
+
+    function fillPadFromElementContents(elements, padElement) {
+        for (let element of elements) {
+            padElement.textContent += \`\${element.textContent}\n\`;
+        }
+    }
+
+    function main() {
+        removePads();
+
+        const rawElements = document.querySelectorAll('ngb-highlight');
+        const padElement = createPad();
+
+        fillPadFromElementContents(rawElements, padElement);
+        document.body.appendChild(padElement);
+    }
+
+    console.clear();
+    main();
+})();
+' | please_copy"
 # tail
 alias please_how_to_track_file_changes_using_tail='echo -e "tail -F \e[33mfileNameHere\e[0m
 tail --follow=name --retry \e[33mfileNameHere\e[0m"'
