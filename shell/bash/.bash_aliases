@@ -16,6 +16,11 @@ alias nano='nano -miA'
 alias please_todo='vim ~/Desktop/todo.md'
 # image
 alias please_show_image_dimensions='file'
+alias please_how_to_show_image_dimensions='echo "file"'
+# favicon
+alias please_how_to_generate_favicon='printf "sudo apt install imagemagick
+convert -background transparent -define icon:auto-resize=192 \e[33mimageFileToConvert\e[0m favicon.ico
+"'
 # pandoc
 alias please_how_to_convert_markdown='echo -e "pandoc \e[33mfileName\e[0m -f markdown -t \e[33moutputFormat\e[0m -s -o \e[33moutputFile\e[0m"'
 # markdown
@@ -432,7 +437,13 @@ alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
 alias please_bash_how_to_loop_through_files='echo -e "for \e[33mfile\e[0m in *; do \e[33mecho "\$file"\e[0m; done"'
 alias please_bash_how_to_loop_through_lines_of_a_file='echo -e "while IFS= read -r \e[33mline\e[0m; do \e[33mecho "\$line"\e[0m; done < \e[33mfile\e[0m"'
-alias please_bash_how_to_regex="echo -e 'if [[ \e[33m\"stringHere\"\e[0m =~ \e[33mregexHere\e[0m ]];then \e[33mecho \"true\"\e[0m; else \e[33mecho \"false\"\e[0m; fi'"
+alias please_bash_how_to_use_regex="echo -e 'if [[ \e[33m\"stringHere\"\e[0m =~ \e[33mregexHere\e[0m ]];then \e[33mecho \"true\"\e[0m; else \e[33mecho \"false\"\e[0m; fi'"
+alias please_bash_how_to_use_regex_capture_group='printf "
+if [[ \"\$Email\" =~ [a-z]+@[a-z]{2,}\.(com|net|org) ]]
+then
+    echo \"Here is the first capturing group: \${BASH_REMATCH[1]}\"
+fi
+"'
 alias please_bash_how_to_remove_newline="echo -e '\e[33mecho \$someStringWithNewLines\e[0m | sed -z \"s#\\\n# #g\"'; echo -e '\e[33mecho \$someStringWithNewLines\e[0m | awk 1 ORS=\" \"'"
 alias please_bash_how_to_rerun_last_command="echo '!!'"
 alias please_bash_how_to_get_last_output="echo -e 'Rerun the last command and pass the output to another command:\n\e[33mmyCommandName\e[0m \$(!!)'"
@@ -451,6 +462,29 @@ echo \${\e[33myourFileNameHere\e[0m##*/}
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
+alias please_bash_how_to_handle_parameters="printf \"
+\e[33mfunctionNameHere\e[0m() {
+
+    while [ ! -z \\\"\\\$1\\\" ]; do
+        case \\\"\\\$1\\\" in
+            \e[33mvalue1Here\e[0m)
+                \e[33manotherFunctionNameHere\e[0m \\\"\\\$1\\\"
+                shift
+            ;;
+            \e[33mvalue2Here\e[0m|\e[33mvalue3Here\e[0m)
+                \e[33manotherFunctionNameHere\e[0m \\\"\\\$1\\\"
+                shift
+            ;;
+            *)
+                \e[33manotherFunctionNameHereHandlingOtherValues\e[0m \\\"\\\$1\\\"
+                shift
+            ;;
+        esac
+
+    done
+
+}
+\""
 # bourne shell sh
 alias please_sh_how_to_regex='echo -e "Use grep:
 if ! echo \e[33m\$variableName\e[0m | grep --quiet \e[33m\"^2\"\e[0m
