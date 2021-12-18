@@ -165,6 +165,28 @@ git cherry-pick ..\e[33mbranchName\e[0m
 
 # Bring only the last commit of a branch to the active branch:
 git cherry-pick \e[33mbranchName\e[0m"'
+alias please_git_how_to_hook="printf \"
+git documentation:
+https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+https://www.git-scm.com/docs/githooks
+
+create an executable file in your project's .git/hooks directory named like this:
+
+.git/hooks/\e[33mhookNameHere\e[0m
+
+where \e[33mhookNameHere\e[0m can be:
+
+pre-commit
+prepare-commit-msg
+commit-msg
+post-commit
+pre-rebase
+post-rewrite
+post-checkout
+post-merge
+pre-push
+pre-auto-gc
+\""
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
@@ -267,6 +289,20 @@ alias please_how_to_get_group_id='echo -e "id -g \e[33mnameOrIdHere\e[0m"'
 alias please_how_to_get_group_name='echo -e "id -gn \e[33mnameOrIdHere\e[0m"'
 # manage packages
 alias please_upgrade_packages='upgrade_packages.sh'
+# rsync
+alias please_how_to_synchronize_directories="printf \"
+--delete will delete any files that are not in the source directory
+-a, --archive can be used instead or -r --recursive to also sync permissions...
+
+rsync --recursive --delete \e[33msourceDirectoryHere\e[0m/\e[33m destinationDirectoryHere\e[0m
+rsync -r --delete \e[33msourceDirectoryHere\e[0m/\e[33m destinationDirectoryHere\e[0m
+\""
+alias please_rsync_how_to_synchronize_directories='please_how_to_synchronize_directories'
+alias please_how_to_synchronize_remote_directories="printf \"
+rsync --recursive --delete \e[33msourceDirectoryHere\e[0m/\e[33m usernameHere\e[0m@\e[33mremoteHostHere\e[0m:\e[33mdestinationDirectoryHere\e[0m
+rsync -r --delete \e[33msourceDirectoryHere\e[0m/\e[33m usernameHere\e[0m@\e[33mremoteHostHere\e[0m:\e[33mdestinationDirectoryHere\e[0m
+\""
+alias please_rsync_how_to_synchronize_remote_directories='please_how_to_synchronize_remote_directories'
 # network
 alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
@@ -300,6 +336,10 @@ sudo add-apt-repository --remove ppa:\e[33mauthor/repository\e[0m"'
 alias please_apt_how_to_list_repositories='echo -e "apt policy
 
 ls /etc/apt/sources.list.d/ | grep \e[33mrepositoryHint\e[0m"'
+alias please_how_to_avoid_history_command_to_remember_my_command='printf "
+add a space before entering your command:
+ \e[33mmyCommandToRunHere\e[0m
+"'
 # snap
 alias please_snap_how_to_list_installed_packages='echo "snap list"'
 # commands
@@ -437,6 +477,12 @@ alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
 alias please_bash_how_to_loop_through_files='echo -e "for \e[33mfile\e[0m in *; do \e[33mecho "\$file"\e[0m; done"'
 alias please_bash_how_to_loop_through_lines_of_a_file='echo -e "while IFS= read -r \e[33mline\e[0m; do \e[33mecho "\$line"\e[0m; done < \e[33mfile\e[0m"'
+alias please_bash_how_to_count_directories='printf "
+for file in \e[33myourPathHere\e[0m/*; do if [ -f \$file ]; then continue; fi; echo \$file; done | wc --lines
+"'
+alias please_bash_how_to_count_files='printf "
+for file in \e[33myourPathHere\e[0m/*; do if [ -d \$file ]; then continue; fi; echo \$file; done | wc --lines
+"'
 alias please_bash_how_to_use_regex="echo -e 'if [[ \e[33m\"stringHere\"\e[0m =~ \e[33mregexHere\e[0m ]];then \e[33mecho \"true\"\e[0m; else \e[33mecho \"false\"\e[0m; fi'"
 alias please_bash_how_to_use_regex_capture_group='printf "
 if [[ \"\$Email\" =~ [a-z]+@[a-z]{2,}\.(com|net|org) ]]
