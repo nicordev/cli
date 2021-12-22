@@ -159,6 +159,19 @@ alias please_git_how_to_show_staged_changes='echo "git diff --staged"'
 alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 alias please_git_how_to_clone_from_github='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git"'
 alias please_git_how_to_push_repository_to_github='echo -e "git remote add origin  https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git\ngit push --set-upstream \e[33morigin master\e[0m"'
+alias please_git_how_to_create_remote="printf \"
+- in the remote server directory:
+
+git init --bare
+
+- in our local project directory:
+
+git remote add remoteNameHere remoteInfoHere
+
+where remoteInfo can be:
+- remote server url
+- userNameHere@remoteServerHostHere:remoteServerDirectory
+\""
 alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
 alias please_git_how_to_cherry_pick='echo -e "# Bring last commits of a branch to the active branch:
 git cherry-pick ..\e[33mbranchName\e[0m
@@ -394,6 +407,14 @@ grep --dereference-recursive --line-number \e[33mcriteriaHere directoryHere\e[0m
 Case insensitive:
 grep -R -i \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive --ignore-case \e[33mcriteriaHere directoryHere\e[0m"'
+alias please_grep_how_to_find_files_that_contains="printf \"
+grep --dereference-recursive --files-with-matches \e[33mcriteriaHere directoryHere\e[0m
+grep -Rl \e[33mcriteriaHere directoryHere\e[0m
+\""
+alias please_grep_how_to_find_files_that_does_not_contains="printf \"
+grep --dereference-recursive --files-without-match \e[33mcriteriaHere directoryHere\e[0m
+grep -RL \e[33mcriteriaHere directoryHere\e[0m
+\""
 alias please_grep_how_to_extract_xml_value='printf "grep --only-matching --perl-regexp --max-count=1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
 grep -oPm 1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
 "'
