@@ -7,16 +7,23 @@ SCRIPT_DIRECTORY=$(dirname $BASH_SOURCE)
 EXIT_CODE_MISSING_BLOG_DIRECTORY=111
 LOCATION_FILE="$HOME/${SCRIPT_NAME}_location"
 TEXT_EDITOR='code'
+BLOG_LOCATION_KEY='blog'
 
 _createLocationFileIfNoneExists() {
     if [ ! -f "$LOCATION_FILE" ]
     then
-        echo "blog=" > $LOCATION_FILE
+        echo "$BLOG_LOCATION_KEY=" > $LOCATION_FILE
     fi
 }
 
 _getLocation() {
-    cat $LOCATION_FILE | sed "s/^$1=\([^\n]*\)/\1/"
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlocationNameHere\e[0m"
+
+        return 1
+    fi
+
+    cat $LOCATION_FILE | sed --quiet "s/^$1=\([^\n]*\)/\1/p"
 }
 
 _getToday() {
@@ -24,7 +31,7 @@ _getToday() {
 }
 
 _setBlogDirectory() {
-    BLOG_DIRECTORY="$(_getLocation blog)"
+    BLOG_DIRECTORY="$(_getLocation $BLOG_LOCATION_KEY)"
     BLOG_DRAFT_DIRECTORY="$BLOG_DIRECTORY/_drafts"
     BLOG_POST_DIRECTORY="$BLOG_DIRECTORY/_posts"
 
