@@ -468,7 +468,7 @@ alias please_bash_how_to_ask_confirmation="echo '_askConfirmationDefaultYes() {
     echo -e \"\e[1mContinue?\e[0m [YES/no] \"
     read answer
 
-    if [[ ${answer,,} =~ ^n ]]; then
+    if [[ \${answer,,} =~ ^n ]]; then
         return 1
     fi
 
@@ -481,7 +481,7 @@ askConfirmationDefaultNo() {
     echo -e \"\e[1mContinue?\e[0m [yes/NO] \"
     read answer
 
-    if [[ ${answer,,} =~ ^y ]]; then
+    if [[ \${answer,,} =~ ^y ]]; then
 
         return 0
     fi
@@ -490,6 +490,9 @@ askConfirmationDefaultNo() {
 }
 
 _askConfirmationDefaultNo || exit'"
+alias please_bash_how_to_check_is_integer="printf \"
+if [ \"\e[33m\$myVariable\e[0m\" -eq \"\e[33m\$myVariable\e[0m\" ]; then echo 'is integer'; fi 2> /dev/null;
+\""
 alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
