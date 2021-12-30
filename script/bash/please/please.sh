@@ -186,7 +186,13 @@ editMe() {
 
 # Display the source code of this file
 howItWorks() {
-    less $0
+    if [ $# -lt 1 ]; then
+        less "$0"
+
+        return
+    fi
+
+    less --pattern="$@" "$0"
 }
 
 # List all functions that do not begin with an underscore _

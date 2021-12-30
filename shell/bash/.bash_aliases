@@ -349,10 +349,18 @@ sudo add-apt-repository --remove ppa:\e[33mauthor/repository\e[0m"'
 alias please_apt_how_to_list_repositories='echo -e "apt policy
 
 ls /etc/apt/sources.list.d/ | grep \e[33mrepositoryHint\e[0m"'
+# history
 alias please_how_to_avoid_history_command_to_remember_my_command='printf "
 add a space before entering your command:
  \e[33mmyCommandToRunHere\e[0m
 "'
+alias please_history_how_to_forget_commands="printf \"
+forget a command:
+history -d \e[33mhistoryIndexHere\e[0m
+
+forget multiple commands:
+for i in {1..\e[33mcommandsToForgetCount\e[0m}; do history -d firstCommandIndexHere; done
+\""
 # snap
 alias please_snap_how_to_list_installed_packages='echo "snap list"'
 # commands
