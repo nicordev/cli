@@ -472,6 +472,13 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_what_is_it="printf \"
+set -eu
+-e exit if any command return > 0
+-u exit if any variable is accessed without being initialized first
+-x output any command executed
+-v display script content
+\""
 alias please_bash_how_to_ask_confirmation="echo '_askConfirmationDefaultYes() {
     echo -e \"\e[1mContinue?\e[0m [YES/no] \"
     read answer
@@ -530,6 +537,8 @@ alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
 alias please_bash_how_to_get_current_function_name='echo "\${FUNCNAME[0]}"'
 alias please_bash_how_to_get_current_script_name="echo -e 'SCRIPT_NAME=\$(basename \$0)\nSCRIPT_NAME=\$(basename \$BASH_SOURCE)'"
 alias please_bash_how_to_get_current_script_user='echo "user=$(whoami)"'
+alias please_bash_how_to_create_constant='echo -e "readonly \e[33mMY_CONSTANT_NAME\e[0m=\e[33mmyConstantValueHere\e[0m"'
+alias please_bash_how_to_get_absolute_path='echo "realpath myFileHere"'
 alias please_bash_how_to_write_variable_default_value='echo -e "\e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\e[33mhardCodedDefaultValue\e[0m}
 \e[33mvariableName\e[0m=\${\e[33motherVariable1\e[0m:-\${\e[33motherVariable2\e[0m:-\e[33mhardCodedDefaultValue\e[0m}}"'
 alias please_bash_how_to_extract_file_name_from_full_path='echo -e "
@@ -569,6 +578,11 @@ if ! echo \e[33m\$variableName\e[0m | grep --quiet \e[33m\"^2\"\e[0m
 then
     \e[33mdoSomething\e[0m
 fi"'
+alias please_sh_how_to_source='echo "you can not use source in sh, use . instead:
+.
+"'
+# swagger
+alias please_swagger_browse_documentation='echo "https://swagger.io/docs/specification/describing-parameters/#query-parameters"'
 # crontab
 alias please_crontab_how_to_set_or_update_cron="echo -e 'crontab -e
 \e[33mminutesHere hoursHere dayHere monthHere weekDayWhere0IsSundayHere yourCommandHere\e[0m
@@ -659,9 +673,21 @@ docker run -it \e[33mimageNameHere\e[0m"'
 alias please_docker_how_to_remove_container="echo -e \"docker rm --force \e[33mcontainerName\e[0m\""
 alias please_docker_how_to_build_image="echo -e \"docker build -t \e[33mnomImage\e[0m -f \e[33mnomFichierDockerfileSouhaité cheminVersLeDossierContenantLeDockerfile\e[0m\""
 alias please_docker_how_to_rename_image="echo -e \"docker image tag \e[33midImageOuCoupleNomImage:nomTag nouveauNomImage:nouveauTag\e[0m\""
-alias please_docker_how_to_run_php_script="echo -e 'docker run -it --rm --name \e[33mnomFichier.php\e[0m -v "\$PWD":/usr/src/myapp -w /usr/src/myapp \e[33mphp:7.4-cli\e[0m php \e[33myour-script.php\e[0m'"
+alias please_docker_how_to_run_php_script="echo -e 'docker run -it --rm --name \e[33mnomFichier.php\e[0m -v \"\$PWD\":/usr/src/myapp -w /usr/src/myapp \e[33mphp:7.4-cli\e[0m php \e[33myour-script.php\e[0m'"
 alias please_docker_how_to_run_composer="echo -e 'docker run --interactive --tty composer \e[33mcommandHere\e[0m'"
 alias please_docker_how_to_create_sculpin_blog="echo -e 'docker run --interactive --tty composer  create-project sculpin/blog-skeleton \e[33mprojectNameHere\e[0m'"
+alias please_docker_how_to_use_stages="printf \"TO IMPROVE:
+FROM imageNameHere as yourStageNameHere
+# some commands
+
+FROM yourStageNameHere as anotherStageHere
+# some commands
+
+FROM yourStageNameHere as yetAnotherStageHere
+
+docker build --target anotherStageHere
+\""
+alias please_docker_how_to_build_args="printf \"TO IMPROVE: docker --build-args yourArg\""
 # Google Cloud Platform (GCP)
 alias please_login_google_cloud_platform='gcloud auth login'
 # jekyll static website generator
