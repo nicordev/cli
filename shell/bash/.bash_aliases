@@ -145,6 +145,30 @@ alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
 alias please_git_what_was_my_previous_branch='echo "$MY_GIT_BRANCH"'
 alias please_git_how_to_switch_to_previous_branch='echo "git checkout -"'
+alias please_git_how_to_squash_commits="printf \"
+To squash commits in the current branch:
+
+git rebase -i \e[33mcommitShaHere\e[0m
+git rebase --interactive \e[33mcommitShaHere\e[0m
+
+in the text editor, replace \e[1mpick\e[0m by \e[1msquash\e[0m for the wanted commits
+save then exit
+enter a commit message
+save then exit
+\""
+alias please_git_how_to_show_next_commits="printf \"
+git log \e[33mcommitShaHere\e[0m~1..HEAD
+\""
+alias please_git_how_to_use_git_log="printf \"
+show some commits in one line with graph:
+git log  --oneline --graph --max-count=\e[33mcommitsCountToShowHere\e[0m
+
+show commits in a range:
+git log \e[33mstartCommitShaHere\e[0m~1..\e[33mendCommitShaHere\e[0m
+
+show commits after a specific one:
+git log \e[33mcommitShaHere\e[0m~1..HEAD
+\""
 alias please_git_how_to_show_current_branch='echo -e "git branch --show-current
 git symbolic-ref --short HEAD"'
 alias please_git_how_to_edit_branch_description='echo -e "git branch --edit-description"'
