@@ -233,6 +233,22 @@ alias please_how_to_get_pi_value='echo -e "echo \"scale=10; 4*a(1)\" | bc -l"'
 alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
 echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
 alias please_how_to_convert_decimal_to_hexadecimal="echo -e \"printf '%x' \e[33mdecimalValueHere\e[0m\""
+alias please_how_to_convert_watt_to_joule=" printf\"
+Energy (J) = Power (W) * Duration (s)
+E = P * dt
+
+J: joule
+W: watt
+s: second
+\""
+alias please_how_to_convert_joule_to_watt=" printf\"
+Power (W) = Energy (J) / Duration (s)
+P = E / dt
+
+W: watt
+J: joule
+s: second
+\""
 # composer
 alias please_composer_how_to_show_packages='echo "composer info"'
 alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
@@ -248,6 +264,12 @@ alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
         ]
     }"'
 # php
+alias please_php_how_to_ask_user_input='printf "
+\e[33m\$someVariableHere\e[0m = readline(\"Enter a string: \");
+
+more efficient:
+fscanf(STDIN, \"%%s\", \e[33m\$someVariableHere\e[0m);
+"'
 alias please_php_how_to_measure_execution_time='echo "\$start = microtime(true);
 // your code here
 var_dump(microtime(true) - \$start);
@@ -354,7 +376,6 @@ alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
 alias please_how_to_count_processor_cores='echo nproc'
 alias please_how_to_show_ip='echo "ip address"'
-alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
 alias please_how_to_remove_all_files_but_one='echo -e "rm -rf $(ls | grep --invert-match \e[33mfileToKeep\e0m)"'
 alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
@@ -362,6 +383,12 @@ alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33mus
 alias please_how_to_show_current_computer_name='echo "hostname
 hostnamectl
 cat /proc/sys/kernel/hostname"'
+# tgz
+alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
+# zip
+alias please_how_to_zip_files_and_directories='printf "
+zip \e[33marchiveNameHere.zip fileOrDirectoryNameHere anotherFileOrDirectoryNameHere\e[0m
+"'
 # help
 alias please_how_to_show_help_of_a_command='echo -e "man \e[33mcommandName\e[0m
 help \e[33mcommandName\e[0m"'
@@ -754,3 +781,11 @@ alias please_gif_how_to_record_gif='echo "peek"'
 alias please_gif_record='peek'
 # SSH
 alias please_ssh_how_to_generate_keys='echo -e "ssh-keygen"'
+# slack
+alias please_slack_how_to_clear_unread_messages='printf "
+shift + echap
+"'
+# media
+alias please_browse_zen_music='printf "
+https://www.youtube.com/playlist?list=PLi3HredJD6T8YHb-LdD2WTF2dAElAPRD1
+"'

@@ -176,6 +176,39 @@ replaceInFile() {
     sed -i "s#$stringToReplace#$replacement#" "$file"
 }
 
+findAddressByCoordinates() {
+    if [ $# -lt 2 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlatitudeHere longitudeHere\e[0m
+
+latitude: 44.73594
+longitude: 5.33936"
+
+        return 1
+    fi
+
+    curl "https://nominatim.openstreetmap.org/reverse.php?lat=$1&lon=$2&format=jsonv2"
+}
+
+findAddressByCity() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcityHere [countryHere]\e[0m"
+
+        return 1
+    fi
+
+    curl "https://nominatim.openstreetmap.org/search.php?city=${1}&country=${2}&format=jsonv2"
+}
+
+findAddress() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mqueryHere\e[0m"
+
+        return 1
+    fi
+
+    curl "https://nominatim.openstreetmap.org/search.php?q=$1&format=jsonv2"
+}
+
 current() {
     cat $HOME/moi/current.md
 }
