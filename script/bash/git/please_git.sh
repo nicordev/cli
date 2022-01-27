@@ -91,6 +91,17 @@ recreateBranchFrom() {
     git branch -D "$temporaryBranchToRecreate"
 }
 
+fetchOrigin() {
+    git fetch origin
+}
+
+resetCurrentBranchToOrigin() {
+    local readonly CURRENT_BRANCH=$(showCurrentBranch)
+
+    fetchOrigin
+    git reset --hard "origin/$CURRENT_BRANCH"
+}
+
 showCurrentBranch() {
     git branch --show-current
 }
