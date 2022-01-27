@@ -111,6 +111,22 @@ alias please_js_copy_scratch_pad="echo '
     main();
 })();
 ' | please_copy"
+# CSS
+alias please_css_how_to_use_variables="printf \"
+https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+
+Initialisation:
+
+ourSelectorHere {
+  --ourVariableNameHere: brown;
+}
+
+Usage:
+
+ourSelectorHere {
+  background-color: var(--ourVariableNameHere);
+}
+\""
 # tail
 alias please_how_to_track_file_changes_using_tail='echo -e "tail -F \e[33mfileNameHere\e[0m
 tail --follow=name --retry \e[33mfileNameHere\e[0m"'
@@ -139,7 +155,7 @@ alias gitStashPullDevelopRebaseDevelop='MY_GIT_BRANCH=$(git branch --show-curren
 alias gitPullDevelopRebaseDevelop='MY_GIT_BRANCH=$(git branch --show-current) && git checkout develop && git pull origin develop && git checkout $MY_GIT_BRANCH && git rebase develop'
 alias git_reset_to_commit='git_reset_to_commit.sh'
 alias git_remove_last_commit='git reset --hard HEAD~1'
-alias git_reset_from_origin='git reset --hard "origin/$(git branch --show-current)"'
+alias gitresetorigin='git fetch origin && git reset --hard "origin/$(git branch --show-current)"'
 alias git_branch_create_and_select='git checkout -b'
 alias git_branch_delete='git branch -D'
 alias git_branch_rename='git branch -m'
@@ -225,6 +241,17 @@ pre-push
 pre-auto-gc
 \""
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
+# Gitlab
+alias please_gitlab_how_to_create_static_website="printf \"
+create from template:
+New project > Create from template > Plain HTML
+
+deploy:
+CI/CD > Pipelines > Run pipeline
+
+set domain name:
+Settings > Pages > New Domain
+\""
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_apache_stop='sudo service apache2 stop'
@@ -369,6 +396,16 @@ alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTE
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_today='date "+%Y%m%d"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
+alias please_how_to_redirect_output_error='printf "
+To redirect output and error in the same file:
+\e[1;33mcommandHere\e[0m 2>&1 \e[1;33mfileHere\e[0m
+
+To redirect output and error in dedicated files:
+\e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> \e[1;33merrorFileHere\e[0m
+
+To silence errors:
+\e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> /dev/null
+"'
 alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
 alias please_how_to_use_date_command="echo 'YYYY-MM-DD hh:mm:ss'; echo \"date '+%Y-%m-%d %H:%M:%S'\""
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
@@ -789,3 +826,38 @@ shift + echap
 alias please_browse_zen_music='printf "
 https://www.youtube.com/playlist?list=PLi3HredJD6T8YHb-LdD2WTF2dAElAPRD1
 "'
+# nuxtjs
+alias please_nuxt_how_to_create_new_app="printf \"
+# Will create the project directory, git and dependancies at once
+
+yarn create nuxt-app \e[33mprojectName\e[0m
+
+# Manual creation:
+
+1. \e[33mprojectName\e[0m/package.json:
+
+{
+  \\\"name\\\": \\\"\e[33mprojectName\e[0m\\\",
+  \\\"scripts\\\": {
+    \\\"dev\\\": \\\"nuxt\\\",
+    \\\"build\\\": \\\"nuxt build\\\",
+    \\\"generate\\\": \\\"nuxt generate\\\",
+    \\\"start\\\": \\\"nuxt start\\\"
+  }
+}
+
+yarn add nuxt
+
+2. \e[33mprojectName\e[0m/pages/index.vue:
+
+<template>
+  \e[33m<h1>Hello world!</h1>\e[0m
+</template>
+
+3. start the project in dev
+
+yarn dev
+\""
+alias please_nuxt_how_to_start_app_as_dev="printf \"
+yarn dev
+\""
