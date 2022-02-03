@@ -111,6 +111,38 @@ alias please_js_copy_scratch_pad="echo '
     main();
 })();
 ' | please_copy"
+# vue.js
+alias please_vue_hello_world="printf \"
+<!DOCTYPE html>
+<html lang=\\\"en\\\">
+
+<head>
+    <meta charset=\\\"UTF-8\\\">
+    <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">
+    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">
+    <title>hello world</title>
+    <script src=\\\"https://unpkg.com/vue@next\\\"></script>
+</head>
+
+<body>
+    <div id=\\\"hello-world\\\" class=\\\"demo\\\">
+        {{ message }}
+    </div>
+    <script>
+        const HelloWorldApp = {
+            data() {
+                return {
+                    message: 'Hello World!'
+                }
+            }
+        }
+
+        Vue.createApp(HelloWorldApp).mount('#hello-world')
+    </script>
+</body>
+
+</html>
+\""
 # CSS
 alias please_css_how_to_use_variables="printf \"
 https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
@@ -290,6 +322,26 @@ alias please_composer_how_to_use_a_specific_branch='echo -e "In composer.json:
             }
         ]
     }"'
+alias please_composer_how_to_set_version='printf "
+"require": {
+    "vendor/package": "1.3.2", // exactly 1.3.2
+
+    // >, <, >=, <= | specify upper / lower bounds
+    "vendor/package": ">=1.3.2", // anything above or equal to 1.3.2
+    "vendor/package": "<1.3.2", // anything below 1.3.2
+
+    // * | wildcard
+    "vendor/package": "1.3.*", // >=1.3.0 <1.4.0
+
+    // ~ | allows last digit specified to go up
+    "vendor/package": "~1.3.2", // >=1.3.2 <1.4.0
+    "vendor/package": "~1.3", // >=1.3.0 <2.0.0
+
+    // ^ | does not allow breaking changes (major version fixed - following semver)
+    "vendor/package": "^1.3.2", // >=1.3.2 <2.0.0
+    "vendor/package": "^0.3.2", // >=0.3.2 <0.4.0 // except if major version is 0
+}
+"'
 # php
 alias please_php_how_to_ask_user_input='printf "
 \e[33m\$someVariableHere\e[0m = readline(\"Enter a string: \");
@@ -407,7 +459,16 @@ To silence errors:
 \e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> /dev/null
 "'
 alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
-alias please_how_to_use_date_command="echo 'YYYY-MM-DD hh:mm:ss'; echo \"date '+%Y-%m-%d %H:%M:%S'\""
+alias please_how_to_use_date_command="printf \"
+get today with format YYYY-MM-DD hh:mm:ss
+date '+%Y-%m-%d %H:%M:%S'
+
+use specific date:
+date '+%Y-%m-%d %H:%M:%S' --date='2022-02-02'
+
+get week number:
+date '+%W' --date='2022-02-02'
+\""
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
@@ -420,11 +481,19 @@ alias please_how_to_change_files_owner='echo -e "sudo chown --recursive \e[33mus
 alias please_how_to_show_current_computer_name='echo "hostname
 hostnamectl
 cat /proc/sys/kernel/hostname"'
+# less
+alias please_less_how_to_use_pattern='printf "
+less --pattern=\"\e[33myourPatternHere\e[0m\" \e[33mfileNameHere\e[0m
+less -p \"\e[33myourPatternHere\e[0m\" \e[33mfileNameHere\e[0m
+"'
 # tgz
 alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
 # zip
 alias please_how_to_zip_files_and_directories='printf "
 zip \e[33marchiveNameHere.zip fileOrDirectoryNameHere anotherFileOrDirectoryNameHere\e[0m
+"'
+alias please_how_to_unzip_files_and_directories='printf "
+unzip \e[33marchiveNameHere.zip\e[0m -d \e[33mdestinationDirectoryHere\e[0m
 "'
 # help
 alias please_how_to_show_help_of_a_command='echo -e "man \e[33mcommandName\e[0m
@@ -516,8 +585,22 @@ grep -oPm 1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
 "'
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
-alias please_sed_how_to_find_in_file='echo -e "sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
-sed --quiet --regexp-extended \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m"'
+alias please_sed_how_to_find_in_file='echo -e "
+sed -nE "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
+sed --quiet --regexp-extended "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
+
+Using capturing groups:
+sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed --quiet --regexp-extended \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+
+In a line range:
+sed -nE \"\e[33mstartLineHere\e[0m,\e[33mendLineHereOr\$\e[0m s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed --quiet --regexp-extended \"\e[33mstartLineHereOr\$\e[0m,\e[33mendLineHere\e[0m s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+
+In a range by patterns:
+sed -nE \"/\e[33mpatternHere\e[0m/,/\e[33mpatternHere\e[0m/ s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed --quiet --regexp-extended \"/\e[33mpatternHere\e[0m/,/\e[33mpatternHere\e[0m/ s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+"'
 alias please_sed_how_to_print_lines='echo -e "One line:
 sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
 sed --quiet \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
