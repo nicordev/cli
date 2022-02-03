@@ -143,7 +143,11 @@ alias please_vue_hello_world="printf \"
 
 </html>
 \""
-# CSS
+# html
+alias please_html_show_responsive_tag='printf "
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+"'
+# css
 alias please_css_how_to_use_variables="printf \"
 https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 
@@ -158,7 +162,31 @@ Usage:
 ourSelectorHere {
   background-color: var(--ourVariableNameHere);
 }
+# bulma css
 \""
+alias please_bulma_show_template='printf "
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <title>Hello Bulma!</title>
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css\">
+  </head>
+  <body>
+  <section class=\"section\">
+    <div class=\"container\">
+      <h1 class=\"title\">
+        Hello World
+      </h1>
+      <p class=\"subtitle\">
+        My first website with <strong>Bulma</strong>!
+      </p>
+    </div>
+  </section>
+  </body>
+</html>
+"'
 # tail
 alias please_how_to_track_file_changes_using_tail='echo -e "tail -F \e[33mfileNameHere\e[0m
 tail --follow=name --retry \e[33mfileNameHere\e[0m"'

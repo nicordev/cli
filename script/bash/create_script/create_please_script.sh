@@ -15,14 +15,15 @@ writeScriptTemplate() {
     cat > "$1" <<END
 #! /bin/bash
 
-#SCRIPT_NAME=\$(basename \$0)
-#SCRIPT_DIRECTORY=$(dirname \$0)
-SCRIPT_NAME=\$(basename \$BASH_SOURCE)
-SCRIPT_DIRECTORY=\$(dirname \$BASH_SOURCE)
-EXIT_CODE_BYE=187
+# readonly SCRIPT_NAME=\$(basename \$0)
+# readonly SCRIPT_DIRECTORY=$(dirname \$0)
+readonly SCRIPT_NAME=\$(basename \$BASH_SOURCE)
+readonly SCRIPT_DIRECTORY=\$(dirname \$BASH_SOURCE)
+readonly EXIT_CODE_BYE=187
 
 functionName() {
-    if [ \$# -lt 1 ]; then
+    if [ \$# -lt 1 ]
+    then
         echo -e "\${SCRIPT_NAME} \${FUNCNAME[0]} \e[33mparameterName\e[0m"
 
         return 1
@@ -30,14 +31,26 @@ functionName() {
 }
 
 _handleExit() {
-    if [ \$? == \$EXIT_CODE_BYE ]; then
+    # remember last exit code has the next 'if' statement will override it
+    lastExitCode=\$?
+
+    if [ '1' -eq \$hasHandleExitBeenCalled ]
+    then
+        return
+    fi
+
+    hasHandleExitBeenCalled=1
+
+    if [ \$lastExitCode == \$EXIT_CODE_BYE ]
+    then
         echo "Have a nice day!"
     fi
 }
 
 # Display the source code of this file
 howItWorks() {
-    if [ \$# -lt 1 ]; then
+    if [ \$# -lt 1 ]
+    then
         less "\$0"
 
         return
@@ -51,11 +64,13 @@ _listAvailableFunctions() {
     cat \$0 | grep -E '^[a-z]+[a-zA-Z0-9_]*\(\) \{$' | sed 's#() {\$##' | sort
 }
 
-if [ \$# -eq 0 ]; then
+if [ \$# -eq 0 ]
+then
     _listAvailableFunctions
     exit
 fi
 
+hasHandleExitBeenCalled=0
 trap _handleExit exit err
 
 "\$@"
