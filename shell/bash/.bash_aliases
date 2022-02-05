@@ -256,6 +256,10 @@ alias please_git_how_to_remove_untracked_files='echo "git clean -fd"'
 alias please_git_how_to_modify_last_commit_without_editing_commit_message='echo "git commit --amend --no-edit"'
 alias please_git_how_to_push_with_options='echo -e "git push -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m -o ci.variable=\"\e[33mvariableName=variableValue\"\e[0m origin HEAD"'
 alias please_git_how_to_show_staged_changes='echo "git diff --staged"'
+alias please_git_how_to_show_changes='echo "
+git diff HEAD
+git status -vv
+"'
 alias please_git_how_to_show_unstaged_changes='echo "git diff HEAD"'
 alias please_git_how_to_clone_from_github='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git"'
 alias please_git_how_to_push_repository_to_github='echo -e "git remote add origin  https://github.com/\e[33muserName\e[0m/\e[33mrepositoryName\e[0m.git\ngit push --set-upstream \e[33morigin master\e[0m"'
