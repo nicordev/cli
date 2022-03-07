@@ -9,7 +9,7 @@ complete -W "${please_git_options}" -o bashdefault -o default 'please_git'
 please_options=$(please_)
 complete -W "${please_options}" -o bashdefault -o default 'please_'
 
-please_blog_options=$(please_blog)
-complete -W "${please_blog_options}" -o bashdefault -o default 'please_blog'
+please_clipboard_options=$(please_clipboard)
+complete -W "${please_clipboard_options}" -o bashdefault -o default 'please_clipboard'
 
 echo -e "\e[32m$(basename $BASH_SOURCE) loaded.\e[0m"

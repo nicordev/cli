@@ -8,8 +8,8 @@ alias lh='ls -alFh'
 alias l='ls -1'
 # cd
 alias cdDownloads='cd ~/Downloads'
-alias cdschool='cd ~/moi/project/school/school_paperwork'
-alias cdviolay='cd ~/moi/project/school/violay-rainbow-school.github.io'
+alias please_night_mode='sct 1850'
+alias please_day_mode='sct 6500'
 # Nano
 alias nano='nano -miA'
 # Todo
@@ -34,6 +34,16 @@ alias please_markdown_how_to_write_definition_list='echo -e "term to define here
 alias please_markdown_how_to_write_on_2_lines='echo -e "I am writing this text on 2 lines by adding 2 spaces at the end of this line
 to put a carriage return character."'
 # javascript
+alias please_js_how_to_generate_uuid_v4="printf \"
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
+in browsers:
+crypto.randomUUID()
+\""
 alias please_js_show_script_template="echo -e \"
 (function () {
     console.clear();
@@ -111,6 +121,39 @@ alias please_js_copy_scratch_pad="echo '
     main();
 })();
 ' | please_copy"
+alias please_js_how_to_add_css='printf "
+function createStyleElement(css) {
+    const styleElement = document.createElement(\"style\");
+
+    if (styleElement.styleSheet) {
+        styleElement.styleSheet.cssText = css;
+    } else {
+        styleElement.appendChild(document.createTextNode(css));
+    }
+
+    return styleElement;
+}
+
+function addCss(css, element = document.head) {
+    element.appendChild(createStyleElement(css));
+}
+
+async function addCssLibrary(url) {
+    const library = await fetch(url).then(response => response.text());
+    addCss(library);
+}
+
+function setElementStyle(element, css) {
+    element.setAttribute(\"style\", css);
+}
+
+function appendElementStyle(element, css) {
+    const elementStyle = element.getAttribute(\"style\");
+
+    setElementStyle(element, elementStyle + css);
+}
+
+"'
 # vue.js
 alias please_vue_hello_world="printf \"
 <!DOCTYPE html>
@@ -162,8 +205,11 @@ Usage:
 ourSelectorHere {
   background-color: var(--ourVariableNameHere);
 }
-# bulma css
 \""
+# bulma css
+alias please_bulma_how_to_use_cdn='printf "
+<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css\">
+"'
 alias please_bulma_show_template='printf "
 <!DOCTYPE html>
 <html>
@@ -375,6 +421,9 @@ alias please_composer_how_to_set_version='printf "
 }
 "'
 # php
+alias please_php_how_to_debug_array_loop="printf \"
+echo \\\"\\\\\n'{\e[33m\\\$myVariableHere['keyHere']\e[0m}',\\\";continue;
+\""
 alias please_php_how_to_ask_user_input='printf "
 \e[33m\$someVariableHere\e[0m = readline(\"Enter a string: \");
 
@@ -408,11 +457,23 @@ alias please_symfony_console='php bin/console'
 alias please_symfony_server_start='symfony server:start -d'
 alias please_symfony_how_to_reset_database_and_create_migration='echo "php bin/console doctrine:database:drop --force && php bin/console doctrine:database:create && php bin/console make:migration"'
 alias please_symfony_how_to_load_alice_fixtures='echo "php bin/console hautelook:fixtures:load"'
+alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="grep '[[:digit:]])'"
+# phpstorm
+alias please_phpstorm_how_to_use_regex_to_replace_date_time_by_date='printf "
+look for:
+([\d-]+) [\d]{2}:[\d]{2}:[\d]{2}
+
+replace by:
+\$1
+"'
 # Go to directory
 alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
 # uuid
-alias please_generate_uuid4='curl "uuid4.com/?count=1"'
+alias please_generate_uuid4='uuidgen'
+alias please_how_to_generate_uuid4='printf "
+uuidgen
+"'
 # random values
 alias please_generate_random_string='tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16 | xargs'
 alias please_how_to_generate_random_string='echo "tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16 | xargs"'
@@ -436,7 +497,9 @@ alias please_chmod_x_recursive_here='chmod -R +x .'
 alias please_find='find_name.sh'
 alias please_how_to_use_find='echo -e "find \e[33mpathHere\e[0m -name \e[33mnameHere\e[0m\n\n# find matches the whole path, so add .*/ in front of your regex:\nfind \e[33mpathHere\e[0m -regex \".*/\e[33mregexHere\"\e[0m"'
 alias please_rmrf='sudo rm -rf'
-alias please_copy_all='cp -r'
+alias please_how_to_copy_directory_with_its_content='printf "
+cp -r \e[33mdirectoryHere\e[0m
+"'
 alias please_remove='please_rmrf'
 alias please_change_folder_owner_and_its_content='sudo chown -R'
 alias please_change_file_or_folder_owner='sudo chown'
@@ -646,10 +709,21 @@ sed -n \"\e[33mlineRangeStart\e[33m,\e[0mlineRangeEnd\e[0mp\" \e[33mfileNameHere
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
 alias please_sed_how_to_remove_last_line='echo -e "sed -i \$d \e[33mfileNameHere\e[0m"'
+alias please_sed_how_to_remove_lines_containing_string="printf \"
+sed --in-place\e[33m=optionalSuffixIfWeWantABackupHere\e[0m --expression='/\e[33mstringToLookForHere\e[0m/d' --expression='/\e[33manotherStringToLookForHere\e[0m/d' \e[33mfileNameHere\e[0m
+sed -i\e[33moptionalSuffixIfWeWantABackupHere\e[0m -e '/\e[33mstringToLookForHere\e[0m/d' -e '/\e[33manotherStringToLookForHere\e[0m/d' \e[33mfileNameHere\e[0m
+\""
 alias please_sed_how_to_append_to_last_line="echo -e \"sed -i '\\\$a\\'\e[33mcontentHere\e[0m \e[33mfileNameHere\e[0m\""
 # awk
 alias please_awk_how_to_print_first_fields="echo \"awk '{ print \\\$1, \\\$2, \\\$3; }'\""
 alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'
+alias please_awk_how_to_print_fields='printf "
+echo \"a b c\" | awk \"{ print \$1, \$2, \$3; }\"
+
+awk \"{ print \$1, \$2, \$3; }\" \$(cat << EOF
+a b c
+EOF)
+"'
 alias please_awk_how_to_set_field_separator='echo -e "awk --field-separator \e[33mfileSeparatorHere { awkCodeHere }\e[0m
 awk -F \e[33mfileSeparatorHere { awkCodeHere }\e[0m"'
 alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/manual/gawk.html"'
@@ -666,8 +740,18 @@ alias please_generate_a_random_string='tr -dc A-Za-z0-9_ < /dev/urandom | head -
 # time
 alias please_what_is_the_current_week_number='echo "Using bash: " && date +%W && echo "Using php: " && php -r "echo (new DateTime())->format(\"W\");"'
 alias please_what_time_is_it='date'
+alias please_what_timestamp_is_it='date "+%s"'
 alias please_what_is_this_timestamp='read_timestamp.php'
 alias please_what_is_this_date_timestamp='write_timestamp.php'
+alias please_how_to_get_timestamp_from_date="printf \"
+date '+%%s --date='\e[33mourDateHere\e[0m'
+\"" # I had to double % in order to escape it and properly print '%s'
+alias please_how_to_get_date_from_timestamp="printf \"
+date --date='@\e[33mourTimestampHere\e[0m'
+\""
+alias please_how_to_change_file_modified_date="printf \"
+touch --date='\e[33m2 days ago\e[0m' \e[33mourFileHere\e[0m
+\""
 alias please_how_to_measure_script_duration='echo -e "Using SECONDS:
 SECONDS=0; echo \$SECONDS; \e[33myourCodeHere\e[0m; echo \$((\$SECONDS / 60)):\$((\$SECONDS % 60))"
 
@@ -775,6 +859,25 @@ alias please_bash_how_to_handle_parameters="printf \"
 
 }
 \""
+alias please_bash_how_to_loop_through_array='printf "
+for \e[33mmyArrayItem\e[0m in \${\e[33mmyArray\e[0m[@]}; do \e[33mecho \$myArrayItem\e[0m; done
+"'
+alias please_bash_how_to_get_array_length='printf "
+\${#\e[33mmyArray\e[0m[@]}
+"'
+alias please_how_to_sort_randomly="printf \"
+sort --random-sort << EOF
+1
+2
+3
+4
+5
+6
+7
+EOF
+
+echo 'apple banana orange peach cherry pear lemon' | tr ' ' \\\"\\\\\n\\\" | sort --random-sort
+\""
 # bourne shell sh
 alias please_sh_how_to_regex='echo -e "Use grep:
 if ! echo \e[33m\$variableName\e[0m | grep --quiet \e[33m\"^2\"\e[0m
@@ -834,11 +937,22 @@ alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mc
 # postgresql
 alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
 alias please_psql_how_to_execute_sql_file='echo -e "psql -f \e[33msqlFile\e[0m
-psql --file=\"\e[33msqlFile\e[0m\""'
+psql --file=\"\e[33msqlFile\e[0m\"
+"'
 alias please_psql_how_to_execute_sql_statement='echo -e "psql -c \e[33msqlStatement\e[0m
-psql --command=\"\e[33msqlStatement\e[0m\""'
+psql --command=\"\e[33msqlStatement\e[0m\"
+"'
 alias please_psql_how_to_get_only_values='echo -e "psql -t -c \e[33msqlStatement\e[0m
-psql --tuples-only  --command=\"\e[33msqlStatement\e[0m\""'
+psql --tuples-only  --command=\"\e[33msqlStatement\e[0m\"
+"'
+alias please_postgresql_how_to_concatenate="printf \"
+select 'Hello ' || 'World! ' || 1987;
+select concat('Hello ', 'World! ', 1987);
+
+Careful with null values:
+select 'Hello ' || null || 'World! ' || 1987; -- return null
+select concat('Hello ', null, 'World! ', 1987); -- works
+\""
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
@@ -941,6 +1055,10 @@ shift + echap
 alias please_browse_zen_music='printf "
 https://www.youtube.com/playlist?list=PLi3HredJD6T8YHb-LdD2WTF2dAElAPRD1
 "'
+# vue.js
+alias please_vue_how_to_use_cdn='printf "
+<script src=\"https://unpkg.com/vue@3\"></script>
+"'
 # nuxtjs
 alias please_nuxt_how_to_create_new_app="printf \"
 # Will create the project directory, git and dependancies at once
@@ -976,3 +1094,20 @@ yarn dev
 alias please_nuxt_how_to_start_app_as_dev="printf \"
 yarn dev
 \""
+# postman
+alias please_postman_how_to_write_test_scripts="printf \"
+pm.response.json().map((item) => console.log(item.id))
+\""
+# sct screen color temperature
+alias please_how_to_set_screen_color_temperature='printf "
+sct \e[33mtemperatureInKelvinHere\e[0m
+
+Screen default, daylight overcast:
+sct 6500
+
+Incandescent lamp:
+sct 2400
+
+Candle flame:
+sct 1850
+"'
