@@ -34,6 +34,9 @@ alias please_markdown_how_to_write_definition_list='echo -e "term to define here
 alias please_markdown_how_to_write_on_2_lines='echo -e "I am writing this text on 2 lines by adding 2 spaces at the end of this line
 to put a carriage return character."'
 # javascript
+alias please_js_how_to_refresh_page='printf "
+window.location.reload();
+"'
 alias please_js_how_to_generate_uuid_v4="printf \"
 function uuidv4() {
   return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
@@ -504,6 +507,9 @@ alias please_remove='please_rmrf'
 alias please_change_folder_owner_and_its_content='sudo chown -R'
 alias please_change_file_or_folder_owner='sudo chown'
 alias please_change_file_or_folder_group='sudo chgrp'
+alias please_how_to_set_root_files_to_me="printf \"
+sudo chown --recursive \\\$(id -un):\\\$(id -gn) \\\$(ls -al | grep root | awk '{ print \$9 }' | tr \\\"\\\\\n\\\" ' ')
+\""
 alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbolic \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "ln -s \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "\n# Hard link:"; echo -e "ln \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"'
 alias please_how_to_count_files="echo -e 'ls -1 --file-type | grep --invert-match '/\\$' | wc -l'"
 alias please_how_to_count_directories="echo -e 'ls -1 --file-type | grep '/\\$' | wc -l'"
@@ -865,6 +871,10 @@ for \e[33mmyArrayItem\e[0m in \${\e[33mmyArray\e[0m[@]}; do \e[33mecho \$myArray
 alias please_bash_how_to_get_array_length='printf "
 \${#\e[33mmyArray\e[0m[@]}
 "'
+alias please_bash_how_to_get_random_array_item='printf "
+echo \${\e[33mmyArray\e[0m[$RANDOM % ${#\e[33mmyArray\e[0m[@]}]}
+"'
+alias please_bash_how_to_get_random_value_from_0='printf "echo $(( $RANDOM % \e[33manyPositiveNumberHere\e[0m ))"'
 alias please_how_to_sort_randomly="printf \"
 sort --random-sort << EOF
 1
@@ -930,10 +940,14 @@ alias please_sql_browse_tutorials='echo "https://sql.sh/"'
 alias please_sql_how_to_select='echo -e "select \e[33mtableAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableAlias\e[0m
 where \e[33mtableAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;
 
-SELECT \e[33mcolumnName1\e[0m, \e[33mcolumnName2\e[0m, \e[33mcolumnName3\e[0m
-FROM \e[33mtableName\e[0m
-ORDER BY \e[33mcolumnName1\e[0m DESC, \e[33mcolumnName2\e[0m ASC"'
+select \e[33mcolumnName1\e[0m, \e[33mcolumnName2\e[0m, \e[33mcolumnName3\e[0m
+from \e[33mtableName\e[0m
+order by \e[33mcolumnName1\e[0m desc, \e[33mcolumnName2\e[0m asc"'
 alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
+alias please_sql_how_to_insert='printf "
+insert into \e[33mtableName\e[0m(\e[33mcolumnName1\e[0m, \e[33mcolumnName2\e[0m)
+values (\e[33mvalue1\e[0m, \e[33mvalue2\e[0m);
+"'
 # postgresql
 alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
 alias please_psql_how_to_execute_sql_file='echo -e "psql -f \e[33msqlFile\e[0m
