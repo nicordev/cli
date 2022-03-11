@@ -34,6 +34,9 @@ alias please_markdown_how_to_write_definition_list='echo -e "term to define here
 alias please_markdown_how_to_write_on_2_lines='echo -e "I am writing this text on 2 lines by adding 2 spaces at the end of this line
 to put a carriage return character."'
 # javascript
+alias please_js_how_to_get_parent_element='printf "
+document.querySelector(\".message-header\").parentElement.parentElement.parentElement.parentElement
+"'
 alias please_js_how_to_refresh_page='printf "
 window.location.reload();
 "'
@@ -648,6 +651,10 @@ grep -w \e[33myourWordHere\e[0m
 grep --word-regexp \e[33myourWordHere\e[0m
 grep \"\\\b\e[33myourCriteriaHere\e[0m\\\b\"
 "'
+alias please_grep_how_to_get_only_matching='printf "
+grep --only-matching \e[33myourCriteriaHere\e[0m
+grep -o \e[33myourCriteriaHere\e[0m
+"'
 alias please_grep_how_to_use_capturing_groups_to_repeat_pattern_in_the_same_query="echo \"
 Here myPatternToRepeatHere is repeated at \\1
 grep 'aFirstPattern\(myPatternToRepeatHere\)someOtherPattern\\1againAnotherPattern'
@@ -821,7 +828,25 @@ alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
 declare -i \e[33mvariableAsIntegerName\e[0m=\e[33mintegerValue\e[0m'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'
-alias please_bash_how_to_loop="echo -e 'for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done'"
+alias please_bash_how_to_loop="printf '
+# for
+for \e[33mi\e[0m in {\e[33m0..10\e[0m}; do \e[33mecho \$i\e[0m; done
+
+for (( \e[33mi\e[0m=\e[33m0\e[0m; i < \e[33m10\e[0m; i++ )); do \e[33mecho \$i\e[0m; done
+
+# while
+i=0
+while true
+do
+    echo \$i
+    ((i++))
+
+    if (( i > 10 ))
+    then
+        break
+    fi
+done
+'"
 alias please_bash_how_to_loop_through_files='echo -e "for \e[33mfile\e[0m in *; do \e[33mecho "\$file"\e[0m; done"'
 alias please_bash_how_to_loop_through_lines_of_a_file='echo -e "while IFS= read -r \e[33mline\e[0m; do \e[33mecho "\$line"\e[0m; done < \e[33mfile\e[0m"'
 alias please_bash_how_to_count_directories='printf "
