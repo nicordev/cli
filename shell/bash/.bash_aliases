@@ -765,6 +765,21 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_use_heredoc='printf "cat << EOF | sort > fruits.txt
+cherry
+orange
+apple
+pear
+EOF
+
+# Variable assignement
+fruits=\$(cat <<EOF
+apple
+orange
+banana
+EOF
+) # this ) has to be on a dedicated line
+"'
 alias please_bash_what_is_it="printf \"
 set -eu
 -e exit if any command return > 0
