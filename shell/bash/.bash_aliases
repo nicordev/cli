@@ -772,6 +772,13 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_loop_array_using_modulo='printf "
+# principle
+for (( i=0; i < \e[33m60\e[0m; i++ )); do echo \$(( \$i %% \e[33m18\e[0m )); done
+
+# array
+\e[33mourArrayName\e[0m=(\e[33mapple banana peach pear orange\e[0m); \e[33mourArrayNameLength\e[0m=\${#\e[33mourArrayName\e[0m[@]}; for (( i=0; i < \e[33manyInteger\e[0m; i++ )); do echo \${\e[33mourArrayName\e[0m[\$i %% \$\e[33mourArrayNameLength\e[0m]}; done
+"'
 alias please_bash_how_to_use_heredoc='printf "cat << EOF | sort > fruits.txt
 cherry
 orange
