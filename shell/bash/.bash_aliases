@@ -160,6 +160,13 @@ function appendElementStyle(element, css) {
 }
 
 "'
+alias please_js_how_to_use_match="printf \"
+case insensitive:
+'myString'.match(/april/i)
+
+match all:
+'myString'.matchAll(/april/i)
+\""
 # vue.js
 alias please_vue_hello_world="printf \"
 <!DOCTYPE html>
@@ -427,6 +434,10 @@ alias please_composer_how_to_set_version='printf "
 }
 "'
 # php
+alias please_php_how_to_set_memory_limit="printf \"
+ini_set('memory_limit', '512M');
+ini_set('memory_limit', '1G');
+\""
 alias please_php_how_to_debug_array_loop="printf \"
 echo \\\"\\\\\n'{\e[33m\\\$myVariableHere['keyHere']\e[0m}',\\\";continue;
 \""
@@ -464,6 +475,19 @@ alias please_symfony_server_start='symfony server:start -d'
 alias please_symfony_how_to_reset_database_and_create_migration='echo "php bin/console doctrine:database:drop --force && php bin/console doctrine:database:create && php bin/console make:migration"'
 alias please_symfony_how_to_load_alice_fixtures='echo "php bin/console hautelook:fixtures:load"'
 alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="grep '[[:digit:]])'"
+# laravel
+alias please_laravel_how_to_create_new_project="printf \"
+composer create-project laravel/laravel:^8.0 \e[33mmy-awesome-app\e[0m
+cd \e[33mmy-awesome-app\e[0m
+php artisan serve
+
+use docker through sail:
+php artisan sail:install
+
+\""
+alias please_laravel_how_to_run_tests="printf \"
+php artisan test --parallel --processes=4
+\""
 # phpstorm
 alias please_phpstorm_how_to_use_regex_to_replace_date_time_by_date='printf "
 look for:
@@ -549,6 +573,12 @@ alias please_rsync_how_to_synchronize_remote_directories='please_how_to_synchron
 alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
 # linux
+alias please_clear_screen='printf "\033[H\033[J"'
+alias please_how_to_clear_screen='printf "
+clear
+
+printf \"\\\033[H\\\033[J\"
+"'
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_today='date "+%Y%m%d"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
@@ -982,7 +1012,7 @@ alias please_how_to_browse_box_configuration='echo "http://192.168.1.254/"'
 # make
 alias please_make_browse_documentation='echo "https://www.gnu.org/software/make/manual/html_node/Concept-Index.html#Concept-Index"'
 alias please_make_how_to_get_filename='echo ""'
-# SQL
+# sql
 alias please_sql_browse_tutorials='echo "https://sql.sh/"'
 alias please_sql_how_to_select='echo -e "select \e[33mtableAlias.propertyName\e[0m as \e[33mpropertyAlias\e[0m from \e[33mtableName tableAlias\e[0m
 where \e[33mtableAlias.otherPropertyName\e[0m = \e[33mvalue\e[0m;
@@ -993,7 +1023,11 @@ order by \e[33mcolumnName1\e[0m desc, \e[33mcolumnName2\e[0m asc"'
 alias please_sql_how_to_update='echo -e "update \e[33mtableName\e[0m set \e[33mcolumnName1\e[0m = \e[33mvalue1\e[0m, \e[33mcolumn_name2\e[0m = \e[33mvalue2\e[0m where \e[33mcolumnName\e[0m = \e[33mvalue\e[0m;"'
 alias please_sql_how_to_insert='printf "
 insert into \e[33mtableName\e[0m(\e[33mcolumnName1\e[0m, \e[33mcolumnName2\e[0m)
-values (\e[33mvalue1\e[0m, \e[33mvalue2\e[0m);
+values
+    (\e[33mcolumn1Value1\e[0m, \e[33mcolumn2Value1\e[0m),
+    (\e[33mcolumn1Value2\e[0m, \e[33mcolumn2Value2\e[0m),
+    (\e[33mcolumn1Value3\e[0m, \e[33mcolumn2Value3\e[0m)
+;
 "'
 # postgresql
 alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
@@ -1006,6 +1040,12 @@ psql --command=\"\e[33msqlStatement\e[0m\"
 alias please_psql_how_to_get_only_values='echo -e "psql -t -c \e[33msqlStatement\e[0m
 psql --tuples-only  --command=\"\e[33msqlStatement\e[0m\"
 "'
+alias please_postgresql_how_to_convert_hexadecimal_to_decimal="printf \"
+select ('x' || lpad(\e[33mmyHexadecimalValueHere\e[0m, 16, '0'))::bit(64)::bigint
+\""
+alias please_postgresql_how_to_convert_decimal_to_hexadecimal="printf \"
+select to_hex(\e[33mmyDecimalValueHere\e[0m);
+\""
 alias please_postgresql_how_to_concatenate="printf \"
 select 'Hello ' || 'World! ' || 1987;
 select concat('Hello ', 'World! ', 1987);
@@ -1013,6 +1053,16 @@ select concat('Hello ', 'World! ', 1987);
 Careful with null values:
 select 'Hello ' || null || 'World! ' || 1987; -- return null
 select concat('Hello ', null, 'World! ', 1987); -- works
+\""
+alias please_postgresql_how_to_regex="printf \"
+where substring(\e[33mmyColumnHere\e[0m from '^[0-9a-fA-F]+\$') is not null
+\""
+alias please_postgresql_how_to_pad="printf \"
+Left pad:
+select lpad(\e[33mourValue\e[0m, \e[33mfinal~/moi/.draft/id/LengthHere\e[0m, \e[33mcharacterToAddHere\e[0m)
+
+Right pad:
+select rpad(\e[33mourValue\e[0m, \e[33mfinalLengthHere\e[0m, \e[33mcharacterToAddHere\e[0m)
 \""
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
