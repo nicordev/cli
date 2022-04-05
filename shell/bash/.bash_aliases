@@ -572,6 +572,13 @@ alias please_rsync_how_to_synchronize_remote_directories='please_how_to_synchron
 # network
 alias please_show_listening_ports='sudo lsof -i -P -n | grep LISTEN'
 alias please_show_listening_ports_using_netstat='sudo netstat -ntlp | grep LISTEN'
+# jq
+alias please_jq_how_to_extract_values="printf \"
+\e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | {\e[33mpropertyNameHere, anotherPropertyNameHere\e[0m}'
+\""
+alias please_jq_how_to_list_keys="printf \"
+\e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | to_entries[] | .key'
+\""
 # linux
 alias please_clear_screen='printf "\033[H\033[J"'
 alias please_how_to_clear_screen='printf "
@@ -593,15 +600,15 @@ To silence errors:
 \e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> /dev/null
 "'
 alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
-alias please_how_to_use_date_command="printf \"
+alias please_how_to_use_date="printf \"
 get today with format YYYY-MM-DD hh:mm:ss
-date '+%Y-%m-%d %H:%M:%S'
+date '+%%Y-%%m-%%d %%H:%%M:%%S'
 
 use specific date:
-date '+%Y-%m-%d %H:%M:%S' --date='2022-02-02'
+date '+%%Y-%%m-%%d %%H:%%M:%%S' --date='2022-02-02'
 
 get week number:
-date '+%W' --date='2022-02-02'
+date '+%%W' --date='2022-02-02'
 \""
 alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33m/var/lib/snapd/snaps\e[0m"'
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
