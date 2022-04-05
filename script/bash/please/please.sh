@@ -43,6 +43,26 @@ appendToEndOfFile() {
     sed -i '$a\'"$2" "$1"
 }
 
+convertDecimalToHexadecimal() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mdecimalValue\e[0m"
+
+        return 1
+    fi
+
+    printf '%x' "$1"
+}
+
+convertHexadecimalToDecimal() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mhexadecimalValue\e[0m"
+
+        return 1
+    fi
+
+    echo $((16#$1))
+}
+
 getAsciiCodeFromCharacter() {
     if [ $# -lt 1 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcharacterHere\e[0m"
@@ -207,10 +227,6 @@ findAddress() {
     fi
 
     curl "https://nominatim.openstreetmap.org/search.php?q=$1&format=jsonv2"
-}
-
-current() {
-    cat $HOME/moi/current.md
 }
 
 editMe() {
