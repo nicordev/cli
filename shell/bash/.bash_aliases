@@ -1,6 +1,13 @@
 # Variables
 PLEASE_TODAY=$(date +%Y%m%d)
+PLEASE_FRUITS="apple
+cherry
+banana
+pear
+orange"
 
+# Dummy file
+alias please_create_dummy_file_containing_fruits="echo \"$PLEASE_FRUITS\" > fruits"
 # list
 alias llg="filter_list.sh --full"
 alias lg='filter_list.sh'
@@ -500,7 +507,7 @@ replace by:
 alias cdmoi='cd ~/moi'
 alias cddraft='cd ~/moi/.draft'
 # uuid
-alias please_generate_uuid4='uuidgen'
+alias please_generate_uuid4='uuidgen | tr -d "\n"'
 alias please_how_to_generate_uuid4='printf "
 uuidgen
 "'
@@ -704,6 +711,10 @@ alias please_grep_how_to_find_in_files='echo -e "-R or --dereference-recursive m
 grep -R \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive \e[33mcriteriaHere directoryHere\e[0m
 
+Show line numbers:
+grep -nR \e[33mcriteriaHere directoryHere\e[0m
+grep --dereference-recursive --line-number \e[33mcriteriaHere directoryHere\e[0m
+
 Look only in certain files:
 grep --dereference-recursive \e[33mcriteriaHere\e[0m --include=\e[33mpatternHere directoryHere\e[0m
 
@@ -764,6 +775,16 @@ sed --in-place\e[33m=optionalSuffixIfWeWantABackupHere\e[0m --expression='/\e[33
 sed -i\e[33moptionalSuffixIfWeWantABackupHere\e[0m -e '/\e[33mstringToLookForHere\e[0m/d' -e '/\e[33manotherStringToLookForHere\e[0m/d' \e[33mfileNameHere\e[0m
 \""
 alias please_sed_how_to_append_to_last_line="echo -e \"sed -i '\\\$a\\'\e[33mcontentHere\e[0m \e[33mfileNameHere\e[0m\""
+alias please_sed_how_to_insert_in_file='echo -e "
+at line:
+sed -i \"\e[33mlineNumber\e[0m i \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
+
+before pattern:
+sed -i \"/\e[33mpattern\e[0m/i \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
+
+after pattern:
+sed -i \"/\e[33mpattern\e[0m/a \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
+"'
 # awk
 alias please_awk_how_to_print_first_fields="echo \"awk '{ print \\\$1, \\\$2, \\\$3; }'\""
 alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'
@@ -809,6 +830,11 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_get_file_name_parts='echo -e "
+    local file=\$(basename \"\$fullPath\")
+    local name=\"\${file%.*}\"
+    local extension=\"\${file##*.}\"
+"'
 alias please_bash_how_to_loop_array_using_modulo='printf "
 # principle
 for (( i=0; i < \e[33m60\e[0m; i++ )); do echo \$(( \$i %% \e[33m18\e[0m )); done
@@ -951,6 +977,18 @@ alias please_bash_how_to_handle_parameters="printf \"
 \""
 alias please_bash_how_to_loop_through_array='printf "
 for \e[33mmyArrayItem\e[0m in \${\e[33mmyArray\e[0m[@]}; do \e[33mecho \$myArrayItem\e[0m; done
+"'
+alias please_bash_how_array='echo -e "
+variable assignement:
+declare -a \e[33mmyArray\e[0m
+myArray[0]=\e[33m\"myFirstValue\"\e[0m
+
+bash specific:
+fruits=(apple banana pear)
+fruits+=(orange)
+
+loop:
+for fruit in ${fruits[*]}; do echo $fruit; done
 "'
 alias please_bash_how_to_get_array_length='printf "
 \${#\e[33mmyArray\e[0m[@]}
