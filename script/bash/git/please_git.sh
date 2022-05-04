@@ -119,8 +119,11 @@ checkoutPreviousBranch() {
 
 pullThenRebaseBranch() {
     if [ $# -lt 1 ]; then
-        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToPullHere\e[0m"
-        exit
+        git branch | grep "$HINT"
+        printf "
+\e[34mHINT=\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToPullHere\e[0m
+"
+        return
     fi
 
     local branchToPull="$1"
