@@ -33,6 +33,32 @@ _askConfirmationDefaultNo() {
     return 1
 }
 
+calculateElapsedTime() {
+    if [ $# -lt 2 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mstartDate endDate\e[0m"
+
+        return 1
+    fi
+
+    local startTimestamp=$(date '%s' --date="$1")
+    local endTimestamp=$(date '%s' --date="$2")
+    echo $(( $endTimestamp - $startTimestamp ))
+}
+
+guessAge() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbirthday\e[0m"
+
+        return 1
+    fi
+
+    local nowTimestamp=$(date '+%s')
+    local birthdayTimestamp=$(date '+%s' --date="$1")
+    local elapsedTime=$(( $nowTimestamp - $birthdayTimestamp ))
+
+    echo $(( $elapsedTime / (365 * 24 * 3600) ))
+}
+
 appendToEndOfFile() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileName contentToAppend\e[0m"
