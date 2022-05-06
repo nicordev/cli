@@ -441,6 +441,10 @@ alias please_composer_how_to_set_version='printf "
 }
 "'
 # php
+alias please_php_how_to_set_php_version="printf \"
+sudo ln -sf /usr/bin/php\e[33m7.4\e[0m /etc/alternatives/php
+sudo ln --symbolic --force /usr/bin/php\e[33m7.4\e[0m /etc/alternatives/php
+\""
 alias please_php_how_to_set_memory_limit="printf \"
 ini_set('memory_limit', '512M');
 ini_set('memory_limit', '1G');
@@ -736,9 +740,36 @@ alias please_grep_how_to_find_files_that_does_not_contains="printf \"
 grep --dereference-recursive --files-without-match \e[33mcriteriaHere directoryHere\e[0m
 grep -RL \e[33mcriteriaHere directoryHere\e[0m
 \""
-alias please_grep_how_to_extract_xml_value='printf "grep --only-matching --perl-regexp --max-count=1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
+alias please_grep_how_to_extract_xml_value='printf "
+grep --only-matching --perl-regexp --max-count=1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
 grep -oPm 1 \"(?<=<\e[33mXmlTagNameHere\e[0m>)[^<]+\" \e[33mfileNameHere\e[0m
+
+where (?<=\e[33mpatternToHide\e[0m>) uses a positive look behind to avoid showing the xml tag (thanks to --perl-regexp).
 "'
+alias please_grep_how_to_extract_value='printf "
+multiple values:
+grep --only-matching --perl-regexp \"(?<=\e[33mpatternForKey\e[0m).+\" \e[33mfileNameHere\e[0m
+grep -oP \"(?<=\e[33mpatternForKey\e[0m).+\" \e[33mfileNameHere\e[0m
+
+one value:
+grep --only-matching --perl-regexp --max-count=1 \"(?<=\e[33mpatternForKey\e[0m).+\" \e[33mfileNameHere\e[0m
+grep -oPm 1 \"(?<=\e[33mpatternForKey\e[0m).+\" \e[33mfileNameHere\e[0m
+
+where (?<=\e[33mpatternForKey\e[0m>) uses a positive look behind to avoid showing the key (thanks to --perl-regexp).
+"'
+# regex
+alias please_regex_help="echo \"
+https://regex101.com/
+
+positive look behind:
+(?<=myPatternHere)
+
+classes:
+\\d == [0-9]
+\\s == [\\r\\n\\t\\f\\v ]
+\\S == [^\\r\\n\\t\\f\\v ]
+\\w == [a-zA-Z0-9_]
+\""
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
 alias please_sed_how_to_find_in_file='echo -e "
