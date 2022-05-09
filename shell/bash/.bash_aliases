@@ -206,6 +206,30 @@ alias please_vue_hello_world="printf \"
 
 </html>
 \""
+alias please_js_is_element_visible='echo "
+function isElementVisible(element) {
+  return element.offsetWidth > 0 || element.offsetHeight > 0;
+}
+"'
+alias please_js_how_to_notify='echo "
+function showNotification(title, options, onCloseCallback, onClickCallback) {
+    const notification = new Notification(title, options);
+
+    if (onCloseCallback) {
+        notification.onclose = onCloseCallback;
+    }
+
+    if (onClickCallback) {
+        notification.onclick = onClickCallback;
+    }
+
+    return notification;
+}
+
+function removeNotification(notification) {
+    notification.close();
+}
+"'
 # html
 alias please_html_show_responsive_tag='printf "
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
@@ -805,6 +829,10 @@ alias please_sed_how_to_remove_lines_containing_string="printf \"
 sed --in-place\e[33m=optionalSuffixIfWeWantABackupHere\e[0m --expression='/\e[33mstringToLookForHere\e[0m/d' --expression='/\e[33manotherStringToLookForHere\e[0m/d' \e[33mfileNameHere\e[0m
 sed -i\e[33moptionalSuffixIfWeWantABackupHere\e[0m -e '/\e[33mstringToLookForHere\e[0m/d' -e '/\e[33manotherStringToLookForHere\e[0m/d' \e[33mfileNameHere\e[0m
 \""
+alias please_sed_how_to_backup_file="printf \"
+sed --in-place\e[33m=optionalSuffixForBackupFile\e[0m \e[33mmyLogicHere\e[0m \e[33mfileNameHere\e[0m
+sed -i\e[33moptionalSuffixForBackupFile\e[0m \e[33mmyLogicHere\e[0m \e[33mfileNameHere\e[0m
+\""
 alias please_sed_how_to_append_to_last_line="echo -e \"sed -i '\\\$a\\'\e[33mcontentHere\e[0m \e[33mfileNameHere\e[0m\""
 alias please_sed_how_to_insert_in_file='echo -e "
 at line:
@@ -833,6 +861,11 @@ alias please_awk_browse_documentation='echo "https://www.gnu.org/software/gawk/m
 alias please_how_to_replace_character='echo -e "echo \e[33msomeTextHere\e[0m | tr \e[33mcharacterToReplace\e[0m \e[33mcharacterToAdd\e[0m"'
 alias please_how_to_remove_character='echo -e "echo \e[33msomeTextHere\e[0m | tr -d \e[33mcharacterToRemove\e[0m
 echo \e[33msomeTextHere\e[0m | tr --delete \e[33mcharacterToRemove\e[0m"'
+alias please_how_to_remove_spaces_from_file_names='echo "
+for file in ./*; do echo mv \"\$file\" \$( echo \$file | tr \" \" \"_\" ); done
+"'
+alias please_how_to_transform_to_upper_case='echo hello | tr [:lower:] [:upper:]'
+alias please_how_to_transform_to_lower_case='echo HELLO | tr [:upper:] [:lower:]'
 # usb key
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
