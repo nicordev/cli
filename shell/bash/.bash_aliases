@@ -796,6 +796,19 @@ classes:
 \""
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
+alias please_sed_how_to_target_lines='echo -e "
+target one line
+sed \"\e[33mlineNumberHere\e[0ms/hello/world/\" input.txt > output.txt
+
+target multiple lines (boundaries included)
+sed \"\e[33mstartLineNumberHere\e[0m,\e[33mendLineNumberHere\e[0ms/hello/world/\" input.txt > output.txt
+
+target multiple lines that matches a pattern
+sed \"/\e[33mpatternHere\e[0m/s/hello/world/\" input.txt > output.txt
+
+invert the range by adding !
+sed \"\e[33mstartLineNumberHere\e[0m,\e[33mendLineNumberHere\e[0m!s/hello/world/\" input.txt > output.txt
+"'
 alias please_sed_how_to_find_in_file='echo -e "
 sed -nE "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
 sed --quiet --regexp-extended "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
@@ -894,6 +907,12 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_transform_to_upper_case='echo -e "
+echo \${\e[33mmyVariableHere\e[0m^^}
+"'
+alias please_bash_how_to_transform_to_lower_case='echo -e "
+echo \${\e[33mmyVariableHere\e[0m,,}
+"'
 alias please_bash_how_to_get_file_name_parts='echo -e "
     local file=\$(basename \"\$fullPath\")
     local name=\"\${file%.*}\"
@@ -921,13 +940,25 @@ banana
 EOF
 ) # this ) has to be on a dedicated line
 "'
-alias please_bash_what_is_it="printf \"
+alias please_bash_what_is_set="printf \"
 set -eu
 -e exit if any command return > 0
 -u exit if any variable is accessed without being initialized first
 -x output any command executed
 -v display script content
 \""
+alias please_bash_what_are_here_string='echo "
+pass the string on the right to the stdin of the command on the left of <<< generating a single string from a multiline string
+myCommandHere <<< myStringHere
+
+while using a pipe will create a subshell:
+echo $myStringHere | sed "s/hello/world/"
+
+sed "s/hello/world/" <<< $myStringHere
+is executed in the current shell
+
+here string <<< are different than heredoc <<EOF
+"'
 alias please_bash_how_to_ask_confirmation="echo '_askConfirmationDefaultYes() {
     echo -e \"\e[1mContinue?\e[0m [YES/no] \"
     read answer
