@@ -621,6 +621,19 @@ clear
 
 printf \"\\\033[H\\\033[J\"
 "'
+alias please_how_to_get_battery_capacity_in_percent='echo "
+cat /sys/class/power_supply/BAT0/capacity
+"'
+alias please_how_to_set_screen_brightness='echo -e "
+get the active screen:
+xrandr --query | grep --word-regexp connected | awk \"{ print \$1; }\"
+xrandr -q | grep -q connected | awk \"{ print \$1; }\"
+
+set the brightness
+xrandr --output \e[33mactiveScreenHere\e[0m --brightness \e[33mbrightnessValueBetween0And1\e[0m
+
+man page: https://www.commandlinux.com/man-page/man1/xrandr.1.html
+"'
 alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_today='date "+%Y%m%d"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
@@ -708,6 +721,19 @@ alias please_how_to_list_all_environment_variables='echo "env"'
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
 # grep
+alias please_grep_how_to_show_lines_around_matches="echo -e '
+See lines after a match
+grep -A \e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+grep --after-context=\e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+
+See lines before a match
+grep -B \e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+grep --before-context=\e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+
+See lines after and before a match
+grep -C \e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+grep --context=\e[33mlinesCount\e[0m \e[33motherParameters\e[0m
+'"
 alias please_grep_how_to_use_or_operator="echo -e \"
 Extended grep:
 grep --extended-regexp '\e[33myourFirstCriteria\e[0m|\e[33myourSecondCriteria\e[0m'
