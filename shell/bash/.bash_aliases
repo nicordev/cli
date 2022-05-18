@@ -410,6 +410,24 @@ Settings > Pages > New Domain
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_apache_stop='sudo service apache2 stop'
 # mathematics
+alias please_how_to_get_range='echo -e "
+from 1 to:
+seq \e[33mendValueHere\e[0m
+
+from start to end:
+seq \e[33mstartValueHere\e[0m \e[33mendValueHere\e[0m
+
+from start to end with a given step:
+seq \e[33mstartValueHere\e[0m \e[33mstepHere\e[0m \e[33mendValueHere\e[0m
+
+set separator:
+seq --separator=\"\e[33mseparatorHere\e[0m\" \e[33mendValueHere\e[0m
+seq -s \e[33mseparatorHere\e[0m \e[33mendValueHere\e[0m
+
+pad with leading zeroes:
+seq --equal-width \e[33mendValueHere\e[0m
+seq -w \e[33mendValueHere\e[0m
+"'
 alias please_how_to_get_pi_value='echo -e "echo \"scale=10; 4*a(1)\" | bc -l"'
 alias please_how_to_convert_hexadecimal_to_decimal='echo -e "echo \$((16#\e[33mvalueHere\e[0m))
 echo \"obase=10; ibase=16; \e[33mvalueHere\e[0m\" | bc"'
@@ -615,14 +633,21 @@ alias please_jq_how_to_list_keys="printf \"
 \e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | to_entries[] | .key'
 \""
 # linux
+alias please_how_to_compare_2_strings='echo -e "
+diff <( printf \"\e[33mmyStringHere\e[0m\" ) <( printf \"\e[33mmyOtherStringHere\e[0m\" )
+"'
 alias please_clear_screen='printf "\033[H\033[J"'
 alias please_how_to_clear_screen='printf "
 clear
 
 printf \"\\\033[H\\\033[J\"
 "'
-alias please_how_to_get_battery_capacity_in_percent='echo "
+alias please_what_is_the_battery_capacity='cat /sys/class/power_supply/BAT0/capacity'
+alias please_how_to_read_battery_capacity_in_percent='echo "
 cat /sys/class/power_supply/BAT0/capacity
+"'
+alias please_how_to_read_screen_brightness='echo "
+xrandr --query --verbose | grep --after-context=5 --word-regexp connected | grep --ignore-case --only-matching --perl-regexp "(?<=Brightness:[\s]).+"
 "'
 alias please_how_to_set_screen_brightness='echo -e "
 get the active screen:
@@ -662,7 +687,11 @@ alias please_how_to_show_disk_space_usage='echo -e "df -h"; echo -e "du -h \e[33
 alias please_how_to_show_the_current_distribution='echo -e "cat /etc/os-release"'
 alias please_how_to_list_disks='echo -e "df" && echo -e "\e[34mor\e[0m" && echo -e "sudo fdisk -l" && echo -e "\e[34mor\e[0m" && echo -e "lsblk"'
 alias please_how_to_count_processor_cores='echo nproc'
-alias please_how_to_show_ip='echo "ip address"'
+alias please_how_to_show_ip='echo "
+ip address
+ip a
+ifconfig
+"'
 alias please_how_to_remove_all_files_but_one='echo -e "rm -rf $(ls | grep --invert-match \e[33mfileToKeep\e0m)"'
 alias please_how_to_show_disk_usage='echo "df -kh"'
 alias please_how_to_search_previous_command='echo -e "ctl + r\nenter the beginning of the command\nctl + r again to cycle through results"'
@@ -933,6 +962,24 @@ Using time:
 time \e[33myourCodeHere\e[0m'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_loop_through_parameters='echo "
+analyseParameters() {
+    for parameter in \"\$@\"
+    do
+        case \"\$parameter\" in
+            \"-f\"|\"--force\")
+                echo \"force!\"
+                continue
+            ;;
+            *)
+                echo \"default behaviour for: \$parameter\"
+            ;;
+        esac
+
+        echo \"next\"
+    done
+}
+"'
 alias please_bash_how_to_transform_to_upper_case='echo -e "
 echo \${\e[33mmyVariableHere\e[0m^^}
 "'
@@ -1099,7 +1146,7 @@ alias please_bash_how_to_handle_parameters="printf \"
 alias please_bash_how_to_loop_through_array='printf "
 for \e[33mmyArrayItem\e[0m in \${\e[33mmyArray\e[0m[@]}; do \e[33mecho \$myArrayItem\e[0m; done
 "'
-alias please_bash_how_array='echo -e "
+alias please_bash_how_to_use_array='echo -e "
 variable assignement:
 declare -a \e[33mmyArray\e[0m
 myArray[0]=\e[33m\"myFirstValue\"\e[0m
@@ -1131,6 +1178,9 @@ EOF
 
 echo 'apple banana orange peach cherry pear lemon' | tr ' ' \\\"\\\\\n\\\" | sort --random-sort
 \""
+alias please_how_to_replace_space_in_file_names='echo "
+for file in *\" \"*; do mv \"\$file\" \$(echo \$file | tr \" \" \"_\"); done
+"'
 # bourne shell sh
 alias please_sh_how_to_regex='echo -e "Use grep:
 if ! echo \e[33m\$variableName\e[0m | grep --quiet \e[33m\"^2\"\e[0m
@@ -1230,6 +1280,14 @@ select lpad(\e[33mourValue\e[0m, \e[33mfinal~/moi/.draft/id/LengthHere\e[0m, \e[
 Right pad:
 select rpad(\e[33mourValue\e[0m, \e[33mfinalLengthHere\e[0m, \e[33mcharacterToAddHere\e[0m)
 \""
+alias please_postgresql_how_to_list_constraint_names="echo -e \"
+select conname
+from pg_constraint
+where
+  conrelid = '\e[33mtableNameHere\e[0m'::regclass
+  and contype = 'c'
+;
+\""
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
@@ -1307,7 +1365,7 @@ curl -w '%{http_code}' -o /dev/null -s \e[33murlHere\e[0m
 # yakuake
 alias please_yakuake_start='yakuake'
 # firefox
-alias firefox_dev='/home/nicolas/firefox_developer/firefox &'
+alias please_firefox_browse_cookie_management='echo "about:preferences#privacy"'
 # calendar
 alias please_browse_calendar='echo "https://www.calendriergratuit.fr/calendrier-2022.htm"'
 # gnome
@@ -1324,6 +1382,15 @@ alias please_gif_how_to_record_gif='echo "peek"'
 alias please_gif_record='peek'
 # SSH
 alias please_ssh_how_to_generate_keys='echo -e "ssh-keygen"'
+alias please_ssh_how_to_connect_using_credentials='echo "
+1. get the ip address I want to reach under
+ifconfig # look for inet
+
+2. use the username and ip address
+ssh \e[33musernameHere\e[0m@\e[33mipAddressHere\e[0m
+
+3. fill the password
+"'
 # slack
 alias please_slack_how_to_clear_unread_messages='printf "
 shift + echap
@@ -1388,3 +1455,5 @@ sct 2400
 Candle flame:
 sct 1850
 "'
+# scrum
+alias please_scrum_create_poker_room='echo "https://www.scrumpoker-online.org/en/"'
