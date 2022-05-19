@@ -250,6 +250,28 @@ ourSelectorHere {
   background-color: var(--ourVariableNameHere);
 }
 \""
+alias please_css_how_to_select_attributes='echo -e "
+has attribute, no matter the value:
+\e[33mtagHere\e[0m[\e[33mattributeHere\e[0m]
+
+has NOT attribute, no matter the value:
+\e[33mtagHere\e[0m:not([\e[33mattributeHere\e[0m])
+
+multiple attributes:
+\e[33mtagHere\e[0m[\e[33mattribute1Here\e[0m][\e[33mattribute2Here\e[0m]
+
+any tag:
+*[\e[33mattributeHere\e[0m=\"\e[33mvalueHere\e[0m\"]
+
+begin with, end with:
+\e[33mtagHere\e[0m[\e[33mattributeHere\e[0m^=\"\e[33mstartValueHere\e[0m\"][\e[33mattributeHere\e[0m\$=\"\e[33mendValueHere\e[0m\"]
+
+case insensitive:
+\e[33mtagHere\e[0m[\e[33mattributeHere\e[0m=\"\e[33mvalueHere\e[0m\" i]
+
+contains:
+\e[33mtagHere\e[0m[\e[33mattributeHere\e[0m*=\"\e[33mvalueHere\e[0m\"]
+"'
 # bulma css
 alias please_bulma_how_to_use_cdn='printf "
 <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css\">
