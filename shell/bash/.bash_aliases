@@ -534,6 +534,10 @@ alias please_php_run_interactively='php -a'
 alias please_php_show_modules='php -m'
 alias please_php_show_ini_files='php --ini'
 alias please_php_start_web_server='php -S localhost:8000 -t public'
+alias please_php_how_to_find_ini_file_used='echo "
+php --info | grep php.ini
+php -i | grep php.ini
+"'
 # php quality analysis
 alias please_php_run_quality_tools='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-php-quality-analysis:/tmp" -w /project nicordev/php-tools-analysis:latest'
 alias please_php_run_phpstan_analyse='please_php_run_quality_tools phpstan analyse'
@@ -543,6 +547,14 @@ alias please_infection_remove_log_files='rm $(ls | grep infection.log)'
 alias please_infection_how_to_remove_log_files='echo "rm $(ls | grep infection.log)"'
 # php cs fixer
 alias please_php_run_phpcsfixer='php php-cs-fixer.phar fix --config "./.php_cs.dist"'
+# xdebug
+alias please_php_how_to_activate_xdebug='echo -e "
+in /etc/php/\e[33mphpVersionHereLike8.1\e[0m/cli/conf.d/20-xdebug.ini
+
+zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=1
+"'
 # symfony
 alias pbc='php bin/console'
 alias please_symfony_console='php bin/console'
