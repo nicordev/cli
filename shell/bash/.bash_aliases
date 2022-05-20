@@ -1097,8 +1097,34 @@ if [ \"\e[33m\$myVariable\e[0m\" -eq \"\e[33m\$myVariable\e[0m\" ]; then echo 'i
 \""
 alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
-alias please_bash_how_to_declare_variables="echo -e '\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
-declare -i \e[33mvariableAsIntegerName\e[0m=\e[33mintegerValue\e[0m'"
+alias please_bash_how_to_declare_variables="echo -e '
+# global variable
+\e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
+
+# local variable
+local \e[33mvariableName\e[0m=\e[33mvariableValue\e[0m
+
+# force type to integer
+declare -i \e[33mvariableAsIntegerName\e[0m=\e[33mintegerValue\e[0m
+
+# force type to lower case string
+declare -l \e[33mvariableAsIntegerName\e[0m=\e[33mstringWithUpperCaseCharacters\e[0m
+
+# force type to upper case string
+declare -u \e[33mvariableAsIntegerName\e[0m=\e[33mstringWithLowerCaseCharacters\e[0m
+
+# constant
+readonly \e[33mCONSTANT_NAME\e[0m=\e[33mconstantValue\e[0m
+
+# indexed array
+\e[33mvariableName\e[0m=(\e[33mitem1 item2 \"item with spaces\"\e[0m)
+declare -a \e[33mvariableName\e[0m=(\e[33mitem1 item2 \"item with spaces\"\e[0m)
+
+# associative array
+declare -A \e[33marrayName\e[0m
+\e[33marrayName\e[0m[\e[33mkey\e[0m]=\e[33mvalue\e[0m
+declare -A \e[33marrayName\e[0m=([\e[33mkey1\e[0m]=\e[33mvalue1\e[0m [\e[33mkey2\e[0m]=\e[33mvalue2\e[0m)
+'"
 alias please_bash_how_to_format_text='how_to_format_text.sh'
 alias please_bash_how_to_loop="printf '
 # for
@@ -1395,6 +1421,12 @@ curl -O \e[33murlHere\e[0m"'
 alias please_curl_how_to_get_http_status_code="echo -e \"Get only the code:
 curl --write-out '%{http_code}' --output /dev/null --silent \e[33murlHere\e[0m
 curl -w '%{http_code}' -o /dev/null -s \e[33murlHere\e[0m
+\""
+alias please_curl_how_to_send_form="echo -e \"
+curl --location --request \e[33mhttpVerbPostOrPutHere\e[0m '\e[33murlHere\e[0m' \\\\
+--header '\e[33mheaderNameHere\e[0m: \e[33mheaderValueHere\e[0m' \\\\
+--form '\e[33mfieldNameHere\e[0m=\\\"\e[33mvalueHere\e[0m\\\"' \\\\
+--form '\e[33mfieldNameHere\e[0m=@\\\"\e[33mpath/to/myFile.here\e[0m\\\"'
 \""
 # yakuake
 alias please_yakuake_start='yakuake'
