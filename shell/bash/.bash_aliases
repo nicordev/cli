@@ -428,6 +428,13 @@ CI/CD > Pipelines > Run pipeline
 set domain name:
 Settings > Pages > New Domain
 \""
+alias please_gitlab_how_to_skip_ci="echo -e '
+https://docs.gitlab.com/ee/ci/pipelines/#skip-a-pipeline
+
+git push -o ci.skip \e[33mremoteName branchName\e[0m
+
+or add [skip ci] in the commit message
+'"
 # service
 alias please_how_to_stop_a_service='echo -e "sudo service \e[33mserviceNameHere actionHere\e[0m'
 alias please_apache_stop='sudo service apache2 stop'
