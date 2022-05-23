@@ -230,6 +230,10 @@ function removeNotification(notification) {
     notification.close();
 }
 "'
+# node.js
+alias please_node_how_to_use_lts='echo "
+nvm use --lts
+"'
 # html
 alias please_html_show_responsive_tag='printf "
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
@@ -567,7 +571,11 @@ alias pbc='php bin/console'
 alias please_symfony_console='php bin/console'
 alias please_symfony_server_start='symfony server:start -d'
 alias please_symfony_how_to_reset_database_and_create_migration='echo "php bin/console doctrine:database:drop --force && php bin/console doctrine:database:create && php bin/console make:migration"'
-alias please_symfony_how_to_load_alice_fixtures='echo "php bin/console hautelook:fixtures:load"'
+alias please_symfony_how_to_load_alice_fixtures='echo "
+php bin/console hautelook:fixtures:load
+php bin/console hautelook:fixtures:load --no-interaction
+php bin/console hautelook:fixtures:load --env=dev --no-interaction
+"'
 alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="grep '[[:digit:]])'"
 # laravel
 alias please_laravel_how_to_create_new_project="printf \"
@@ -1515,6 +1523,38 @@ yarn dev
 alias please_postman_how_to_write_test_scripts="printf \"
 pm.response.json().map((item) => console.log(item.id))
 \""
+alias please_postman_how_to_make_post_request_in_prerequest_scripts="echo -e '
+pm.sendRequest({
+    url: myUrl,
+    method: \"POST\",
+    header: { \"Content-Type\": \"application/x-www-form-urlencoded\" },
+    body: {
+        mode: \"raw\",
+        raw: \"hello=world&fruit=apple\"
+    }
+}, function (error, response) {
+    const content = response.json();
+    const fruit = content.fruit;
+
+    pm.variables.set(postmanVariableName, fruit);
+});
+'"
+alias please_postman_how_to_set_variables="echo -e '
+define a global variable
+pm.globals.set(\"\e[33mvariable_key\e[0m\", \"\e[33mvariable_value\e[0m\");
+
+define a collection variable
+pm.collectionVariables.set(\"\e[33mvariable_key\e[0m\", \"\e[33mvariable_value\e[0m\");
+
+define an environment variable in the currently selected environment
+pm.environment.set(\"\e[33mvariable_key\e[0m\", \"\e[33mvariable_value\e[0m\");
+
+define a local variable
+pm.variables.set(\"\e[33mvariable_key\e[0m\", \"\e[33mvariable_value\e[0m\");
+
+remove a variable
+pm.environment.unset(\"\e[33mvariable_key\e[0m\");
+'"
 # sct screen color temperature
 alias please_how_to_set_screen_color_temperature='printf "
 sct \e[33mtemperatureInKelvinHere\e[0m
