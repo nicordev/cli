@@ -682,6 +682,19 @@ alias please_jq_how_to_list_keys="printf \"
 \e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | to_entries[] | .key'
 \""
 # linux
+alias please_how_to_rename_file_to_lower_snake_case="echo -e '
+echo \"\e[33mfileNameHere\e[0m\" | tr \" \" \"_\" | tr [A-Z] [a-z] | tr -d \"\\\n\"
+'"
+alias please_how_to_find_hard_links_of_a_file="echo -e \"
+get file inode number:
+ls -i \e[33mfileHere\e[0m | awk '{ print \$1; }'
+
+find hard links using inode number:
+find \e[33mdirectoryHere\e[0m -inum \e[33mfileInodeNumberHere\e[0m 2> /dev/null
+
+one line:
+find \e[33mdirectoryHere\e[0m -inum \\\$(ls -i \e[33mfileHere\e[0m | awk '{ print \\\$1; }') 2> /dev/null
+\""
 alias please_how_to_compare_2_strings='echo -e "
 diff <( printf \"\e[33mmyStringHere\e[0m\" ) <( printf \"\e[33mmyOtherStringHere\e[0m\" )
 "'
@@ -1005,12 +1018,19 @@ alias please_how_to_change_file_modified_date="printf \"
 touch --date='\e[33m2 days ago\e[0m' \e[33mourFileHere\e[0m
 \""
 alias please_how_to_measure_script_duration='echo -e "Using SECONDS:
-SECONDS=0; echo \$SECONDS; \e[33myourCodeHere\e[0m; echo \$((\$SECONDS / 60)):\$((\$SECONDS % 60))"
+SECONDS=0; echo \$SECONDS; \e[33myourCodeHere\e[0m; echo \$((\$SECONDS / 60)):\$((\$SECONDS % 60))""
 
 Using time:
-time \e[33myourCodeHere\e[0m'
+time \e[33myourCodeHere\e[0m
+"'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_replace_characters_in_string="echo -e \"
+\e[33mresultingVariable\e[0m=\\\${\e[33mmyInitialVariableHere\e[0m//[\e[33mcharactersToReplace\e[0m]/\e[33mstringWanted\e[0m}
+\""
+alias please_bash_how_to_replace_space_by_html_code="echo -e \"
+\e[33mhtmlCompatible\e[0m=\\\${\e[33mmyInitialVariableHere\e[0m//[ ]/'%20'}
+\""
 alias please_bash_how_to_loop_through_parameters='echo "
 analyseParameters() {
     for parameter in \"\$@\"
