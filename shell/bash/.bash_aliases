@@ -1341,6 +1341,12 @@ values
 ;
 "'
 # postgresql
+alias please_postgresql_how_to_get_current_database='echo "
+select current_database();
+"'
+alias please_postgresql_how_to_get_current_user='echo "
+select user();
+"'
 alias please_psql_browse_documentation='echo "https://www.postgresql.org/docs/9.2/app-psql.html"'
 alias please_psql_how_to_execute_sql_file='echo -e "psql -f \e[33msqlFile\e[0m
 psql --file=\"\e[33msqlFile\e[0m\"
@@ -1482,7 +1488,16 @@ alias please_portainer_browse="firefox http://127.0.0.1:9090"
 alias please_gif_how_to_record_gif='echo "peek"'
 alias please_gif_record='peek'
 # SSH
-alias please_ssh_how_to_generate_keys='echo -e "ssh-keygen"'
+alias please_ssh_how_to_generate_keys='echo -e "
+# follow steps of
+ssh-keygen
+
+# start the ssh agent in the background
+eval \"\$(ssh-agent -s)\"
+
+# add the key
+ssh-add ~/.ssh/\e[33mkeyFileNameHere\e[0m
+"'
 alias please_ssh_how_to_connect_using_credentials='echo "
 1. get the ip address I want to reach under
 ifconfig # look for inet
