@@ -33,6 +33,16 @@ _askConfirmationDefaultNo() {
     return 1
 }
 
+findHardLinksOfAFile() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileHere\e[0m"
+
+        return 1
+    fi
+
+    find / -inum $(ls -i $1 | awk '{ print $1; }') 2> /dev/null
+}
+
 calculateElapsedTime() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mstartDate endDate\e[0m"
