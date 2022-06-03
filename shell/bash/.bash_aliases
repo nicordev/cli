@@ -995,6 +995,7 @@ after pattern:
 sed -i \"/\e[33mpattern\e[0m/a \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
 "'
 # awk
+alias please_awk_how_to_get_string_length='echo -e "echo \"\e[33mmyStringHere\e[0m\" | awk \"{ print length }\""'
 alias please_awk_how_to_print_first_fields="echo \"awk '{ print \\\$1, \\\$2, \\\$3; }'\""
 alias please_awk_how_to_print_last_field='echo "awk \"{ print \$NF; }\""'
 alias please_awk_how_to_print_fields='printf "
@@ -1226,6 +1227,9 @@ fi
 "'
 alias please_bash_how_to_remove_newline="echo -e '\e[33mecho \$someStringWithNewLines\e[0m | sed -z \"s#\\\n# #g\"'; echo -e '\e[33mecho \$someStringWithNewLines\e[0m | awk 1 ORS=\" \"'"
 alias please_bash_how_to_rerun_last_command="echo '!!'"
+alias please_bash_how_to_get_string_length='echo -e "
+echo \${#\e[33mmyStringHere\e[0m}
+"'
 alias please_bash_how_to_get_last_output="echo -e 'Rerun the last command and pass the output to another command:\n\e[33mmyCommandName\e[0m \$(!!)'"
 alias please_bash_how_to_get_user_number="echo 'echo \$EUID'"
 alias please_bash_how_to_get_user_name="echo 'echo \$USER'"
