@@ -8,6 +8,14 @@ orange"
 
 # Dummy file
 alias please_create_dummy_file_containing_fruits="echo \"$PLEASE_FRUITS\" > fruits"
+# printf
+alias please_printf_how_to_use='printf "
+printf \"\e[33msomeStringHere\e[0m%%s\e[33msomeStringHere\e[0m\" \e[33mstringThatWillReplace%%sHere\e[0m
+printf \"\e[33msomeStringHere\e[0m%%i\e[33msomeStringHere\e[0m\" \e[33mintegerThatWillReplace%%iHere\e[0m
+printf \"\e[33msomeStringHere\e[0m%%d\e[33msomeStringHere\e[0m\" \e[33mintegerThatWillReplace%%dHere\e[0m
+printf \"\e[33msomeStringHere\e[0m%%x\e[33msomeStringHere\e[0m\" \e[33mhexadecimalValueThatWillReplace%%xHere\e[0m
+LC_NUMERIC=\"en_US.UTF-8\" printf \"\e[33msomeStringHere\e[0m%%0.\e[33mprecision\e[0mf\e[33msomeStringHere\e[0m\" \e[33mfloatThatWillReplace%%fHere\e[0m
+"'
 # list
 alias llg="filter_list.sh --full"
 alias lg='filter_list.sh'
@@ -767,7 +775,16 @@ less --pattern=\"\e[33myourPatternHere\e[0m\" \e[33mfileNameHere\e[0m
 less -p \"\e[33myourPatternHere\e[0m\" \e[33mfileNameHere\e[0m
 "'
 # tgz
-alias please_how_to_unpack_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
+alias please_how_to_extract_tgz='echo -e "tar -xzf \e[33mfileName.tgz\e[0m -C \e[33mdirectoryName\e[0m\ntar --extract --ungzip --file=\e[33mfileName.tgz\e[0m --directory \e[33mdirectoryName\e[0m"'
+# gzip
+alias please_how_to_extract_gzip='echo -e "
+tar --extract --gzip --verbose --file=\e[33marchiveNameHere\e[0m.tar.gz
+tar -xzvf \e[33marchiveNameHere\e[0m.tar.gz
+"'
+alias please_how_to_gzip_files='echo -e "
+tar --create --gzip --verbose --file=\e[33marchiveNameHere\e[0m.tar.gz \e[33mdirectoryHere\e[0m
+tar -czvf \e[33marchiveNameHere\e[0m.tar.gz \e[33mdirectoryHere\e[0m
+"'
 # zip
 alias please_how_to_zip_files_and_directories='printf "
 zip \e[33marchiveNameHere.zip fileOrDirectoryNameHere anotherFileOrDirectoryNameHere\e[0m
@@ -913,6 +930,9 @@ classes:
 \""
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
+alias please_sed_how_to_replace_line="printf \"
+sed \e[33mlineNumberHere\e[0m'c%s\e[33mreplacementStringHere\e[0m' fruits
+\" '\'"
 alias please_sed_how_to_target_lines='echo -e "
 target one line
 sed \"\e[33mlineNumberHere\e[0ms/hello/world/\" input.txt > output.txt
@@ -1131,6 +1151,15 @@ alias please_bash_how_to_check_is_integer="printf \"
 if [ \"\e[33m\$myVariable\e[0m\" -eq \"\e[33m\$myVariable\e[0m\" ]; then echo 'is integer'; fi 2> /dev/null;
 \""
 alias please_bash_how_to_get_random_number="echo 'echo \$RANDOM'"
+alias please_bash_how_to_reverse_string='echo -e "
+echo \e[33mstringHere\e[0m | rev
+"'
+alias please_bash_how_to_read_file_from_start_to_end='echo -e "
+cat \e[33mfileHere\e[0m
+"'
+alias please_bash_how_to_read_file_from_end_to_start='echo -e "
+tac \e[33mfileHere\e[0m
+"'
 alias please_bash_how_to_read_stdin_for_pipes="echo 'myVariable=\$(cat -)'"
 alias please_bash_how_to_declare_variables="echo -e '
 # global variable
@@ -1215,6 +1244,13 @@ echo \${\e[33myourFileNameHere\e[0m##*/}
 alias please_bash_condition_variable_is_empty='echo "if [ -z $variableName ]"'
 alias please_bash_condition_variable_is_not_empty='echo "if [ -n $variableName ]"'
 alias please_bash_how_to_change_directory_from_a_script='echo -e "cd \e[33mdirectoryHere\e[0m\n\$SHELL"'
+alias please_bash_how_to_change_file_owner_to_current_user='echo -e "
+# change file
+sudo chown $(id -u):$(id -g) \e[33mfileHere\e[0m
+
+# change all files into directories
+sudo chown --recursive $(id -u):$(id -g) \e[33mdirectoryHere\e[0m
+"'
 alias please_bash_how_to_handle_parameters="printf \"
 \e[33mfunctionNameHere\e[0m() {
 
