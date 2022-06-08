@@ -584,6 +584,10 @@ php bin/console hautelook:fixtures:load
 php bin/console hautelook:fixtures:load --no-interaction
 php bin/console hautelook:fixtures:load --env=dev --no-interaction
 "'
+alias please_symfony_how_to_debug_security='echo "
+Breakpoints in:
+\ApiPlatform\Core\Security\EventListener\DenyAccessListener::checkSecurity
+"'
 alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="grep '[[:digit:]])'"
 # laravel
 alias please_laravel_how_to_create_new_project="printf \"
@@ -690,6 +694,10 @@ alias please_jq_how_to_list_keys="printf \"
 \e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | to_entries[] | .key'
 \""
 # linux
+alias please_how_to_get_string_length="echo -e \"
+printf \e[33mmyStringHere\e[0m | wc --chars
+printf \e[33mmyStringHere\e[0m | wc -m
+\""
 alias please_how_to_rename_file_to_lower_snake_case="echo -e '
 echo \"\e[33mfileNameHere\e[0m\" | tr \" \" \"_\" | tr [A-Z] [a-z] | tr -d \"\\\n\"
 '"
@@ -710,7 +718,48 @@ alias please_clear_screen='printf "\033[H\033[J"'
 alias please_how_to_clear_screen='printf "
 clear
 
+# clear screen without changing caret place
+printf \"\\\033[2J\"
+
+# \\\033[H bring the caret to the top left corner of the screen
+# \\\033[J clear screen after the caret
 printf \"\\\033[H\\\033[J\"
+"'
+alias please_explain_characters='echo "
+\r bring the caret to the left
+\b remove one character on the left (backspace)
+\n new line
+\t tab
+
+# bring the caret to the top left corner of the screen
+\033[H
+
+# clear screen after the caret
+\033[J
+
+# clear screen without changing caret place
+\033[2J
+
+# clear screen and go to the screen top left corner
+\033[H\033[J
+
+# move up
+\033[lineCountHereA
+
+# move down
+\033[lineCountHereB
+
+# move right
+\033[columnCountHereC
+
+# move left
+\033[columnCountHereD
+
+# move to specific position
+\033[lineHere;columnHereH
+
+# example: write hello world on line 7 column 10
+printf \"\033[7;10Hhello world\"
 "'
 alias please_what_is_the_battery_capacity='cat /sys/class/power_supply/BAT0/capacity'
 alias please_how_to_read_battery_capacity_in_percent='echo "
@@ -883,6 +932,9 @@ grep --dereference-recursive \e[33mcriteriaHere\e[0m --include=\e[33mpatternHere
 Exclude certain files:
 grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude=\e[33mpatternHere directoryHere\e[0m
 
+Exclude certain directories:
+grep --dereference-recursive \e[33mcriteriaHere\e[0m --exclude-dir=\e[33m{directoryToExclude1,directoryToExclude2} directoryHere\e[0m
+
 Show line numbers:
 grep -R -n \e[33mcriteriaHere directoryHere\e[0m
 grep --dereference-recursive --line-number \e[33mcriteriaHere directoryHere\e[0m
@@ -1046,6 +1098,18 @@ time \e[33myourCodeHere\e[0m
 "'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_template='echo -e "
+#! /bin/bash
+
+functionName() {
+    if [ \$# -lt 1 ]
+    then
+        echo -e \"\$(basename \$0) \${FUNCNAME[0]} \\\e[33mparameterName\\\e[0m\"
+
+        return 1
+    fi
+}
+"'
 alias please_bash_how_to_replace_characters_in_string="echo -e \"
 \e[33mresultingVariable\e[0m=\\\${\e[33mmyInitialVariableHere\e[0m//[\e[33mcharactersToReplace\e[0m]/\e[33mstringWanted\e[0m}
 \""
