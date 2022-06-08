@@ -989,14 +989,17 @@ alias please_sed_how_to_target_lines='echo -e "
 target one line
 sed \"\e[33mlineNumberHere\e[0ms/hello/world/\" input.txt > output.txt
 
-target multiple lines (boundaries included)
+target a range of lines (boundaries included)
 sed \"\e[33mstartLineNumberHere\e[0m,\e[33mendLineNumberHere\e[0ms/hello/world/\" input.txt > output.txt
 
-target multiple lines that matches a pattern
-sed \"/\e[33mpatternHere\e[0m/s/hello/world/\" input.txt > output.txt
+target a range of lines between 2 patterns:
+sed \"/\e[33mstartPatternHere\e[0m/,/\e[33mendPatternHere\e[0m/s/hello/world/\" input.txt > output.txt
 
 invert the range by adding !
 sed \"\e[33mstartLineNumberHere\e[0m,\e[33mendLineNumberHere\e[0m!s/hello/world/\" input.txt > output.txt
+
+target multiple lines that matches a pattern
+sed \"/\e[33mpatternHere\e[0m/s/hello/world/\" input.txt > output.txt
 "'
 alias please_sed_how_to_find_in_file='echo -e "
 sed -nE "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
