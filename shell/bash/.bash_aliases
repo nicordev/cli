@@ -649,7 +649,7 @@ alias please_change_folder_owner_and_its_content='sudo chown -R'
 alias please_change_file_or_folder_owner='sudo chown'
 alias please_change_file_or_folder_group='sudo chgrp'
 alias please_how_to_set_root_files_to_me="printf \"
-sudo chown --recursive \\\$(id -un):\\\$(id -gn) \\\$(ls -al | grep root | awk '{ print \$9 }' | tr \\\"\\\\\n\\\" ' ')
+sudo chown --recursive \\\$(id -un):\\\$(id -gn) \\\$(ls -al | grep root | awk '{ print \\\$9 }' | tr \\\"\\\\\n\\\" ' ')
 \""
 alias please_how_to_create_link='echo -e "# Symbolic link:"; echo -e "ln --symbolic \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "ln -s \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"; echo -e "\n# Hard link:"; echo -e "ln \e[33mfileHere\e[0m \e[33mlinkHere\e[0m"'
 alias please_how_to_count_files="echo -e 'ls -1 --file-type | grep --invert-match '/\\$' | wc -l'"
@@ -1496,6 +1496,27 @@ where
   and contype = 'c'
 ;
 \""
+alias please_postgresql_how_to_list_custom_functions="echo '
+select
+    n.nspname as function_schema,
+    p.proname as function_name,
+    l.lanname as function_language,
+    case when l.lanname = 'internal' then p.prosrc
+        else pg_get_functiondef(p.oid)
+        end as definition,
+    pg_get_function_arguments(p.oid) as function_arguments,
+    t.typname as return_type
+from pg_proc p
+left join pg_namespace n on p.pronamespace = n.oid
+left join pg_language l on p.prolang = l.oid
+left join pg_type t on t.oid = p.prorettype
+where
+    n.nspname not in ('pg_catalog', 'information_schema')
+order by
+    function_schema,
+    function_name
+;
+'"
 # fix error
 alias please_fix_error_debconf_config_locked='echo -e "Will fix \e[34mdebconf: DbDriver "config": /var/cache/debconf/config.dat is locked by another process: Resource temporarily unavailable\e[0m\n"; sudo fuser -vik /var/cache/debconf/config.dat'
 # vscode
