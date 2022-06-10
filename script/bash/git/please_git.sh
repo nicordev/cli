@@ -149,6 +149,31 @@ showBranchDescription() {
     git config "branch.${currentBranch}.description"
 }
 
+removeCommit() {
+    local maxCount=${COUNT:-15}
+
+    if [ $# -lt 1 ]; then
+        git log --oneline --graph --max-count=$maxCount
+        printf "
+\e[34mCOUNT=$maxCount\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcommitShaHere\e[0m
+"
+        return
+    fi
+
+    set -x
+
+    local initialBranch=$(git branch --show-current)
+    local commitSha="$1"
+    git checkout "${commitSha}~1"
+    git checkout -B pleaseGitRemoveCommit
+    git cherry-pick "$commitSha".."$initialBranch"
+    git branch -mf "$initialBranch"
+
+    set +x
+
+    git log --oneline --graph --max-count=$maxCount
+}
+
 # Display the source code of this file
 howItWorks() {
     less $0

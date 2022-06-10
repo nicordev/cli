@@ -401,11 +401,19 @@ where remoteInfo can be:
 - userNameHere@remoteServerHostHere:remoteServerDirectory
 \""
 alias please_git_how_to_show_a_graphic_interface='echo "gitg"'
-alias please_git_how_to_cherry_pick='echo -e "# Bring last commits of a branch to the active branch:
+alias please_git_how_to_cherry_pick='echo -e "
+# Bring commits of a branch to the active branch from a specific commit:
+git cherry-pick \e[33mcommitSha\e[0m^..\e[33mbranchName\e[0m
+
+# Bring last commits of a branch to the active branch:
 git cherry-pick ..\e[33mbranchName\e[0m
 
 # Bring only the last commit of a branch to the active branch:
-git cherry-pick \e[33mbranchName\e[0m"'
+git cherry-pick \e[33mbranchName\e[0m
+
+# Bring commit changes without creating a commit:
+git cherry-pick --no-commit \e[33mcommitShaHere\e[0m
+"'
 alias please_git_how_to_hook="printf \"
 git documentation:
 https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
@@ -602,6 +610,15 @@ php artisan sail:install
 alias please_laravel_how_to_run_tests="printf \"
 php artisan test --parallel --processes=4
 \""
+alias please_laravel_how_to_create_route="echo '
+# using callback function
+Route::get('/hello/{name?}', function (\$name = \"World\") {
+    return view(\"hello\", [\"name\" => \$name]);
+})->name(\"hello\");
+
+# for an API, in routes/api.php will match /api/pluralResourceNameHere
+Route::httpVerbHere(\"pluralResourceNameHere\", \"ControllerNameHere@controllerMethodNameHere\");
+'"
 # phpstorm
 alias please_phpstorm_how_to_use_regex_to_replace_date_time_by_date='printf "
 look for:
@@ -693,6 +710,10 @@ alias please_jq_how_to_extract_values="printf \"
 alias please_jq_how_to_list_keys="printf \"
 \e[33mcat myFileHere\e[0m | jq '\e[33m.rootElementHere[]\e[0m | to_entries[] | .key'
 \""
+# pdf
+alias please_pdf_how_to_read_from_terminal='echo "
+less \e[33mpdfFileHere\e[0m
+"'
 # linux
 alias please_how_to_get_string_length="echo -e \"
 printf \e[33mmyStringHere\e[0m | wc --chars
