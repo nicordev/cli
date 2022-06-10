@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-SCRIPT_NAME=$(basename $0)
+readonly SCRIPT_NAME=$(basename $0)
+readonly MAX_COUNT="${MAX_COUNT:-15}"
 
 _askConfirmationDefaultYes() {
     local answer='yes'
@@ -149,29 +150,55 @@ showBranchDescription() {
     git config "branch.${currentBranch}.description"
 }
 
-removeCommit() {
-    local maxCount=${COUNT:-15}
+listLogs() {
+    git log --oneline --graph --max-count=$MAX_COUNT
+}
 
+removeCommit() {
     if [ $# -lt 1 ]; then
-        git log --oneline --graph --max-count=$maxCount
+        listLogs
         printf "
-\e[34mCOUNT=$maxCount\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcommitShaHere\e[0m
+\e[34mMAX_COUNT=$MAX_COUNT\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcommitShaHere\e[0m
 "
         return
     fi
 
     set -x
-
     local initialBranch=$(git branch --show-current)
     local commitSha="$1"
-    git checkout "${commitSha}~1"
-    git checkout -B pleaseGitRemoveCommit
-    git cherry-pick "$commitSha".."$initialBranch"
+    git checkout "${commitSha}~1" && \
+    git checkout -B pleaseGitRemoveCommit && \
+    git cherry-pick "$commitSha".."$initialBranch" && \
     git branch -mf "$initialBranch"
-
-    set +x
-
     git log --oneline --graph --max-count=$maxCount
+    set +x
+}
+
+stashCommit() {
+    if [ $# -lt 2 ]
+    then
+        listLogs
+        printf "
+\e[34mMAX_COUNT=$MAX_COUNT\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcommitShaHere stashMessage\e[0m
+"
+        return
+    fi
+
+    git status
+    echo 'Continue?'
+
+    local commitSha="$1"
+    local stashMessage="$2"
+    local initialBranch=$(git branch --show-current)
+    _askConfirmationDefaultYes || return
+
+    set -x
+    git checkout "${commitSha}~1" && \
+    git checkout -B pleaseGitStashCommit && \
+    git cherry-pick --no-commit "$commitSha" && \
+    git stash push -m "$stashMessage" && \
+    git checkout "$initialBranch"
+    set +x
 }
 
 # Display the source code of this file
@@ -189,4 +216,4 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-$@
+"$@"
