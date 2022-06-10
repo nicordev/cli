@@ -194,7 +194,6 @@ stashCommit() {
 
     set -x
     git checkout "${commitSha}~1" && \
-    git checkout -B pleaseGitStashCommit && \
     git cherry-pick --no-commit "$commitSha" && \
     git stash push -m "$stashMessage" && \
     git checkout "$initialBranch"
