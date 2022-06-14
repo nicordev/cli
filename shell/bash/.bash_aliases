@@ -714,6 +714,24 @@ alias please_jq_how_to_list_keys="printf \"
 alias please_pdf_how_to_read_from_terminal='echo "
 less \e[33mpdfFileHere\e[0m
 "'
+# base64
+alias please_base64_how_to_encode='echo -e "
+base64 \e[33mstringToEncodeHere\e[0m
+"'
+alias please_base64_how_to_decode='echo -e "
+# decode all characters
+base64 --decode \e[33mstringToEncodeHere\e[0m
+base64 -d \e[33mstringToEncodeHere\e[0m
+
+# decode only meaningful characters
+base64 --decode --ignore-garbage \e[33mstringToEncodeHere\e[0m
+base64 -di \e[33mstringToEncodeHere\e[0m
+"'
+# cut
+alias please_how_to_extract_string_from_another_string='echo -e "
+echo \e[33mstringToSplitHere\e[0m | cut -d \"\e[33mdelimiterHere\e[0m\" -f\e[33mfieldNumberHere\e[0m
+echo \e[33mstringToSplitHere\e[0m | cut --delimiter=\"\e[33mdelimiterHere\e[0m\" --fields=\e[33mfieldNumberHere\e[0m,\e[33manotherFieldNumberHere\e[0m
+"'
 # linux
 alias please_how_to_get_string_length="echo -e \"
 printf \e[33mmyStringHere\e[0m | wc --chars
@@ -1122,6 +1140,18 @@ time \e[33myourCodeHere\e[0m
 "'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_split_string='echo -e "
+
+firstWord=\${\e[33mvariableHere\e[0m%\e[33mdelimiterHere\e[0m*}
+lastWord=\${\e[33mvariableHere\e[0m##*\e[33mdelimiterHere\e[0m}
+
+# be careful if the string does not have the separator: lastWord == firstWord
+myString="hello:world"
+firstWord=\${myString%:*}
+lastWord=\${myString##*:}
+
+echo \$firstWord \$lastWord
+"'
 alias please_bash_template='echo -e "
 #! /bin/bash
 
@@ -1707,6 +1737,19 @@ yarn dev
 alias please_postman_how_to_write_test_scripts="printf \"
 pm.response.json().map((item) => console.log(item.id))
 \""
+alias please_postman_how_to_visualize_response="echo '
+# in test tab
+const handleBarsTemplate = \`
+<ol>
+    {{#each resource}}
+        <li>{{name}}</li>
+    {{/each}}
+</ol>
+\`;
+pm.visualizer.set(handleBarsTemplate, {
+    resource: pm.response.json()
+});
+'"
 alias please_postman_how_to_make_post_request_in_prerequest_scripts="echo -e '
 pm.sendRequest({
     url: myUrl,
