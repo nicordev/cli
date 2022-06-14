@@ -732,6 +732,17 @@ alias please_how_to_extract_string_from_another_string='echo -e "
 echo \e[33mstringToSplitHere\e[0m | cut -d \"\e[33mdelimiterHere\e[0m\" -f\e[33mfieldNumberHere\e[0m
 echo \e[33mstringToSplitHere\e[0m | cut --delimiter=\"\e[33mdelimiterHere\e[0m\" --fields=\e[33mfieldNumberHere\e[0m,\e[33manotherFieldNumberHere\e[0m
 "'
+# keyboard
+alias please_keyboard_how_to_write_accented_characters="printf '
+# use the compose key
+
+é = compose key + %s then e
+è = compose key + \` then e
+ê = compose key + shift + ^ then e
+ï = compose key + shift + \" then e
+
+https://userbase.kde.org/Tutorials/ComposeKey
+' \"'\""
 # linux
 alias please_how_to_get_string_length="echo -e \"
 printf \e[33mmyStringHere\e[0m | wc --chars
@@ -1499,6 +1510,15 @@ values
 ;
 "'
 # postgresql
+alias please_postgresql_how_to_list_table_columns="echo -e '
+select
+    column_name,
+    data_type
+from
+    information_schema.columns
+zhere
+    table_name = '\e[33mtableNameHere\e[0m';
+'"
 alias please_postgresql_how_to_get_current_database='echo "
 select current_database();
 "'
