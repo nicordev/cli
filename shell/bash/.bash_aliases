@@ -744,6 +744,13 @@ alias please_keyboard_how_to_write_accented_characters="printf '
 https://userbase.kde.org/Tutorials/ComposeKey
 ' \"'\""
 # linux
+alias please_how_to_join_strings='echo -e "
+printf \"%s\e[33mdelimitingStringHere\e[0m\" \e[33mstringToJoinHere\e[0m \e[33manotherStringToJoinHere\e[0m | sed \"s/\e[33mputAsManyDotsAsTheDelimitinmgStringHasCharactersHere\e[0m$//\"
+printf \"%s\e[33mdelimitingStringHere\e[0m\" \e[33mstringToJoinHere\e[0m \e[33manotherStringToJoinHere\e[0m | sed -E \"s/.{\e[33mdelimitingStringLengthHere\e[0m}$//\"
+
+# for instance
+printf \"%s, \" orange banana cherry | sed \"s/..$//\"
+"'
 alias please_how_to_get_string_length="echo -e \"
 printf \e[33mmyStringHere\e[0m | wc --chars
 printf \e[33mmyStringHere\e[0m | wc -m
@@ -1151,6 +1158,17 @@ time \e[33myourCodeHere\e[0m
 "'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_explain_special_parameters='echo -e "
+# given 3 parameters
+
+\$@ corresponds to:
+\$1\e[34mspace\e[0m\$2\e[34mspace\e[0m\$3
+
+\$* corresponds to:
+\$1\e[34mfirst_character_of_IFS_variable\e[0m\$2\e[34mfirst_character_of_IFS_variable\e[0m\$3
+
+# so we can have some fun with \$IFS and \$*
+"'
 alias please_bash_how_to_split_string='echo -e "
 
 firstWord=\${\e[33mvariableHere\e[0m%\e[33mdelimiterHere\e[0m*}
@@ -1516,7 +1534,7 @@ select
     data_type
 from
     information_schema.columns
-zhere
+where
     table_name = '\e[33mtableNameHere\e[0m';
 '"
 alias please_postgresql_how_to_get_current_database='echo "
