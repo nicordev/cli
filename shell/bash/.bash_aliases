@@ -739,10 +739,20 @@ alias please_keyboard_how_to_write_accented_characters="printf '
 é = compose key + %s then e
 è = compose key + \` then e
 ê = compose key + shift + ^ then e
-ï = compose key + shift + \" then e
+ô = compose key + shift + ^ then o
+ç = compose key + , then c
+ï = compose key + shift + \" then i
+
+Ç = compose key + , then shift + c
+É = compose key + %s then shift + e
+È = compose key + \` then shift + e
+Ï = compose key + shift + \" then shift + i
+Ô = compose key + shift + ^ then shift + o
 
 https://userbase.kde.org/Tutorials/ComposeKey
-' \"'\""
+
+' \"'\"
+"
 # linux
 alias please_how_to_join_strings='echo -e "
 printf \"%s\e[33mdelimitingStringHere\e[0m\" \e[33mstringToJoinHere\e[0m \e[33manotherStringToJoinHere\e[0m | sed \"s/\e[33mputAsManyDotsAsTheDelimitinmgStringHasCharactersHere\e[0m$//\"
