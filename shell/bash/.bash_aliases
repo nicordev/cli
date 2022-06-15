@@ -754,6 +754,26 @@ https://userbase.kde.org/Tutorials/ComposeKey
 ' \"'\"
 "
 # linux
+alias please_how_to_pass_string_to_command_input='echo -e "
+# heredoc
+\e[33mcommandHere\e[0m << \e[33mheredocDelimiterHere\e[0m
+\e[33mmyStringHere\e[0m
+\e[33mheredocDelimiterHere\e[0m
+
+# here string
+\e[33mcommandHere\e[0m <<< \"\e[33mmyStringHere\e[0m\"
+\e[33mcommandHere\e[0m <<< \"\$(\e[33mcommandThatOutputStringHere\e[0m)\"
+
+# for instance
+cat << EOF
+orange
+banana
+EOF
+cat <<< \"hello world\"
+"'
+alias please_how_to_pass_file_to_command_input='echo -e "
+\e[33mcommandHere\e[0m < \"\e[33mfileNameHere\e[0m\"
+"'
 alias please_how_to_join_strings='echo -e "
 printf \"%s\e[33mdelimitingStringHere\e[0m\" \e[33mstringToJoinHere\e[0m \e[33manotherStringToJoinHere\e[0m | sed \"s/\e[33mputAsManyDotsAsTheDelimitinmgStringHasCharactersHere\e[0m$//\"
 printf \"%s\e[33mdelimitingStringHere\e[0m\" \e[33mstringToJoinHere\e[0m \e[33manotherStringToJoinHere\e[0m | sed -E \"s/.{\e[33mdelimitingStringLengthHere\e[0m}$//\"
