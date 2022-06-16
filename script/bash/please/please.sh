@@ -265,6 +265,23 @@ findAddress() {
     curl "https://nominatim.openstreetmap.org/search.php?q=$1&format=jsonv2"
 }
 
+# https://jwt.io/introduction
+decodeJwt() {
+    if [ $# -lt 1 ]; then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mjwtHere\e[0m"
+
+        return 1
+    fi
+
+    local jwt="$1"
+    local header="$(printf $jwt | cut -d '.' -f1 | base64 --decode --ignore-garbage)"
+    local payload="$(printf $jwt | cut -d '.' -f2 | base64 --decode --ignore-garbage)"
+    local signature="$(printf $jwt | cut -d '.' -f3)"
+
+    echo $header | jq '.'
+    echo $payload | jq '.'
+}
+
 editMe() {
     vim $0
 }
