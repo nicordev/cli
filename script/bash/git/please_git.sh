@@ -2,6 +2,7 @@
 
 readonly SCRIPT_NAME=$(basename $0)
 readonly MAX_COUNT="${MAX_COUNT:-15}"
+readonly BOOKMARKS_FILE="$HOME/please_git_bookmarks"
 
 _askConfirmationDefaultYes() {
     local answer='yes'
@@ -172,6 +173,40 @@ removeCommit() {
     git branch -mf "$initialBranch"
     git log --oneline --graph --max-count=$maxCount
     set +x
+}
+
+resetCurrentBranchAsRemote() {
+    if [ $# -lt 1 ]; then
+        printf "
+${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mremote\e[0m
+"
+        return
+    fi
+
+    local remote="$1"
+    local currentBranch=$(showCurrentBranch)
+
+    git reset --hard "$remote/$currentBranch"
+}
+
+resetCurrentBranchAsOrigin() {
+    resetCurrentBranchAsRemote origin
+}
+
+bookmarkBranch() {
+    local comment=""
+    if [ $# -gt 0 ]; then
+        comment=" # $@"
+    fi
+    echo -e "git checkout \e[35m$(showCurrentBranch)\e[0m$comment" >> "$BOOKMARKS_FILE"
+}
+
+listBookmarks() {
+    cat "$BOOKMARKS_FILE"
+}
+
+editBookmarks() {
+    vim "$BOOKMARKS_FILE"
 }
 
 stashCommit() {
