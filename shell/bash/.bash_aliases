@@ -321,6 +321,7 @@ alias gitb='git branch'
 alias gitba='git branch -a'
 alias gita='git add'
 alias gitsel='git_select_branch.sh'
+alias gitHardReset='git reset --hard'
 alias gitc='MY_GIT_BRANCH=$(git branch --show-current) && please_git checkout'
 alias gitcprevious='MY_GIT_BRANCH=$(git branch --show-current) && git checkout -'
 alias gitcd='MY_GIT_BRANCH=$(git branch --show-current) && please_git checkout develop'
@@ -565,6 +566,13 @@ alias please_php_how_to_find_ini_file_used='echo "
 php --info | grep php.ini
 php -i | grep php.ini
 "'
+alias please_php_template='echo "
+<?php
+
+declare(strict_types=1);
+
+var_dump();exit();
+"'
 # php quality analysis
 alias please_php_run_quality_tools='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-php-quality-analysis:/tmp" -w /project nicordev/php-tools-analysis:latest'
 alias please_php_run_phpstan_analyse='please_php_run_quality_tools phpstan analyse'
@@ -732,6 +740,7 @@ alias please_how_to_extract_string_from_another_string='echo -e "
 echo \e[33mstringToSplitHere\e[0m | cut -d \"\e[33mdelimiterHere\e[0m\" -f\e[33mfieldNumberHere\e[0m
 echo \e[33mstringToSplitHere\e[0m | cut --delimiter=\"\e[33mdelimiterHere\e[0m\" --fields=\e[33mfieldNumberHere\e[0m,\e[33manotherFieldNumberHere\e[0m
 "'
+alias please_how_to_split_string='please_how_to_extract_string_from_another_string'
 # keyboard
 alias please_keyboard_how_to_write_accented_characters="printf '
 # use the compose key
@@ -788,6 +797,9 @@ printf \e[33mmyStringHere\e[0m | wc -m
 alias please_how_to_rename_file_to_lower_snake_case="echo -e '
 echo \"\e[33mfileNameHere\e[0m\" | tr \" \" \"_\" | tr [A-Z] [a-z] | tr -d \"\\\n\"
 '"
+alias please_how_to_remove_space_in_files_of_current_directory="echo \"
+for file in *; do mv \\\\"\\\\$file\\\\" \\\\$(echo \\\\"\\\\$file\\\\" | tr ' ' '_'); done
+\""
 alias please_how_to_find_hard_links_of_a_file="echo -e \"
 get file inode number:
 ls -i \e[33mfileHere\e[0m | awk '{ print \$1; }'

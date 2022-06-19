@@ -232,6 +232,23 @@ replaceInFile() {
     sed -i "s#$stringToReplace#$replacement#" "$file"
 }
 
+replaceSpaceByUnderscoreInFileNamesInCurrentDirectory() {
+    for file in *; do mv "$file" $(echo "$file" | tr ' ' '_'); done
+}
+
+replaceSpaceByUnderscoreInFileName() {
+    if [ $# -lt ! ]; then
+        echo -e "
+${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileHere\e[0m
+"
+
+        return 1
+    fi
+
+    local file="$@"
+    mv "$file" $(echo "$file" | tr ' ' '_')
+}
+
 findAddressByCoordinates() {
     if [ $# -lt 2 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mlatitudeHere longitudeHere\e[0m
@@ -268,7 +285,11 @@ findAddress() {
 # https://jwt.io/introduction
 decodeJwt() {
     if [ $# -lt 1 ]; then
-        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mjwtHere\e[0m"
+        printf "
+# https://jwt.io
+
+${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mjwtHere\e[0m
+"
 
         return 1
     fi
