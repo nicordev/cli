@@ -604,7 +604,10 @@ alias please_symfony_how_to_debug_security='echo "
 Breakpoints in:
 \ApiPlatform\Core\Security\EventListener\DenyAccessListener::checkSecurity
 "'
-alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="grep '[[:digit:]])'"
+alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="echo \"
+grep '^[[:digit:]]) '
+\""
+alias please_phpunit_extract_failed_test_cases_from_terminal_output="grep '^[[:digit:]]) '"
 # laravel
 alias please_laravel_how_to_create_new_project="printf \"
 composer create-project laravel/laravel:^8.0 \e[33mmy-awesome-app\e[0m
