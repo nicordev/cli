@@ -1156,6 +1156,10 @@ sed -n \"/\e[33mstartPattern\e[0m/,/\e[33mendPattern\e[0m/ p\" \e[33mfileNameHer
 # Between patterns (excluding patterns):
 sed --quiet --regexp-extended \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
 sed -nE \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
+
+# Between patterns (excluding patterns with a pipe):
+sed --quiet \"/\e[33mstartPattern\e[0m/,/\e[33mendPattern\e[0m/ p\" \e[33mfileNameHere\e[0m | sed \"1d;\$d\"
+sed -nE \"/\e[33mstartPattern\e[0m/,/\e[33mendPattern\e[0m/ p\" \e[33mfileNameHere\e[0m | sed \"1d;\$d\"
 "'
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
@@ -1178,6 +1182,30 @@ sed -i \"/\e[33mpattern\e[0m/i \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
 
 after pattern:
 sed -i \"/\e[33mpattern\e[0m/a \e[33mtextToInsert\e[0m\" \e[33mfileNameHere\e[0m
+"'
+# tail
+alias please_how_to_avoid_first_lines='echo -e "
+# avoid first lines
+tail --lines=+\e[33mlinesCountPlus1Here\e[0m
+
+# avoid first line
+tail --lines=+2
+"'
+# head
+alias please_how_to_avoid_last_lines='echo -e "
+# avoid first lines
+head --lines=-\e[33mlinesCountHere\e[0m
+
+# avoid last line
+head --lines=-1
+"'
+# head tail
+alias please_how_to_avoid_both_first_and_last_lines='echo -e "
+# avoid some lines
+head --lines=-\e[33mlinesCountHere\e[0m | tail --lines=+\e[33mlinesCountPlus1Here\e[0m
+
+# avoid first and last line
+head --lines=-1 | tail --lines=+2
 "'
 # awk
 alias please_awk_how_to_get_string_length='echo -e "echo \"\e[33mmyStringHere\e[0m\" | awk \"{ print length }\""'
