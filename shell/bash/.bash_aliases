@@ -3,9 +3,15 @@ PLEASE_TODAY=$(date +%Y%m%d)
 PLEASE_FRUITS="apple
 cherry
 banana
+raspberry
 pear
-orange"
+orange
+strawberry
+peach
+lemon"
 
+# training
+alias please_fruits='printf "$PLEASE_FRUITS"'
 # Dummy file
 alias please_create_dummy_file_containing_fruits="echo \"$PLEASE_FRUITS\" > fruits"
 # printf
@@ -604,6 +610,7 @@ alias please_symfony_how_to_debug_security='echo "
 Breakpoints in:
 \ApiPlatform\Core\Security\EventListener\DenyAccessListener::checkSecurity
 "'
+# phpunit
 alias please_phpunit_how_to_extract_failed_test_cases_from_terminal_output="echo \"
 grep '^[[:digit:]]) '
 \""
@@ -761,7 +768,10 @@ alias please_keyboard_how_to_write_accented_characters="printf '
 Ï = compose key + shift + \" then shift + i
 Ô = compose key + shift + ^ then shift + o
 
+° = compose key + 0 + shift + *
+
 https://userbase.kde.org/Tutorials/ComposeKey
+https://fsymbols.com/keyboard/linux/compose/
 
 ' \"'\"
 "
@@ -980,6 +990,12 @@ alias please_how_to_list_all_environment_variables='echo "env"'
 alias please_how_to_print='echo "lp"'
 alias please_how_to_show_printers='echo "lpstat -t"'
 # grep
+alias please_grep_how_to_find_between_patterns="echo -e '
+# including boundaries
+grep --only-matching --null-data \"\e[33mpattern1Here\e[0m.*\e[33mpattern2Here\e[0m\" \e[33motherParameters\e[0m
+grep -oz \"\e[33mpattern1Here\e[0m.*\e[33mpattern2Here\e[0m\" \e[33motherParameters\e[0m
+'
+"
 alias please_grep_how_to_show_lines_around_matches="echo -e '
 See lines after a match
 grep -A \e[33mlinesCount\e[0m \e[33motherParameters\e[0m
@@ -1104,30 +1120,42 @@ target multiple lines that matches a pattern
 sed \"/\e[33mpatternHere\e[0m/s/hello/world/\" input.txt > output.txt
 "'
 alias please_sed_how_to_find_in_file='echo -e "
-sed -nE "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
 sed --quiet --regexp-extended "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
+sed -nE "/\e[33mourPatternHere\e[0m/p" \e[33mfileNameHere\e[0m
 
-Using capturing groups:
-sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+# Using capturing groups:
 sed --quiet --regexp-extended \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed -nE \"s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
 
-In a line range:
-sed -nE \"\e[33mstartLineHere\e[0m,\e[33mendLineHereOr\$\e[0m s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+# In a line range:
 sed --quiet --regexp-extended \"\e[33mstartLineHereOr\$\e[0m,\e[33mendLineHere\e[0m s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed -nE \"\e[33mstartLineHere\e[0m,\e[33mendLineHereOr\$\e[0m s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
 
-In a range by patterns:
-sed -nE \"/\e[33mpatternHere\e[0m/,/\e[33mpatternHere\e[0m/ s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+# In a range by patterns (including patterns):
 sed --quiet --regexp-extended \"/\e[33mpatternHere\e[0m/,/\e[33mpatternHere\e[0m/ s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+sed -nE \"/\e[33mpatternHere\e[0m/,/\e[33mpatternHere\e[0m/ s#\e[33msomeCharactersHere(yourCapturingGroup)\e[0m#\1#p\" \e[33mfileNameHere\e[0m
+
+# In a range by patterns (excluding patterns):
+sed --quiet --regexp-extended \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
+sed -nE \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
 "'
 alias please_sed_how_to_print_lines='echo -e "One line:
-sed -n \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
-sed --quiet \"\e[33mlineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
+sed --quiet \"\e[33mlineNumberHere\e[0m p\" \e[33mfileNameHere\e[0m
+sed -n \"\e[33mlineNumberHere\e[0m p\" \e[33mfileNameHere\e[0m
 
-Multiple lines:
-sed -n \"\e[33mlineNumberHere\e[33m;\e[0manotherLineNumberHere\e[0m;\e[0manotherLineNumberHere\e[0mp\" \e[33mfileNameHere\e[0m
+# Multiple lines:
+sed -n \"\e[33mlineNumberHere\e[0m;\e[33manotherLineNumberHere\e[0m;\e[33manotherLineNumberHere\e[0m p\" \e[33mfileNameHere\e[0m
 
-Consecutive lines:
-sed -n \"\e[33mlineRangeStart\e[33m,\e[0mlineRangeEnd\e[0mp\" \e[33mfileNameHere\e[0m
+# Consecutive lines:
+sed -n \"\e[33mlineRangeStart\e[0m,\e[33mlineRangeEnd\e[0m p\" \e[33mfileNameHere\e[0m
+
+# Between patterns (including patterns):
+sed --quiet \"/\e[33mstartPattern\e[0m/,/\e[33mendPattern\e[0m/ p\" \e[33mfileNameHere\e[0m
+sed -n \"/\e[33mstartPattern\e[0m/,/\e[33mendPattern\e[0m/ p\" \e[33mfileNameHere\e[0m
+
+# Between patterns (excluding patterns):
+sed --quiet --regexp-extended \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
+sed -nE \"1,/\e[33mpatternHere\e[0m/d; /\e[33mpatternHere\e[0m/q; p\" \e[33mfileNameHere\e[0m
 "'
 alias please_sed_how_to_capture_string='echo -e "sed --quiet \"s#\e[33mYour pattern here with escaped parenthesis \e[0m\(like that\)\e[33m to capture groups\e[0m#\e[33mHere the first capture group \e[0m\1\e[33m and the second \e[0m\2#p\" fileName" or just \"-n\"'
 alias please_sed_how_to_remove_first_line='echo -e "sed -i 1d \e[33mfileNameHere\e[0m"'
@@ -1880,3 +1908,8 @@ sct 1850
 "'
 # scrum
 alias please_scrum_create_poker_room='echo "https://www.scrumpoker-online.org/en/"'
+# inkscape
+alias please_inkscape_how_to_measure='echo "
+press m or use the ruler button on the left panel
+hold ctl to use predefined angles like 90°
+"'
