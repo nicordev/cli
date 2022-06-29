@@ -35,6 +35,25 @@ changeGitHubToGitlabOrigin() {
     git push --set-upstream origin ${2:-master}
 }
 
+createGitlabMergeRequest() {
+    local remote=${remote:-origin}
+
+    if [ $# -lt 2 ]; then
+        echo -e "
+\e[35mremote=$remote branchToPush=$branchToPush\e[0m ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mtargetBranch title [description]\e[0m
+"
+        return
+    fi
+
+    git push \
+        -o merge_request.create \
+        -o merge_request.remove_source_branch \
+        -o merge_request.target="$1" \
+        -o merge_request.title="$2" \
+        -o merge_request.description="$3" \
+        $remote ${branchToPush:-$(showCurrentBranch)}
+}
+
 showCurrentBranch() {
     git branch --show-current
 }
@@ -102,10 +121,6 @@ resetCurrentBranchToOrigin() {
 
     fetchOrigin
     git reset --hard "origin/$CURRENT_BRANCH"
-}
-
-showCurrentBranch() {
-    git branch --show-current
 }
 
 backupCurrentBranch() {
@@ -193,12 +208,29 @@ resetCurrentBranchAsOrigin() {
     resetCurrentBranchAsRemote origin
 }
 
+bookmarkCurrentBranch() {
+    bookmarkBranch $(showCurrentBranch) "$@"
+}
+
 bookmarkBranch() {
     local comment=""
-    if [ $# -gt 0 ]; then
+    if [ $# -lt 1 ]
+    then
+        printf "
+${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchNameHere\e[0m
+"
+        return
+    fi
+
+    local branch="$1"
+    shift
+
+    if [ "$2" ]
+    then
         comment=" # $@"
     fi
-    echo -e "git checkout \e[35m$(showCurrentBranch)\e[0m$comment" >> "$BOOKMARKS_FILE"
+
+    echo -e "git checkout \e[35m$branch\e[0m$comment" >> "$BOOKMARKS_FILE"
 }
 
 listBookmarks() {

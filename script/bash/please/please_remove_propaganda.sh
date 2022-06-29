@@ -4,8 +4,17 @@ SCRIPT_NAME=$(basename $0)
 SCRIPT_DIRECTORY=$(dirname $0)
 
 fromPhpUnit() {
-    sudo sed -i "s/'bg-blue', '#StandWith'/'bg-white', 'hello'/" $(grep -R "'bg-blue', '#StandWith'" . | awk '{ print $1; }' | tr -d ':')
-    sudo sed -i "s/'bg-yellow', 'Ukraine'/'bg-white', 'world'/" $(grep -R "'bg-yellow', 'Ukraine'" . | awk '{ print $1; }' | tr -d ':')
+    local filesWithPropaganda=$(grep --dereference-recursive --files-with-matches '#StandWith' vendor)
+
+    for file in $filesWithPropaganda
+    do
+        sudo sed -i \
+            -e "s/'bg-blue', '#StandWith'/'bg-white', 'hello'/" \
+            -e "s/'bg-yellow', 'Ukraine'/'bg-white', 'world'/" \
+            -e 's/#StandWith/hello/' \
+            -e 's/Ukraine/world/' \
+            $file
+    done
 }
 
 editMe() {

@@ -237,7 +237,7 @@ replaceSpaceByUnderscoreInFileNamesInCurrentDirectory() {
 }
 
 replaceSpaceByUnderscoreInFileName() {
-    if [ $# -lt ! ]; then
+    if [ $# -lt 1 ]; then
         echo -e "
 ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileHere\e[0m
 "
@@ -247,6 +247,20 @@ ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mfileHere\e[0m
 
     local file="$@"
     mv "$file" $(echo "$file" | tr ' ' '_')
+}
+
+printLinesBetweenPatternsExcludingPatternsUsingPipe() {
+    if [ $# -lt 2 ]; then
+        echo -e "
+${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mstartPatternHere endPatternHere\e[0m
+"
+
+        return 1
+    fi
+    local startPattern="$1"
+    local endPattern="$2"
+
+    sed --quiet "1,/$startPattern/d; /$endPattern/q; p"
 }
 
 findAddressByCoordinates() {

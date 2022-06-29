@@ -443,7 +443,11 @@ post-merge
 pre-push
 pre-auto-gc
 \""
+## github
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
+alias please_github_how_to_create_token='echo -e "
+https://github.com/settings/tokens
+"'
 # Gitlab
 alias please_gitlab_how_to_create_static_website="printf \"
 create from template:
@@ -732,6 +736,13 @@ alias please_jq_how_to_list_keys="printf \"
 alias please_pdf_how_to_read_from_terminal='echo "
 less \e[33mpdfFileHere\e[0m
 "'
+alias please_pdf_how_to_convert_to_svg='echo -e "
+# using pdf2svg
+
+sudo apt install pdf2svg
+
+pdf2svg \e[33mpdfFileToConvertHere svgFileNameToCreateHere\e[0m
+"'
 # base64
 alias please_base64_how_to_encode='echo -e "
 base64 \e[33mstringToEncodeHere\e[0m
@@ -769,6 +780,7 @@ alias please_keyboard_how_to_write_accented_characters="printf '
 Ô = compose key + shift + ^ then shift + o
 
 ° = compose key + 0 + shift + *
+€ = compose key + c + =
 
 https://userbase.kde.org/Tutorials/ComposeKey
 https://fsymbols.com/keyboard/linux/compose/
