@@ -443,6 +443,9 @@ post-merge
 pre-push
 pre-auto-gc
 \""
+alias please_git_how_to_list_branches_without_asterisk='echo "
+git branch --format=\"%(refname:short)\"
+"'
 ## github
 alias please_github_how_to_clone='echo -e "git clone https://github.com/\e[33muserName\e[0m/\e[33mrepo\e[0m.git"'
 alias please_github_how_to_create_token='echo -e "
@@ -788,6 +791,10 @@ https://fsymbols.com/keyboard/linux/compose/
 ' \"'\"
 "
 # linux
+alias please_how_to_remove_duplicated_lines='echo -e "
+\e[33msomeCommand\e[0m | sort | uniq --unique
+\e[33msomeCommand\e[0m | sort | uniq -u
+"'
 alias please_how_to_pass_string_to_command_input='echo -e "
 # heredoc
 \e[33mcommandHere\e[0m << \e[33mheredocDelimiterHere\e[0m
