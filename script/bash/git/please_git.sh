@@ -62,13 +62,17 @@ showOtherBranches() {
     git branch | grep --invert-match \* | sed 's#  ##'
 }
 
+listBranchNames() {
+    git branch --format='%(refname:short)'
+}
+
 filterBranches() {
     if [ $# -eq 0 ]; then
         echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mcriteriaHere\e[0m"
         exit
     fi
 
-    git branch | grep "$1" | sed 's#^* ##' | sed 's#  ##'
+    listBranchNames | grep "$1"
 }
 
 deleteBranches() {
@@ -80,6 +84,30 @@ deleteBranches() {
     filterBranches "$1"
     _askConfirmationDefaultYes || exit
     git branch -D $(filterBranches "$1")
+}
+
+deleteAllBranchesBut() {
+    if [ $# -lt 1 ]
+    then
+        echo -e "${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchToKeep [...branchToKeep]\e[0m"
+        return
+    fi
+
+    _askConfirmationDefaultYes || exit
+
+    for branch in $(listBranchNames)
+    do
+        # skip branches to keep
+        for branchToKeep in $@
+        do
+            if [ "$branch" = "$branchToKeep" ]
+            then
+                continue 2
+            fi
+        done
+
+        git branch -D $branch
+    done
 }
 
 recreateBranchFrom() {
