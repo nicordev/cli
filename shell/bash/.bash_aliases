@@ -1119,6 +1119,9 @@ classes:
 \""
 # sed
 alias please_sed_browse_documentation='echo "http://www.gnu.org/software/sed/manual/sed.html"'
+alias please_sed_how_to_prefix_lines="echo -e \"
+sed 's/^/\e[33mmyPrefixHere\e[0m/' \e[33mmyFileHere\e[0m
+\""
 alias please_sed_how_to_replace_line="printf \"
 sed \e[33mlineNumberHere\e[0m'c%s\e[33mreplacementStringHere\e[0m' fruits
 \" '\'"
@@ -1648,6 +1651,17 @@ values
 ;
 "'
 # postgresql
+alias please_postgresql_how_to_format_date="echo -e \"
+select to_char(\e[33mdateHere\e[0m, 'YYYY-MM-DD')
+\""
+alias please_postgresql_how_to_cast_dates="echo -e \"
+# date to text
+select to_char(\e[33mdateHere\e[0m, 'YYYY-MM-DD')
+select now()::text
+
+# text to date
+select to_date('\e[33mdateHere\e[0m', 'YYYY-MM-DD')
+\""
 alias please_postgresql_how_to_list_table_columns="echo -e '
 select
     column_name,
