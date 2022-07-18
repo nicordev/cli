@@ -701,11 +701,29 @@ alias please_how_to_count_files_and_directories="echo -e 'ls -1 | wc -l'"
 alias please_how_to_list_directories_only='echo -e "ls -d \e[33mpathHere/commonStringHere\e[0m*/"'
 # user and group
 alias please_add_group_to_user='sudo usermod -aG'
-alias please_how_to_get_current_user_id='echo "id -u"'
-alias please_how_to_get_current_user_name='echo "id -un"'
-alias please_how_to_get_current_group_id='echo "id -g"'
-alias please_how_to_get_current_group_name='echo "id -gn"'
-alias please_how_to_get_user_id='echo -e "id -u \e[33mnameOrIdHere\e[0m"'
+alias please_how_to_get_current_user_id='echo "
+# using id command
+id -u
+
+# using global variable
+echo $UID
+"'
+alias please_how_to_get_current_user_name='echo "
+id -un
+"'
+alias please_how_to_get_current_group_id='echo "
+# using id command
+id -g
+
+# using global variable
+echo $GROUPS
+"'
+alias please_how_to_get_current_group_name='echo "
+id -gn
+"'
+alias please_how_to_get_user_id='echo -e "
+id -u \e[33mnameOrIdHere\e[0m
+"'
 alias please_how_to_get_user_name='echo -e "id -un \e[33mnameOrIdHere\e[0m"'
 alias please_how_to_get_group_id='echo -e "id -g \e[33mnameOrIdHere\e[0m"'
 alias please_how_to_get_group_name='echo -e "id -gn \e[33mnameOrIdHere\e[0m"'
@@ -791,6 +809,11 @@ https://fsymbols.com/keyboard/linux/compose/
 ' \"'\"
 "
 # linux
+alias please_how_to_use_sudo_without_password="echo -e \"
+# edit /etc/sudoers
+
+\e[33mmyUserName\e[0m ALL=(ALL) NOPASSWD:ALL
+\""
 alias please_how_to_remove_duplicated_lines='echo -e "
 \e[33msomeCommand\e[0m | sort | uniq --unique
 \e[33msomeCommand\e[0m | sort | uniq -u
@@ -1256,8 +1279,15 @@ alias please_how_to_transform_to_lower_case='echo HELLO | tr [:upper:] [:lower:]
 alias please_how_to_unmount_usb_key='echo -e "umount \e[33mcheminVers/CléUsb\e[0m"'
 alias please_how_to_format_usb_key='echo -e "sudo mkfs.vfat -n \e[33mNOUVEAU_NOM_CLE_USB\e[0m -I \e[33m/dev/sdb\e[0m"'
 alias please_how_to_create_bootable_usb_key='echo -e "\e[34mFirst unmount the key, format the key then\e[0m" && echo -e "sudo dd bs=4M if=\e[33mcheminVers/FichierImage.iso\e[0m of=\e[33m/dev/sdb status=progress\e[0m"'
-# generate random things
+# random
 alias please_generate_a_random_string='tr -dc A-Za-z0-9_ < /dev/urandom | head -c 16 | xargs'
+alias please_how_to_get_random_number='echo -e "
+# one number
+echo \$RANDOM
+
+# the same sequence
+RANDOM=\e[33mnumberHere\e[0m; for ((i=1;i<=\e[33mnumbersCountHere\e[0m;i++)); do echo \$RANDOM; done
+"'
 # time
 alias please_what_is_the_current_week_number='echo "Using bash: " && date +%W && echo "Using php: " && php -r "echo (new DateTime())->format(\"W\");"'
 alias please_what_time_is_it='date'
@@ -1281,6 +1311,27 @@ time \e[33myourCodeHere\e[0m
 "'
 alias please_how_to_measure_script_performance='echo -e "time --format \"%C %E\" \e[33myourCodeHere\e[0m"'
 # bash
+alias please_bash_how_to_check_integer="echo -e \"
+# one line
+
+if [[ \e[33m\\\$variableHere\e[0m =~ ^[0-9]+\$ ]]; then echo 'true' fi
+
+# snippet
+
+is_integer() {
+    [[ \\\"\\\$@\\\" =~ ^[0-9]+\$ ]]
+}
+
+for parameter in \\\$@
+do
+    if is_integer \\\"\\\$parameter\\\"
+    then
+        # true
+    else
+        # false
+    fi
+done
+\""
 alias please_bash_explain_special_parameters='echo -e "
 # given 3 parameters
 
@@ -1747,6 +1798,22 @@ alias please_code_moi='codium ~/moi'
 alias code='codium'
 alias please_vscodium_what_is_the_latest_release='echo "https://github.com/VSCodium/vscodium/releases/latest"'
 # docker
+alias please_docker-compose_get_php_template="echo -e \"
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '8003:80'
+    volumes:
+      - ./:/app
+      - ./docker/nginx/site-3.conf:/etc/nginx/conf.d/default.conf
+  php:
+    image: php:7-fpm
+    volumes:
+      - .:/app
+\""
 alias please_docker_show_container_ip='please_docker.sh showContainerIp'
 alias please_docker_show_network_ip='please_docker.sh showNetworkIp'
 alias please_docker_clean='docker system prune'

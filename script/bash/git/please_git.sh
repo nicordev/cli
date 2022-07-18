@@ -258,11 +258,11 @@ ${SCRIPT_NAME} ${FUNCNAME[0]} \e[33mbranchNameHere\e[0m
         comment=" # $@"
     fi
 
-    echo -e "git checkout \e[35m$branch\e[0m$comment" >> "$BOOKMARKS_FILE"
+    echo -e "$branch$comment" >> "$BOOKMARKS_FILE"
 }
 
 listBookmarks() {
-    cat "$BOOKMARKS_FILE"
+    sed "s/^/git checkout /" "$BOOKMARKS_FILE"
 }
 
 editBookmarks() {
