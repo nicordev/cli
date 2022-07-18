@@ -936,14 +936,23 @@ alias please_what_is_the_current_distribution='cat /etc/os-release'
 alias please_today='date "+%Y%m%d"'
 alias please_change_files_owner_to_me='sudo chown --recursive $USER:$USER'
 alias please_how_to_redirect_output_error='printf "
-To redirect output and error in the same file:
+# redirect output and error in the same file:
 \e[1;33mcommandHere\e[0m 2>&1 \e[1;33mfileHere\e[0m
 
-To redirect output and error in dedicated files:
+# redirect output and error in dedicated files:
 \e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> \e[1;33merrorFileHere\e[0m
 
-To silence errors:
+# silence errors:
 \e[1;33mcommandHere\e[0m > \e[1;33moutputFileHere\e[0m 2> /dev/null
+
+# explanation
+2> targets the file descriptor 2 that is the error
+while > is the same as 1> that targets the file descriptor 1 that is the output
+
+file descriptors from /dev/fd/:
+0: input
+1: output
+2: error
 "'
 alias please_how_to_add_today_to_file_name='echo -e "mv \e[33mfileName\e[0m ${PLEASE_TODAY}_\e[33mfileName\e[0m"'
 alias please_how_to_use_date="printf \"
